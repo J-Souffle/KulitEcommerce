@@ -37,6 +37,7 @@ function App() {
 
   return (
     <CartContext.Provider value={{ cartItem, addToCart, setCartItem }}>
+      <Navbar />
       <Routes>
         {/* Define routes for pages with navbar */}
         <Route
