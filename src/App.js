@@ -11,6 +11,7 @@ import Chairs from "./components/Categories-pages/Chairs";
 import Hoodies from "./components/Categories-pages/Hoodies";
 import ProductPage, { CartContext } from "./pages/ProductPage";
 import { useEffect, useState } from "react";
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
   const [cartItem, setCartItem] = useState([]);
@@ -38,7 +39,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route index path="/" element={<Home />} />
-
+        
         <Route path="categories" element={<Categories />}>
           <Route path="all" element={<All />} />
           <Route path="furnitures" element={<Furnitures />} />
@@ -48,7 +49,11 @@ function App() {
           <Route path="chairs" element={<Chairs />} />
           <Route path="skin-care" element={<Hoodies />} />
         </Route>
+        
         <Route path="categories/product/:id" element={<ProductPage />} />
+        
+        {/* Define route for CheckoutPage */}
+        <Route path="checkout" element={<CheckoutPage />} />
       </Routes>
     </CartContext.Provider>
   );

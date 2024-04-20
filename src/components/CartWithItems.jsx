@@ -33,7 +33,7 @@ function CartWithItems() {
           <p className="total-price">{totalPrice + ".00$"}</p>
         </div>
         <div className="sub-left">
-          <Link>Go to Checkout</Link>
+          <Link to="/checkout">Go to Checkout</Link>
         </div>
       </div>
     </>
