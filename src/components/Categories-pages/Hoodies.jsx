@@ -1,11 +1,11 @@
-import CategoriesItemSkinCare from "./CategoriesItemSkinCare";
+import CategoriesItemHoodies from "./CategoriesItemHoodies";
 import Footer from "../Footer";
 import Newsletter from "../Newsletter";
 
 function SkinCare() {
   return (
     <>
-      <CategoriesItemSkinCare />
+      <CategoriesItemHoodies />
       <Newsletter />
       <Footer />
     </>

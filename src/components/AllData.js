@@ -18,6 +18,7 @@ import Img17 from "../img/products/17.png";
 import Img18 from "../img/products/18.png";
 import Img19 from "../img/products/19.jpg";
 import Img20 from "../img/products/20r.jpg";
+import Img21 from "../img/products/FirstKulitHoodie.jpeg";
 import OtherImgs1 from "../img/products/otherProducts/other1.jpg";
 import OtherImgs2 from "../img/products/otherProducts/other2.jpg";
 import Toster1 from "../img/products/otherProducts/toster1.jpg";
@@ -58,6 +59,8 @@ import MatLamp1 from "../img/products/otherProducts/mat1.webp";
 import MatLamp2 from "../img/products/otherProducts/mat2.webp";
 import Comfy1 from "../img/products/otherProducts/comfy1.webp";
 import Comfy2 from "../img/products/otherProducts/comfy2.webp";
+import FirstKulitHoodie1 from "../img/products/otherProducts/FirstKulitHoodie1.jpeg"
+import FirstKulitHoodie2 from "../img/products/otherProducts/FirstKulitHoodie2.jpeg"
 
 export const items = [
   {
@@ -318,6 +321,19 @@ export const items = [
       "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water.",
     texture: "Liquid",
     weight: "50ml",
+    size: "10cm x 5cm",
+  },
+  {
+    id: 21,
+    category: "skin-care",
+    img: Img21,
+    description: "Classic Kulit Sweatshirt",
+    price: 67,
+    otherImgs: [FirstKulitHoodie1, FirstKulitHoodie2],
+    specs:
+      "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water",
+    texture: "Cotton",
+    weight: "200ml",
     size: "10cm x 5cm",
   },
 ];
