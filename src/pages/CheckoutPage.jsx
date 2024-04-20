@@ -1,30 +1,20 @@
-import Banner from "../components/Banner";
-import BannerReverse from "../components/BannerReverse";
+import React from "react";
+import CheckoutBanner from "../components/CheckoutComponents/CheckoutBanner";
+import OrderSummary from "../components/CheckoutComponents/OrderSummary";
+import ShippingInfo from "../components/CheckoutComponents/ShippingInfo";
+import PaymentDetails from "../components/CheckoutComponents/PaymentDetails";
+import ConfirmationButton from "../components/CheckoutComponents/ConfirmationButton";
 import Footer from "../components/Footer";
-import Hero from "../components/Hero";
-import Newsletter from "../components/Newsletter";
-import ProudProducts from "../components/ProudProducts";
-import TrendingSlider from "../components/TrendingSlider";
-import Banner1 from "../img/banner/FilipinoFood.jpg";
-import Banner2 from "../img/banner/FilipinoTransportation.jpg";
 
 function Checkout() {
   return (
     <>
-      <Hero />
-      <ProudProducts />
-      <Banner
-        title="Quality Products"
-        text=" Yummy Food"
-        img={Banner1}
-      />
-      <TrendingSlider />
-      <BannerReverse
-        title="Made By Real Filipinos"
-        text=" Yessir"
-        img={Banner2}
-      />
-      <Newsletter />
+
+      <CheckoutBanner />
+      <OrderSummary />
+      <ShippingInfo />
+      <PaymentDetails />
+      <ConfirmationButton />
       <Footer />
     </>
   );

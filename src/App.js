@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
@@ -12,6 +11,8 @@ import Hoodies from "./components/Categories-pages/Hoodies";
 import ProductPage, { CartContext } from "./pages/ProductPage";
 import { useEffect, useState } from "react";
 import CheckoutPage from "./pages/CheckoutPage";
+import Navbar from "./components/Navbar";
+import CheckoutNavbar from "./components/CheckoutComponents/NavbarCheckout";
 
 function App() {
   const [cartItem, setCartItem] = useState([]);
@@ -36,11 +37,26 @@ function App() {
 
   return (
     <CartContext.Provider value={{ cartItem, addToCart, setCartItem }}>
-      <Navbar />
       <Routes>
-        <Route index path="/" element={<Home />} />
-        
-        <Route path="categories" element={<Categories />}>
+        {/* Define routes for pages with navbar */}
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Home />
+            </>
+          }
+        />
+        <Route
+          path="categories"
+          element={
+            <>
+              <Navbar />
+              <Categories />
+            </>
+          }
+        >
           <Route path="all" element={<All />} />
           <Route path="furnitures" element={<Furnitures />} />
           <Route path="electronics" element={<Electronics />} />
@@ -49,11 +65,10 @@ function App() {
           <Route path="chairs" element={<Chairs />} />
           <Route path="skin-care" element={<Hoodies />} />
         </Route>
-        
         <Route path="categories/product/:id" element={<ProductPage />} />
-        
-        {/* Define route for CheckoutPage */}
-        <Route path="checkout" element={<CheckoutPage />} />
+
+        {/* Define route for CheckoutPage with its own navbar */}
+        <Route path="checkout" element={<><CheckoutNavbar /><CheckoutPage /></>} />
       </Routes>
     </CartContext.Provider>
   );
