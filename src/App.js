@@ -8,7 +8,7 @@ import Electronics from "./components/Categories-pages/Electronics";
 import Lamps from "./components/Categories-pages/Lamps";
 import Kitchen from "./components/Categories-pages/Kitchen";
 import Chairs from "./components/Categories-pages/Chairs";
-import SkinCare from "./components/Categories-pages/SkinCare";
+import Hoodies from "./components/Categories-pages/Hoodies";
 import ProductPage, { CartContext } from "./pages/ProductPage";
 import { useEffect, useState } from "react";
 
@@ -46,7 +46,7 @@ function App() {
           <Route path="lamps" element={<Lamps />} />
           <Route path="kitchen" element={<Kitchen />} />
           <Route path="chairs" element={<Chairs />} />
-          <Route path="skin-care" element={<SkinCare />} />
+          <Route path="skin-care" element={<Hoodies />} />
         </Route>
         <Route path="categories/product/:id" element={<ProductPage />} />
       </Routes>
