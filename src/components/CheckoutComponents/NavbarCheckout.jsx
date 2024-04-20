@@ -3,8 +3,6 @@ import "./NavbarCheckout.css";
 import LogoImg2 from "../../img/1.png";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import CartWithItems from "./../CartWithItems";
-import EmptyCart from "./../EmptyCart";
 import { CartContext } from "../../pages/ProductPage";
 import { IconMenu2, IconShoppingCart, IconX } from "@tabler/icons-react";
 
@@ -69,6 +67,7 @@ function Navbar() {
       <nav className="navbar">
         <div className="container">
           <div className={`nav-container ${sticky ? "cont-sticky" : ""}`}>
+         
             <Link to="/">
               <img
                 onClick={scrollToTop}
@@ -77,7 +76,9 @@ function Navbar() {
                 className="logo-img"
               />
             </Link>
-           
+            <div className="navbar-text">
+          <h2>Checkout</h2>
+          </div>
             <div className="hamburger-menu">
               <i
                 data-array-length={cartItem.length}
