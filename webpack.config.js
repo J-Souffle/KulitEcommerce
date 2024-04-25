@@ -41,7 +41,13 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'public'),
     },
-    port: 8081, // Change the port to 8081 or any other available port
+    port: 8001,
     open: true,
+    proxy: [{
+      context: ['/categories'], // Define the context path(s) to proxy
+      target: 'http://localhost:3000', // Define the target URL
+      secure: false,
+      changeOrigin: true,
+    }],
   },
 };
