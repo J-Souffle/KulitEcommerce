@@ -1,18 +1,18 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Categories from "./pages/Categories";
-import All from "./components/Categories-pages/All";
-import Furnitures from "./components/Categories-pages/Furnitures";
-import Electronics from "./components/Categories-pages/Electronics";
-import Lamps from "./components/Categories-pages/Lamps";
-import Kitchen from "./components/Categories-pages/Kitchen";
-import Chairs from "./components/Categories-pages/Chairs";
-import Hoodies from "./components/Categories-pages/Hoodies";
-import ProductPage, { CartContext } from "./pages/ProductPage";
+import Home from "./pages/Home.jsx";
+import Categories from "./pages/Categories.jsx";
+import All from "./components/Categories-pages/All.jsx";
+import Furnitures from "./components/Categories-pages/Furnitures.jsx";
+import Electronics from "./components/Categories-pages/Electronics.jsx";
+import Lamps from "./components/Categories-pages/Lamps.jsx";
+import Kitchen from "./components/Categories-pages/Kitchen.jsx";
+import Chairs from "./components/Categories-pages/Chairs.jsx";
+import Hoodies from "./components/Categories-pages/Hoodies.jsx";
+import ProductPage, { CartContext } from "./pages/ProductPage.jsx";
 import { useEffect, useState } from "react";
-import CheckoutPage from "./pages/CheckoutPage";
-import Navbar from "./components/Navbar";
-import CheckoutNavbar from "./components/CheckoutComponents/NavbarCheckout";
+import CheckoutPage from "./pages/CheckoutPage.jsx";
+import Navbar from "./components/Navbar.jsx";
+import CheckoutNavbar from "./components/CheckoutComponents/NavbarCheckout.jsx";
 
 function App() {
   const [cartItem, setCartItem] = useState([]);
@@ -37,7 +37,6 @@ function App() {
 
   return (
     <CartContext.Provider value={{ cartItem, addToCart, setCartItem }}>
-      <Navbar />
       <Routes>
         {/* Define routes for pages with navbar */}
         <Route
@@ -50,7 +49,7 @@ function App() {
           }
         />
         <Route
-          path="categories"
+          path="/categories"
           element={
             <>
               <Navbar />
@@ -66,10 +65,10 @@ function App() {
           <Route path="chairs" element={<Chairs />} />
           <Route path="skin-care" element={<Hoodies />} />
         </Route>
-        <Route path="categories/product/:id" element={<ProductPage />} />
+        <Route path="/categories/product/:id" element={<ProductPage />} />
 
         {/* Define route for CheckoutPage with its own navbar */}
-        <Route path="checkout" element={<><CheckoutNavbar /><CheckoutPage /></>} />
+        <Route path="/checkout" element={<><CheckoutNavbar /><CheckoutPage /></>} />
       </Routes>
     </CartContext.Provider>
   );

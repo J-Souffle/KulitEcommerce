@@ -1,6 +1,6 @@
-import CategoriesItemElectronics from "./CategoriesItemElectronics";
-import Footer from "../Footer";
-import Newsletter from "../Newsletter";
+import CategoriesItemElectronics from "./CategoriesItemElectronics.jsx";
+import Footer from "../Footer.jsx";
+import Newsletter from "../Newsletter.jsx";
 
 function Electronics() {
   return (

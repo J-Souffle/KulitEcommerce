@@ -1,6 +1,6 @@
-import CategoriesItemChairs from "./CategoriesItemChairs";
-import Footer from "../Footer";
-import Newsletter from "../Newsletter";
+import CategoriesItemChairs from "./CategoriesItemChairs.jsx";
+import Footer from "../Footer.jsx";
+import Newsletter from "../Newsletter.jsx";
 
 function Chairs() {
   return (

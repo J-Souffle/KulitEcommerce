@@ -1,6 +1,6 @@
-import CategoriesItemHoodies from "./CategoriesItemHoodies";
-import Footer from "../Footer";
-import Newsletter from "../Newsletter";
+import CategoriesItemHoodies from "./CategoriesItemHoodies.jsx";
+import Footer from "../Footer.jsx";
+import Newsletter from "../Newsletter.jsx";
 
 function SkinCare() {
   return (

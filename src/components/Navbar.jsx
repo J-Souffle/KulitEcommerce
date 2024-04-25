@@ -3,9 +3,9 @@ import "./Navbar.css";
 import LogoImg2 from "../img/1.png";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import CartWithItems from "./CartWithItems";
-import EmptyCart from "./EmptyCart";
-import { CartContext } from "../pages/ProductPage";
+import CartWithItems from "./CartWithItems.jsx";
+import EmptyCart from "./EmptyCart.jsx";
+import { CartContext } from "../pages/ProductPage.jsx";
 import { IconMenu2, IconShoppingCart, IconX } from "@tabler/icons-react";
 
 function Navbar() {

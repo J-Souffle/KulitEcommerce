@@ -1,6 +1,6 @@
-import CategoriesItem from "../CategoriesItem";
-import Footer from "../Footer";
-import Newsletter from "../Newsletter";
+import CategoriesItem from "../CategoriesItem.jsx";
+import Footer from "../Footer.jsx";
+import Newsletter from "../Newsletter.jsx";
 
 function All() {
   return (
