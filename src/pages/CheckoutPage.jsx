@@ -10,7 +10,7 @@ import Footer from "../components/Footer.jsx";
 
 function Checkout() {
   const publishableKey = 'pk_test_51P7ai8LO5J7ORzPKB8mr7QaPvwECu3ebmWth80FNICCRX6ehA62vlkqUNwskIb678eCsIxmNNMPOVsL7sbv3M8CP00TFgHUti4'
-  const [product, setProduct] = useState({name: 'Headphone', price: 10});
+  const [product, setProduct] = useState({name: 'Headphone', price: 5});
   const priceForStripe = product.price * 100;
   const payNow = async token => {
     try {

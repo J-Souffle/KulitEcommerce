@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-const stripe = require('stripe')(process.env.SECRET_KEY);
+const Stripe = require('stripe')(process.env.SECRET_KEY);
 const cors = require('cors');
 
 const app = express();
@@ -19,7 +19,18 @@ app.listen(port, error => {
 app.post('/payment', async(req, res) =>{
   let status, error;
   const {token, amount} = req.body;
-  console.log(token)
+  try {
+    await Stripe.charges.create({
+      source: token.id,
+      amount,
+      currency:'usd',
+    });
+    status = 'Success';
+  } catch (error) {
+    console.log(error);
+    status = 'Failure';
+  }
+  res.json({error, status})
 })
 
-require('dotenv').config();
+require('dotenv').config()
