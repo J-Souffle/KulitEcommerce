@@ -1,22 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import './CheckoutPage.css';
 import axios from 'axios';
-import OrderSummary from "../components/CheckoutComponents/OrderSummary.jsx";
-import ShippingInfo from "../components/CheckoutComponents/ShippingInfo.jsx";
-import PaymentDetails from "../components/CheckoutComponents/PaymentDetails.jsx";
-import ConfirmationButton from "../components/CheckoutComponents/ConfirmationButton.jsx";
-import Footer from "../components/Footer.jsx";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { CartContext } from "../pages/ProductPage.jsx";
 
 const MySwal = withReactContent(Swal);
 
 function Checkout() {
   const publishableKey = 'pk_test_51P7ai8LO5J7ORzPKB8mr7QaPvwECu3ebmWth80FNICCRX6ehA62vlkqUNwskIb678eCsIxmNNMPOVsL7sbv3M8CP00TFgHUti4';
-  const [product] = useState([{name: 'Headphone', price: 5}, {name: 'iPhone', price: 10}]);
+  const { cartItem } = useContext(CartContext);
 
-  const totalPrice = product.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const priceForStripe = totalPrice * 100;
 
   const handleSuccess = () => {
@@ -59,17 +55,20 @@ function Checkout() {
     <div className="container">
       <h2>Complete React & Stripe payment integration</h2>
       <h3>Products in your cart:</h3>
-      {product.map((item, index) => (
-        <div key={index}>
-          <p>
-            <span>Product: </span>{item.name}
-          </p>
-          <p>
-            <span>Price: </span>${item.price}
-          </p>
+      {cartItem.map((item, index) => (
+        <div key={index} className="cart-item">
+          <div className="cart-img">
+            <img src={item.img} alt="product" />
+          </div>
+          <div className="cart-details">
+            <p className="cart-name">{item.description}</p>
+            <p className="cart-quantity">Quantity: {item.quantity}</p>
+            <p className="cart-price">Price: ${item.price}</p>
+            <p className="cart-total">Total: ${item.price * item.quantity}</p>
+          </div>
         </div>
       ))}
-      <p>
+      <p className="cart-total-price">
         <span>Total Price: </span>${totalPrice}
       </p>
       <StripeCheckout
