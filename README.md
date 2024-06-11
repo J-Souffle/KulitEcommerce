@@ -1,6 +1,7 @@
 # To-Do
 - [ ] Support page
 - [ ] Fix logo displayed on navbar
+- [ ] Checkout Page bug (duplicate items)
 
 # KulitEcommerce
 
