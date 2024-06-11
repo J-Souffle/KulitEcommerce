@@ -103,6 +103,12 @@ function Navbar() {
               >
                 product page
               </Link>
+              <Link
+                onClick={() => window.scrollTo(0, 0)}
+                to="/categories/product/19"
+              >
+                support
+              </Link>
               <i
                 data-array-length={cartItem.length}
                 onClick={openCart}
