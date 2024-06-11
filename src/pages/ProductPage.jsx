@@ -1,9 +1,10 @@
 import { createContext, useContext, useState } from "react";
 import "../components/ProductPage.css";
-import { items } from "../components/AllData";
-import TrendingSlider from "../components/TrendingSlider";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
+import { items } from "../components/AllData.js";
+import TrendingSlider from "../components/TrendingSlider.jsx";
+import Newsletter from "../components/Newsletter.jsx";
+import Footer from "../components/Footer.jsx";
+import Navbar from "../components/Navbar.jsx"
 import { useParams } from "react-router";
 
 export const CartContext = createContext();
@@ -45,6 +46,7 @@ function ProductPage() {
 
   return (
     <>
+    <Navbar />
       <div
         onAnimationEnd={() => setNotify(false)}
         className={`notify ${notify ? "slide-in" : ""}`}

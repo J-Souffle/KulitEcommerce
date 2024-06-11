@@ -65,7 +65,7 @@ import FirstKulitHoodie2 from "../img/products/otherProducts/FirstKulitHoodie2.j
 export const items = [
   {
     id: 1,
-    category: "chair",
+    category: "t-shirt",
     img: Img1,
     description: "Little Armchair Sheepskin",
     price: 986,
@@ -130,7 +130,7 @@ export const items = [
   },
   {
     id: 6,
-    category: "skin-care",
+    category: "sweatshirt",
     img: Img6,
     description: "Body Oil 200ml",
     price: 67,
@@ -182,7 +182,7 @@ export const items = [
   },
   {
     id: 10,
-    category: "chair",
+    category: "t-shirt",
     img: Img10,
     description: "Traditional Armchair",
     price: 89,
@@ -221,7 +221,7 @@ export const items = [
   },
   {
     id: 13,
-    category: "skin-care",
+    category: "sweatshirt",
     img: Img13,
     description: "Unbleached Cotton Pads 180",
     price: 33,
@@ -234,7 +234,7 @@ export const items = [
   },
   {
     id: 14,
-    category: "chair",
+    category: "t-shirt",
     img: Img14,
     description: "Oak Spanish Chair",
     price: 520,
@@ -247,7 +247,7 @@ export const items = [
   },
   {
     id: 15,
-    category: "chair",
+    category: "t-shirt",
     img: Img15,
     description: "Copenhagen Armchair",
     price: 330,
@@ -299,7 +299,7 @@ export const items = [
   },
   {
     id: 19,
-    category: "chair",
+    category: "t-shirt",
     img: Img19,
     description: "Comfy Chair",
     price: 119,
@@ -312,9 +312,9 @@ export const items = [
   },
   {
     id: 20,
-    category: "skin-care",
+    category: "sweatshirt",
     img: Img20,
-    description: "Body Oil 50ml",
+    description: "Pasaway University Crewneck",
     price: 45,
     otherImgs: [BodyOil1, BodyOil2],
     specs:
@@ -325,7 +325,7 @@ export const items = [
   },
   {
     id: 21,
-    category: "skin-care",
+    category: "sweatshirt",
     img: Img21,
     description: "Classic Kulit Sweatshirt",
     price: 67,

@@ -1,5 +1,5 @@
 import "./TrendingSlider.css";
-import TrendingItem from "./TrendingItem";
+import TrendingItem from "./TrendingItem.jsx";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 
 function TrendingSlider() {

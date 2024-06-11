@@ -1,6 +1,6 @@
-import CategoriesItemLamps from "./CategoriesItemLamps";
-import Footer from "../Footer";
-import Newsletter from "../Newsletter";
+import CategoriesItemLamps from "./CategoriesItemLamps.jsx";
+import Footer from "../Footer.jsx";
+import Newsletter from "../Newsletter.jsx";
 
 function Lamps() {
   return (

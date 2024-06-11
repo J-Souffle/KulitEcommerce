@@ -1,0 +1,22 @@
+#text {
+    margin-top: 12rem;
+    text-align: center;
+}
+
+#padding {
+    background-color: yellow;
+    padding-bottom: 20px; 
+    padding-top: 20px;
+}
+
+#border {
+
+}
+
+#margin {
+
+}
+
+#checkout-container {
+    padding-bottom: 20px;
+}

@@ -1,6 +1,6 @@
-import CategoriesItemKitchen from "./CategoriesItemKitchen";
-import Footer from "../Footer";
-import Newsletter from "../Newsletter";
+import CategoriesItemKitchen from "./CategoriesItemKitchen.jsx";
+import Footer from "../Footer.jsx";
+import Newsletter from "../Newsletter.jsx";
 
 function Kitchen() {
   return (
