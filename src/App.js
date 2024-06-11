@@ -6,7 +6,7 @@ import Furnitures from "./components/Categories-pages/Furnitures.jsx";
 import Electronics from "./components/Categories-pages/Electronics.jsx";
 import Lamps from "./components/Categories-pages/Lamps.jsx";
 import Kitchen from "./components/Categories-pages/Kitchen.jsx";
-import Chairs from "./components/Categories-pages/Chairs.jsx";
+import Chairs from "./components/Categories-pages/Shirts.jsx";
 import Hoodies from "./components/Categories-pages/Hoodies.jsx";
 import ProductPage, { CartContext } from "./pages/ProductPage.jsx";
 import { useEffect, useState } from "react";
@@ -63,7 +63,7 @@ function App() {
           <Route path="lamps" element={<Lamps />} />
           <Route path="kitchen" element={<Kitchen />} />
           <Route path="chairs" element={<Chairs />} />
-          <Route path="skin-care" element={<Hoodies />} />
+          <Route path="sweatshirt" element={<Hoodies />} />
         </Route>
         <Route path="/categories/product/:id" element={<ProductPage />} />
 

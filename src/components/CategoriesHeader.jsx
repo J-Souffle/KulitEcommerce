@@ -42,9 +42,9 @@ function CategoriesHeader() {
             <Link to="chairs">
               <button onClick={() => handleBtnName("chairs")}>Chairs</button>
             </Link>
-            <Link to="skin-care">
-              <button onClick={() => handleBtnName("skin care")}>
-                Skin Care
+            <Link to="sweatshirt">
+              <button onClick={() => handleBtnName("sweatshirts")}>
+                Sweatshirts
               </button>
             </Link>
           </div>

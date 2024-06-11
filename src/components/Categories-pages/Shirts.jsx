@@ -1,15 +1,15 @@
-import CategoriesItemChairs from "./CategoriesItemChairs.jsx";
+import CategoriesItemShirts from "./CategoriesItemShirts.jsx";
 import Footer from "../Footer.jsx";
 import Newsletter from "../Newsletter.jsx";
 
-function Chairs() {
+function Shirts() {
   return (
     <>
-      <CategoriesItemChairs />
+      <CategoriesItemShirts />
       <Newsletter />
       <Footer />
     </>
   );
 }
 
-export default Chairs;
+export default Shirts;
