@@ -2,6 +2,7 @@
 - [ ] Support page
 - [ ] Fix logo displayed on navbar
 - [ ] Checkout Page bug (duplicate items)
+- [ ] mobile support
 
 # KulitEcommerce
 

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import './CheckoutPage.css';
 import axios from 'axios';
@@ -11,8 +11,14 @@ const MySwal = withReactContent(Swal);
 function Checkout() {
   const publishableKey = 'pk_test_51P7ai8LO5J7ORzPKB8mr7QaPvwECu3ebmWth80FNICCRX6ehA62vlkqUNwskIb678eCsIxmNNMPOVsL7sbv3M8CP00TFgHUti4';
   const { cartItem } = useContext(CartContext);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const totalPrice = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  useEffect(() => {
+    // Calculate total price of all items in cart
+    const total = cartItem.reduce((acc, item) => acc + item.price, 0);
+    setTotalPrice(total);
+  }, [cartItem]);
+
   const priceForStripe = totalPrice * 100;
 
   const handleSuccess = () => {
@@ -62,14 +68,12 @@ function Checkout() {
           </div>
           <div className="cart-details">
             <p className="cart-name">{item.description}</p>
-            <p className="cart-quantity">Quantity: {item.quantity}</p>
             <p className="cart-price">Price: ${item.price}</p>
-            <p className="cart-total">Total: ${item.price * item.quantity}</p>
           </div>
         </div>
       ))}
       <p className="cart-total-price">
-        <span>Total Price: </span>${totalPrice}
+        <span>Total Price: </span>${totalPrice.toFixed(2)}
       </p>
       <StripeCheckout
         stripeKey={publishableKey}
@@ -78,7 +82,7 @@ function Checkout() {
         billingAddress
         shippingAddress
         amount={priceForStripe}
-        description={`Your total is $${totalPrice}`}
+        description={`Your total is $${totalPrice.toFixed(2)}`}
         token={payNow}
       />
     </div>
