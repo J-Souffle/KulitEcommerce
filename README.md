@@ -5,6 +5,8 @@
 - [ ] mobile support
 - [ ] Add a thank you screen for purchasing
 - [ ] Style it different from the original website (https://minimalist-e-commerce.vercel.app/) (make it more filipino)
+- [ ] Put products in Trending Now or Replace it with something else
+- [ ] Copy pixel vibe apparel store
 
 # KulitEcommerce
 
