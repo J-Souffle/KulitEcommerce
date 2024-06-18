@@ -12,7 +12,7 @@ function Hero() {
         <div className="container">
           <div className="grid-container">
             <div className="featured grid-one">
-              <Link to="categories/furnitures">
+              <Link to="categories/all">
                 <div id="img1" className="lil-overlay"></div>
                 <img src={Main1} alt="img1" />
                 <p className="main-description">All Clothing</p>
