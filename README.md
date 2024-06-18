@@ -9,6 +9,7 @@
 - [ ] Copy pixel vibe apparel store
 - [ ] Make a backend server for newsletter and support responses
 - [ ] style checkout stuff
+- [ ] Need to clean the files
 
 # KulitEcommerce
 
