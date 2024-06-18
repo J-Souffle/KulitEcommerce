@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import "../components/ProductPage.css";
+import "../pages/ProductPage.css";
 import { items } from "../components/AllData.js";
 import TrendingSlider from "../components/TrendingSlider.jsx";
 import Newsletter from "../components/Newsletter.jsx";

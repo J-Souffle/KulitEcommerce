@@ -6,13 +6,15 @@ import Furnitures from "./components/Categories-pages/Furnitures.jsx";
 import Electronics from "./components/Categories-pages/Electronics.jsx";
 import Lamps from "./components/Categories-pages/Lamps.jsx";
 import Kitchen from "./components/Categories-pages/Kitchen.jsx";
-import Chairs from "./components/Categories-pages/Shirts.jsx";
+import Shirts from "./components/Categories-pages/Shirts.jsx";
 import Hoodies from "./components/Categories-pages/Hoodies.jsx";
+import Other from "./components/Categories-pages/Other.jsx";
 import ProductPage, { CartContext } from "./pages/ProductPage.jsx";
 import { useEffect, useState } from "react";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import CheckoutNavbar from "./components/CheckoutComponents/NavbarCheckout.jsx";
+import Support from "./components/Support.jsx";  // Import the Support component
 
 function App() {
   const [cartItem, setCartItem] = useState([]);
@@ -62,13 +64,33 @@ function App() {
           <Route path="electronics" element={<Electronics />} />
           <Route path="lamps" element={<Lamps />} />
           <Route path="kitchen" element={<Kitchen />} />
-          <Route path="chairs" element={<Chairs />} />
+          <Route path="shirts" element={<Shirts />} />
           <Route path="sweatshirt" element={<Hoodies />} />
+          <Route path="other" element={<Other />} />
         </Route>
         <Route path="/categories/product/:id" element={<ProductPage />} />
 
+        {/* Define route for the Support page */}
+        <Route
+          path="/support"
+          element={
+            <>
+              <Navbar />
+              <Support />
+            </>
+          }
+        />
+
         {/* Define route for CheckoutPage with its own navbar */}
-        <Route path="/checkout" element={<><CheckoutNavbar /><CheckoutPage /></>} />
+        <Route
+          path="/checkout"
+          element={
+            <>
+              <CheckoutNavbar />
+              <CheckoutPage />
+            </>
+          }
+        />
       </Routes>
     </CartContext.Provider>
   );

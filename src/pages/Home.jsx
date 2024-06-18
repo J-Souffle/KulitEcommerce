@@ -15,14 +15,14 @@ function Home() {
       <Hero />
       <ProudProducts />
       <Banner
-        title="Quality Products"
-        text="Yummy Food"
+        title="Creative Designs"
+        text="Represent the Philippines in style with our unique designs and look Maganda!"
         img={Banner1}
       />
       <TrendingSlider />
       <BannerReverse
         title="Made By Real Filipinos"
-        text="Yessir"
+        text="Be sure to leave any feedback to help better our clothing brand and future drops!"
         img={Banner2}
       />
       <Newsletter />

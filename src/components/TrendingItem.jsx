@@ -3,7 +3,7 @@ import { items } from "./AllData";
 import { Link } from "react-router-dom";
 
 function TrendingItem() {
-  const filteredItems = items.filter((item) => item.id >= 8);
+  const filteredItems = items.filter((item) => item.id <= 8);
   return (
     <>
       {filteredItems.map((item) => (

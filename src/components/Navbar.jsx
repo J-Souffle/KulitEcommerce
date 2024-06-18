@@ -1,5 +1,4 @@
 import "./Navbar.css";
-
 import LogoImg2 from "../img/1.png";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -95,13 +94,10 @@ function Navbar() {
             </Link>
             <div className="nav-links">
               <Link onClick={() => window.scrollTo(0, 0)} to="/categories/all">
-                categories
+                shop
               </Link>
-              <Link
-                onClick={() => window.scrollTo(0, 0)}
-                to="/categories/product/19"
-              >
-                product page
+              <Link onClick={() => window.scrollTo(0, 0)} to="/support">
+                Support
               </Link>
               <i
                 data-array-length={cartItem.length}

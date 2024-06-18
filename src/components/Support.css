@@ -1,0 +1,87 @@
+/* src/components/Support.css */
+.support-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .support-page h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .support-page p {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+  
+  .support-container {
+    max-width: 800px; /* Increased max-width */
+    margin: 0 auto;
+    padding: 3rem; /* Increased padding */
+    text-align: center;
+  }
+  
+  .support-container h1 {
+    margin-bottom: 1.5rem; /* Increased margin */
+    font-size: 2.5rem; /* Increased font size */
+  }
+  
+  .support-container p {
+    margin-bottom: 2.5rem; /* Increased margin */
+    font-size: 1.5rem; /* Increased font size */
+  }
+  
+  .support-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1.5rem; /* Increased font size */
+  }
+  
+  .support-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .support-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Increased gap */
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .form-group label {
+    margin-bottom: 0.75rem; /* Increased margin */
+    font-size: 1.5rem; /* Increased font size */
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 1rem; /* Increased padding */
+    font-size: 1.5rem; /* Increased font size */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    height: 150px; /* Increased height */
+  }
+  
+  button[type="submit"] {
+    padding: 1rem; /* Increased padding */
+    font-size: 1.5rem; /* Increased font size */
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
