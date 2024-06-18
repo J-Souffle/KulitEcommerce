@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import CheckoutNavbar from "./components/CheckoutComponents/NavbarCheckout.jsx";
+import Support from "./components/Support.jsx";  // Import the Support component
 
 function App() {
   const [cartItem, setCartItem] = useState([]);
@@ -69,8 +70,27 @@ function App() {
         </Route>
         <Route path="/categories/product/:id" element={<ProductPage />} />
 
+        {/* Define route for the Support page */}
+        <Route
+          path="/support"
+          element={
+            <>
+              <Navbar />
+              <Support />
+            </>
+          }
+        />
+
         {/* Define route for CheckoutPage with its own navbar */}
-        <Route path="/checkout" element={<><CheckoutNavbar /><CheckoutPage /></>} />
+        <Route
+          path="/checkout"
+          element={
+            <>
+              <CheckoutNavbar />
+              <CheckoutPage />
+            </>
+          }
+        />
       </Routes>
     </CartContext.Provider>
   );

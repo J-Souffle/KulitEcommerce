@@ -1,0 +1,16 @@
+/* src/components/Support.css */
+.support-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .support-page h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .support-page p {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+  
