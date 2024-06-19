@@ -12,10 +12,12 @@ function Checkout() {
   const publishableKey = 'pk_test_51P7ai8LO5J7ORzPKB8mr7QaPvwECu3ebmWth80FNICCRX6ehA62vlkqUNwskIb678eCsIxmNNMPOVsL7sbv3M8CP00TFgHUti4';
   const { cartItem } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   useEffect(() => {
     const total = cartItem.reduce((acc, item) => acc + item.price, 0);
     setTotalPrice(total);
+    setTotalItems(cartItem.length);
   }, [cartItem]);
 
   const priceForStripe = totalPrice * 100;
@@ -72,7 +74,7 @@ function Checkout() {
         </div>
       ))}
       <p className="cart-total-price">
-        <span>Total Price: </span>${totalPrice.toFixed(2)}
+        <span>Subtotal ({totalItems} items): </span>${totalPrice.toFixed(2)}
       </p>
       <StripeCheckout
         stripeKey={publishableKey}

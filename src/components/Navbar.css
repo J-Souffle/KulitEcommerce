@@ -346,24 +346,22 @@
     font-weight: 600;
 }
 
-.sub-left a {
+.sub-left button {
     font-size: 2rem;
+    width: 20rem;
+    padding: 1rem 2rem;
     color: black;
-    border: 2px solid black;
-    text-decoration: none;
-    background-color: transparent;
-    padding: 1rem 3.5rem;
+    background-color: white;
+    cursor: pointer;
+    border: 2px solid black !important;
     transition: all 0.2s;
 }
 
-.sub-left a:hover {
-    background-color: #000000;
-    color: white;
+.sub-left button:hover {
+    background-color: black; /* Change background color to black on hover */
+    color: white; /* Change text color to white on hover */
 }
 
-.sub-left {
-    padding-top: 4rem;
-}
 
 @media (max-width:600px) {
     .nav-links {
