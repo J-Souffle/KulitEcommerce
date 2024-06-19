@@ -19,7 +19,7 @@ function Hero() {
               </Link>
             </div>
             <div className="featured grid-two">
-              <Link to="categories/sweatshirts">
+              <Link to="categories/sweatshirt">
                 <div id="img2" className="lil-overlay"></div>
                 <img src={Main2} alt="img2" />
                 <p className="main-description">Hoodies</p>

@@ -1,3 +1,87 @@
 body {
     padding-top: 200px;
 }
+.checkout-container {
+    max-width: 1200px; /* Increase the maximum width */
+    margin: 0 auto;
+    padding: 3rem; /* Increase padding */
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding-bottom: 200px;
+  }
+  
+  .checkout-container h2 {
+    font-size: 3.5rem; /* Increase font size */
+    margin-bottom: 3rem; /* Increase margin */
+    color: #333;
+  }
+  
+  .checkout-container h3 {
+    font-size: 2.5rem; /* Increase font size */
+    margin-bottom: 2rem; /* Increase margin */
+    color: #666;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem; /* Increase padding */
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cart-img {
+    max-width: 125px; /* Increase the container size */
+    margin-right: 2rem; /* Increase margin for spacing */
+  }
+  
+  .cart-img img {
+    width: 100%; /* Make the image fit within the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the entire image fits within the container */
+    border-radius: 10px;
+  }
+  
+  .cart-details {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .cart-name {
+    font-size: 2rem; /* Increase font size */
+    margin-bottom: 1rem; /* Increase margin */
+    color: #333;
+  }
+  
+  .cart-price {
+    font-size: 1.8rem; /* Increase font size */
+    color: #999;
+  }
+  
+  .cart-total-price {
+    font-size: 2.5rem; /* Increase font size */
+    font-weight: bold;
+    margin: 3rem 0; /* Increase margin */
+    color: #333;
+  }
+  
+  .StripeCheckout {
+    display: inline-block;
+    margin-top: 3rem; /* Increase margin */
+  }
+  
+  .StripeCheckout span {
+    font-size: 2rem; /* Increase font size */
+    padding: 1.5rem 3rem; /* Increase padding */
+    color: #fff;
+    background-color: #6772e5;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .StripeCheckout span:hover {
+    background-color: #5469d4;
+  }
+  

@@ -14,7 +14,6 @@ function Checkout() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    // Calculate total price of all items in cart
     const total = cartItem.reduce((acc, item) => acc + item.price, 0);
     setTotalPrice(total);
   }, [cartItem]);
