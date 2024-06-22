@@ -1,6 +1,15 @@
 body {
     padding-top: 200px;
 }
+
+.main-header h2 {
+  font-size: 5rem;
+}
+
+.header h2 {
+  font-size: 3.5rem;
+}
+
 .checkout-container {
     max-width: 1200px; /* Increase the maximum width */
     margin: 0 auto;
@@ -11,6 +20,10 @@ body {
     text-align: center;
     padding-bottom: 200px;
   }
+
+.sub-header h3 {
+  font-size: 3.5rem;
+}
   
   .checkout-container h2 {
     font-size: 3.5rem; /* Increase font size */

@@ -60,8 +60,9 @@ function Checkout() {
 
   return (
     <div className="container">
-      <h2>Complete React & Stripe payment integration</h2>
-      <h3>Products in your cart:</h3>
+    <div className="header">
+      <h2>Products in your cart:</h2>
+      </div>
       {cartItem.map((item, index) => (
         <div key={index} className="cart-item">
           <div className="cart-img">
