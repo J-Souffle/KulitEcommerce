@@ -5,13 +5,14 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { CartContext } from "../App";
-import NavbarCheckout from "../components/CheckoutComponents/NavbarCheckout"; // Import the Navbar component
+import Navbar from "../components/Navbar"; // Import the Navbar component
+import { Link } from "react-router-dom"; // Import Link for navigation
 
 const MySwal = withReactContent(Swal);
 
 function CheckoutPage() {
   const publishableKey = 'pk_test_51P7ai8LO5J7ORzPKB8mr7QaPvwECu3ebmWth80FNICCRX6ehA62vlkqUNwskIb678eCsIxmNNMPOVsL7sbv3M8CP00TFgHUti4';
-  const { cartItem } = useContext(CartContext);
+  const { cartItem, setCartItem } = useContext(CartContext); // Access setCartItem to update cartItem state
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
 
@@ -60,10 +61,30 @@ function CheckoutPage() {
     }
   };
 
+  const increaseQuantity = (itemId) => {
+    const updatedCart = cartItem.map(item =>
+      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCartItem(updatedCart);
+  };
+
+  const decreaseQuantity = (itemId) => {
+    const updatedCart = cartItem.map(item =>
+      item.id === itemId && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
+    );
+    setCartItem(updatedCart);
+  };
+
+  const removeItem = (itemId) => {
+    const updatedCart = cartItem.filter(item => item.id !== itemId);
+    setCartItem(updatedCart);
+  };
+
   return (
     <>
-      <NavbarCheckout /> {/* Render the Navbar component */}
+      <Navbar /> {/* Render the Navbar component */}
       <div className="container">
+        <Link to="/" className="go-back-home-btn">Go Back Home</Link> {/* Link to navigate back to home page */}
         <div className="header">
           <h2>Products in your cart:</h2>
         </div>
@@ -74,8 +95,13 @@ function CheckoutPage() {
             </div>
             <div className="cart-details">
               <p className="cart-name">{item.description}</p>
-              <p className="cart-price">Price: ${item.price} x {item.quantity}</p>
+              <p className="cart-price">
+                Price: ${item.price} x {item.quantity}
+                <button onClick={() => increaseQuantity(item.id)}>+</button>
+                <button onClick={() => decreaseQuantity(item.id)}>-</button>
+              </p>
               <p className="cart-total-item-price">Total: ${(item.price * item.quantity).toFixed(2)}</p>
+              <button className="delete-btn" onClick={() => removeItem(item.id)}>Delete</button>
             </div>
           </div>
         ))}
