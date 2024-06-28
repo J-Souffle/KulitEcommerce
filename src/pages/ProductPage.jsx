@@ -6,6 +6,7 @@ import Footer from "../components/Footer.jsx";
 import Navbar from "../components/Navbar.jsx";
 import { useParams } from "react-router-dom"; // Import useParams from react-router-dom
 import { CartContext } from "../App"; // Adjust the import path based on your folder structure
+import "../pages/ProductPage.css";
 
 function ProductPage() {
   const { id } = useParams();
