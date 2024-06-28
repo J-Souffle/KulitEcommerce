@@ -15,7 +15,7 @@ import CheckoutPage from "./pages/CheckoutPage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import CheckoutNavbar from "./components/CheckoutComponents/NavbarCheckout.jsx";
 import Support from "./components/Support.jsx";
-import CartWithItems from "./components/CartWithItems.jsx"; // Ensure CartWithItems is imported
+import CartWithItems from "./components/CartWithItems.jsx";
 
 export const CartContext = createContext();
 
@@ -24,9 +24,9 @@ function App() {
 
   const addToCart = (newItem) => {
     setCartItem((prevCartItems) => {
-      const existingItem = prevCartItems.find(cartItem => cartItem.id === newItem.id);
+      const existingItem = prevCartItems.find((cartItem) => cartItem.id === newItem.id);
       if (existingItem) {
-        return prevCartItems.map(cartItem =>
+        return prevCartItems.map((cartItem) =>
           cartItem.id === newItem.id
             ? { ...cartItem, quantity: cartItem.quantity + newItem.quantity }
             : cartItem
@@ -51,8 +51,12 @@ function App() {
     localStorage.setItem("cartItem", json);
   }, [cartItem]);
 
+  const getTotalQuantity = () => {
+    return cartItem.reduce((total, item) => total + item.quantity, 0);
+  };
+
   return (
-    <CartContext.Provider value={{ cartItem, addToCart, setCartItem }}>
+    <CartContext.Provider value={{ cartItem, addToCart, setCartItem, getTotalQuantity }}>
       <Routes>
         <Route
           path="/"
@@ -82,10 +86,10 @@ function App() {
           <Route path="other" element={<Other />} />
         </Route>
         <Route path="/categories/product/:id" element={<ProductPage />} />
-        <Route path="/checkout" element={<CheckoutNavbar />} />
+        <Route path="/checkout/*" element={<CheckoutNavbar />} /> {/* Use wildcard for nested routes */}
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/support" element={<Support />} />
-        <Route path="/cart" element={<CartWithItems />} /> {/* Add route for CartWithItems */}
+        <Route path="/cart" element={<CartWithItems />} />
       </Routes>
     </CartContext.Provider>
   );
