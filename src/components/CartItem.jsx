@@ -28,15 +28,18 @@ function CartItem({ item }) {
 
   return (
     <div className="cart-item">
+      <div className="cart-img">
+        <img src={item.img} alt="product" />
+      </div>
       <div className="cart-item-info">
-        <p>{item.description}</p>
-        <p>{item.price}.00$ x {item.quantity}</p>
+        <p className="cart-item-description">{item.description}</p>
+        <p className="cart-item-price">{item.price}.00$ x {item.quantity}</p>
         <div className="quantity-controls">
           <button onClick={handleDecrease}>-</button>
           <span>{item.quantity}</span>
           <button onClick={handleIncrease}>+</button>
         </div>
-        <button onClick={handleRemove}>Remove</button>
+        <button className="remove-btn" onClick={handleRemove}>Remove</button>
       </div>
     </div>
   );
