@@ -100,14 +100,14 @@ function Navbar() {
                 Support
               </Link>
               <i
-                // data-array-length={cartItem.length}
+                data-array-length={getTotalQuantity()}
                 onClick={openCart}
-                // className={`${
-                //   cartItem.length < 1 ? "cart-icon" : "cart-icon with-items"
-                // }`}
+                className={`${
+                  cartItem.length < 1 ? "cart-icon" : "cart-icon with-items"
+                }`}
               >
                 <IconShoppingCart />
-                <span className="cart-quantity">{getTotalQuantity()}</span> {/* Display total quantity */}
+                {/* <span className="cart-quantity">{getTotalQuantity()}</span> Display total quantity */}
               </i>
             </div>
             <div className="hamburger-menu">
