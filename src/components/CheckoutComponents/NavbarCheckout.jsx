@@ -3,7 +3,7 @@ import "./NavbarCheckout.css";
 import LogoImg2 from "../../img/1.png";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
-import { CartContext } from "../../pages/ProductPage.jsx";
+import { CartContext } from "../../App";
 import { IconMenu2, IconShoppingCart, IconX } from "@tabler/icons-react";
 
 function Navbar() {

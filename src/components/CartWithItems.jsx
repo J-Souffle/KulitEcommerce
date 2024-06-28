@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CartContext } from "../pages/ProductPage.jsx";
+import { CartContext } from "../App";
 import EmptyCart from "./EmptyCart.jsx";
 import CartItem from "./CartItem.jsx"; 
 import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
@@ -10,7 +10,7 @@ function CartWithItems() {
   const navigate = useNavigate(); // Initialize useNavigate instead of useHistory
 
   useEffect(() => {
-    const newTotalPrice = cartItem.reduce((acc, item) => acc + item.price, 0);
+    const newTotalPrice = cartItem.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     setTotalPrice(newTotalPrice);
   }, [cartItem]);
 

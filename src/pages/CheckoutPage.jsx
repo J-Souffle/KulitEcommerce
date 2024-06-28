@@ -4,7 +4,7 @@ import './CheckoutPage.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { CartContext } from "../pages/ProductPage.jsx";
+import { CartContext } from "../App";
 
 const MySwal = withReactContent(Swal);
 

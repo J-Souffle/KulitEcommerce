@@ -1,20 +1,18 @@
-import { createContext, useContext, useState } from "react";
-import "../pages/ProductPage.css";
+import React, { useContext, useState } from "react";
 import { items } from "../components/AllData.js";
 import TrendingSlider from "../components/TrendingSlider.jsx";
 import Newsletter from "../components/Newsletter.jsx";
 import Footer from "../components/Footer.jsx";
-import Navbar from "../components/Navbar.jsx"
-import { useParams } from "react-router";
-
-export const CartContext = createContext();
+import Navbar from "../components/Navbar.jsx";
+import { useParams } from "react-router-dom"; // Import useParams from react-router-dom
+import { CartContext } from "../App"; // Adjust the import path based on your folder structure
 
 function ProductPage() {
   const { id } = useParams();
-  const item = items.filter((item) => item.id === parseInt(id));
+  const item = items.find((item) => item.id === parseInt(id));
 
   const [quantity, setQuantity] = useState(1);
-  const [image, setImage] = useState(item[0].img);
+  const [image, setImage] = useState(item ? item.img : "");
 
   const { addToCart } = useContext(CartContext);
 
@@ -23,9 +21,7 @@ function ProductPage() {
   };
 
   const increase = () => {
-    if (quantity >= 1) {
-      setQuantity(quantity + 1);
-    }
+    setQuantity(quantity + 1);
   };
 
   const decrease = () => {
@@ -35,18 +31,19 @@ function ProductPage() {
   };
 
   const calcPrice = (quantity) => {
-    return quantity * item[0].price;
+    return quantity * (item ? item.price : 0);
   };
 
   const [notify, setNotify] = useState(false);
 
   const showNotify = () => {
-    setNotify(!notify);
+    setNotify(true);
+    setTimeout(() => setNotify(false), 2000); // Hide notification after 2 seconds
   };
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div
         onAnimationEnd={() => setNotify(false)}
         className={`notify ${notify ? "slide-in" : ""}`}
@@ -57,31 +54,23 @@ function ProductPage() {
       <div className="product-page-div">
         <div className="container">
           <div className="product-div">
-            <h3 className="product-big-name">{item[0].description}</h3>
+            <h3 className="product-big-name">{item ? item.description : ""}</h3>
             <div className="product-left">
               <div className="big-img">
                 <img src={image} alt="product" />
               </div>
               <div className="small-imgs">
-                <img
-                  onMouseOver={changeImage}
-                  src={item[0].img}
-                  alt="product"
-                />
-                <img
-                  onMouseOver={changeImage}
-                  src={item[0].otherImgs[0]}
-                  alt="product"
-                />
-                <img
-                  onMouseOver={changeImage}
-                  src={item[0].otherImgs[1]}
-                  alt="product"
-                />
+                <img onMouseOver={changeImage} src={item ? item.img : ""} alt="product" />
+                {item && item.otherImgs && item.otherImgs.length > 0 && (
+                  <>
+                    <img onMouseOver={changeImage} src={item.otherImgs[0]} alt="product" />
+                    <img onMouseOver={changeImage} src={item.otherImgs[1]} alt="product" />
+                  </>
+                )}
               </div>
             </div>
             <div className="product-right">
-              <p className="product-spec">{item[0].specs}</p>
+              <p className="product-spec">{item ? item.specs : ""}</p>
               <div className="product-quant">
                 <p>Quantity</p>
                 <div className="product-btns">
@@ -94,7 +83,7 @@ function ProductPage() {
               <div className="atc-buy">
                 <button
                   onClick={() => {
-                    addToCart(item[0]);
+                    addToCart({ ...item, quantity });
                     showNotify();
                   }}
                   className="atc-btn"
@@ -109,22 +98,23 @@ function ProductPage() {
           <div className="specifications">
             <div className="spec">
               <p className="spec-title">Texture:</p>
-              <p className="title-desc">{item[0].texture}</p>
+              <p className="title-desc">{item ? item.texture : ""}</p>
             </div>
             <div className="spec">
               <p className="spec-title">Weight:</p>
-              <p className="title-desc">{item[0].weight}</p>
+              <p className="title-desc">{item ? item.weight : ""}</p>
             </div>
             <div className="spec">
               <p className="spec-title">Size:</p>
-              <p className="title-desc">{item[0].size}</p>
+              <p className="title-desc">{item ? item.size : ""}</p>
             </div>
           </div>
         </div>
-        <TrendingSlider />
-        <Newsletter />
-        <Footer />
       </div>
+
+      <TrendingSlider />
+      <Newsletter />
+      <Footer />
     </>
   );
 }

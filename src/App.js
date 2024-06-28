@@ -1,3 +1,4 @@
+import React, { createContext, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Categories from "./pages/Categories.jsx";
@@ -9,18 +10,31 @@ import Kitchen from "./components/Categories-pages/Kitchen.jsx";
 import Shirts from "./components/Categories-pages/Shirts.jsx";
 import Hoodies from "./components/Categories-pages/Hoodies.jsx";
 import Other from "./components/Categories-pages/Other.jsx";
-import ProductPage, { CartContext } from "./pages/ProductPage.jsx";
-import { useEffect, useState } from "react";
+import ProductPage from "./pages/ProductPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import CheckoutNavbar from "./components/CheckoutComponents/NavbarCheckout.jsx";
-import Support from "./components/Support.jsx";  // Import the Support component
+import Support from "./components/Support.jsx";
+import CartWithItems from "./components/CartWithItems.jsx"; // Ensure CartWithItems is imported
+
+export const CartContext = createContext();
 
 function App() {
   const [cartItem, setCartItem] = useState([]);
 
-  const addToCart = (item) => {
-    setCartItem([...cartItem, item]);
+  const addToCart = (newItem) => {
+    setCartItem((prevCartItems) => {
+      const existingItem = prevCartItems.find(cartItem => cartItem.id === newItem.id);
+      if (existingItem) {
+        return prevCartItems.map(cartItem =>
+          cartItem.id === newItem.id
+            ? { ...cartItem, quantity: cartItem.quantity + newItem.quantity }
+            : cartItem
+        );
+      } else {
+        return [...prevCartItems, { ...newItem, quantity: newItem.quantity }];
+      }
+    });
   };
 
   // local storage
@@ -40,7 +54,6 @@ function App() {
   return (
     <CartContext.Provider value={{ cartItem, addToCart, setCartItem }}>
       <Routes>
-        {/* Define routes for pages with navbar */}
         <Route
           path="/"
           element={
@@ -69,28 +82,10 @@ function App() {
           <Route path="other" element={<Other />} />
         </Route>
         <Route path="/categories/product/:id" element={<ProductPage />} />
-
-        {/* Define route for the Support page */}
-        <Route
-          path="/support"
-          element={
-            <>
-              <Navbar />
-              <Support />
-            </>
-          }
-        />
-
-        {/* Define route for CheckoutPage with its own navbar */}
-        <Route
-          path="/checkout"
-          element={
-            <>
-              <CheckoutNavbar />
-              <CheckoutPage />
-            </>
-          }
-        />
+        <Route path="/checkout" element={<CheckoutNavbar />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/cart" element={<CartWithItems />} /> {/* Add route for CartWithItems */}
       </Routes>
     </CartContext.Provider>
   );

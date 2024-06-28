@@ -1,10 +1,10 @@
 import "./Navbar.css";
 import LogoImg2 from "../img/1.png";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import CartWithItems from "./CartWithItems.jsx";
 import EmptyCart from "./EmptyCart.jsx";
-import { CartContext } from "../pages/ProductPage.jsx";
+import { CartContext } from "../App";
 import { IconMenu2, IconShoppingCart, IconX } from "@tabler/icons-react";
 
 function Navbar() {
@@ -26,7 +26,12 @@ function Navbar() {
     setCart(!cart);
   };
 
-  window.addEventListener("scroll", handleScroll);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
