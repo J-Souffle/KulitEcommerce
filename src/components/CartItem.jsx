@@ -33,7 +33,7 @@ function CartItem({ item }) {
       </div>
       <div className="cart-item-info">
         <p className="cart-item-description">{item.description}</p>
-        <p className="cart-item-price">{item.price}.00$ x {item.quantity}</p>
+        <p className="cart-item-price">${item.price * item.quantity}.00</p>
         <div className="quantity-controls">
           <button onClick={handleDecrease}>-</button>
           <span>{item.quantity}</span>

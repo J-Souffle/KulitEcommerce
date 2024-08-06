@@ -96,18 +96,22 @@ function CheckoutPage() {
             <div className="cart-details">
               <p className="cart-name">{item.description}</p>
               <p className="cart-price">
-                Price: ${item.price} x {item.quantity}
+                Color: Yellow <br></br>
+                Size: M <br></br>
+                {/* Price: ${item.price}.00 <br></br> */}
+                Quantity: {item.quantity}
                 <button onClick={() => increaseQuantity(item.id)}>+</button>
                 <button onClick={() => decreaseQuantity(item.id)}>-</button>
               </p>
-              <p className="cart-total-item-price">Total: ${(item.price * item.quantity).toFixed(2)}</p>
+              <p className="cart-total-item-price">${(item.price * item.quantity).toFixed(2)}</p>
               <button className="delete-btn" onClick={() => removeItem(item.id)}>Delete</button>
             </div>
           </div>
         ))}
         <p className="cart-total-price">
+          <span>{totalItems} items </span> <br></br>
           <span>Subtotal ({totalItems} items): </span>${totalPrice.toFixed(2)}
-        </p>
+          </p>
         <StripeCheckout
           stripeKey={publishableKey}
           label="Pay Now"
