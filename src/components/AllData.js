@@ -353,7 +353,7 @@ export const items = [
     id: 4,
     category: "shirt",
     img: Img21,
-    description: "Kulit Summer Edition",
+    description: "Mabuhay Ang Pilipinas",
     price: 67,
     otherImgs: [FirstKulitHoodie1, FirstKulitHoodie2],
     specs:
@@ -366,7 +366,33 @@ export const items = [
     id: 5,
     category: "shirt",
     img: Img21,
-    description: "Mabuhay Ang Pilipinas",
+    description: "Kalayaan T-Shirt",
+    price: 67,
+    otherImgs: [FirstKulitHoodie1, FirstKulitHoodie2],
+    specs:
+      "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water",
+    texture: "Cotton",
+    weight: "200ml",
+    size: "10cm x 5cm",
+  },
+  {
+    id: 6,
+    category: "shirt",
+    img: Img21,
+    description: "Barangay Kulit Crewneck",
+    price: 67,
+    otherImgs: [FirstKulitHoodie1, FirstKulitHoodie2],
+    specs:
+      "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water",
+    texture: "Cotton",
+    weight: "200ml",
+    size: "10cm x 5cm",
+  },
+  {
+    id: 7,
+    category: "shirt",
+    img: Img21,
+    description: "Jeepney Poster",
     price: 67,
     otherImgs: [FirstKulitHoodie1, FirstKulitHoodie2],
     specs:
