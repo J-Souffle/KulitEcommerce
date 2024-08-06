@@ -91,7 +91,7 @@ function ProductPage() {
                 >
                   add to cart
                 </button>
-                <button className="buy-btn">buy now</button>
+                {/* <button className="buy-btn">buy now</button> */}
               </div>
             </div>
           </div>

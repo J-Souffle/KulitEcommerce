@@ -16,7 +16,7 @@ function Home() {
       <ProudProducts />
       <Banner
         title="Creative Designs"
-        text="Represent the Philippines in style with our unique designs and look Maganda!"
+        text="Represent the Philippines in style with our unique designs and looks Maganda!"
         img={Banner1}
       />
       <TrendingSlider />

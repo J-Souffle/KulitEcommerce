@@ -7,10 +7,10 @@ function Footer() {
       <footer>
         <div className="footer-links">
           <button onClick={() => window.location.href = "#"}>About</button>
-          <button onClick={() => window.location.href = "#"}>Store locator</button>
+          {/* <button onClick={() => window.location.href = "#"}>Store locator</button> */}
           <button onClick={() => window.location.href = "#"}>FAQs</button>
           <button onClick={() => window.location.href = "#"}>News</button>
-          <button onClick={() => window.location.href = "#"}>Blog</button>
+          {/* <button onClick={() => window.location.href = "#"}>Blog</button> */}
           <button onClick={() => window.location.href = "#"}>Contact Us</button>
         </div>
         <div className="footer-social-media">
