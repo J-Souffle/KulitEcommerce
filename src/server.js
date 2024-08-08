@@ -1,10 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const Stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const cors = require('cors'); // Add this line
+const Stripe = require('stripe');
+const cors = require('cors');
 
 dotenv.config();
+
+// Initialize Stripe with your API key
+const stripe = Stripe(process.env.SECRET_KEY);
 
 const app = express();
 app.use(bodyParser.json());
@@ -16,7 +19,7 @@ const corsOptions = {
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
-app.use(cors(corsOptions)); // Use cors middleware
+app.use(cors(corsOptions));
 
 const port = process.env.PORT || 5000;
 
@@ -28,13 +31,22 @@ app.post('/payment', async (req, res) => {
   const { token, amount } = req.body;
 
   try {
-    // Create a charge using Stripe
-    const paymentIntent = await Stripe.paymentIntents.create({
+    // Create a payment intent using Stripe
+    const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
-      payment_method_types: ['card'],
+      payment_method_data: {
+        type: 'card',
+        card: {
+          token: token.id, // Use the token here
+        },
+      },
+      // automatic_payment_methods: {
+      // enabled: true,
+      // allow_redirects: 'never',
+      // },
+      return_url: 'https://www.kulit.us/checkout',
       description: 'Payment for products',
-      payment_method: token.id,
       confirm: true,
     });
 
