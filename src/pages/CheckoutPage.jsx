@@ -6,15 +6,16 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { CartContext } from "../App";
 import Navbar from "../components/Navbar"; // Import the Navbar component
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { useNavigate, Link } from "react-router-dom"; // Import Link and useNavigate for navigation
 
 const MySwal = withReactContent(Swal);
 
 function CheckoutPage() {
   const publishableKey = 'pk_test_51P7ai8LO5J7ORzPKB8mr7QaPvwECu3ebmWth80FNICCRX6ehA62vlkqUNwskIb678eCsIxmNNMPOVsL7sbv3M8CP00TFgHUti4';
-  const { cartItem, setCartItem } = useContext(CartContext); // Access setCartItem to update cartItem state
+  const { cartItem, setCartItem } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const total = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -54,10 +55,14 @@ function CheckoutPage() {
       if (response.status === 200) {
         handleSuccess();
         console.log('Your payment was successful');
+        // Redirect to confirmation page with success status
+        navigate('/confirmation?status=success');
       }
     } catch (error) {
       handleFailure();
       console.log(error);
+      // Redirect to confirmation page with failure status
+      navigate('/confirmation?status=failure');
     }
   };
 
@@ -96,9 +101,9 @@ function CheckoutPage() {
             <div className="cart-details">
               <p className="cart-name">{item.description}</p>
               <p className="cart-price">
-                Color: Yellow <br></br>
-                Size: M <br></br>
-                {/* Price: ${item.price}.00 <br></br> */}
+                Color: Yellow <br />
+                Size: M <br />
+                {/* Price: ${item.price}.00 <br /> */}
                 Quantity: {item.quantity}
                 <button onClick={() => increaseQuantity(item.id)}>+</button>
                 <button onClick={() => decreaseQuantity(item.id)}>-</button>
@@ -109,9 +114,9 @@ function CheckoutPage() {
           </div>
         ))}
         <p className="cart-total-price">
-          <span>{totalItems} items </span> <br></br>
+          <span>{totalItems} items </span> <br />
           <span>Subtotal ({totalItems} items): </span>${totalPrice.toFixed(2)}
-          </p>
+        </p>
         <StripeCheckout
           stripeKey={publishableKey}
           label="Pay Now"

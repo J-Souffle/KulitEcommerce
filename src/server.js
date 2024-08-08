@@ -41,13 +41,9 @@ app.post('/payment', async (req, res) => {
           token: token.id, // Use the token here
         },
       },
-      // automatic_payment_methods: {
-      // enabled: true,
-      // allow_redirects: 'never',
-      // },
-      return_url: 'https://www.kulit.us/checkout',
       description: 'Payment for products',
       confirm: true,
+      return_url: 'http://localhost:3000/confirmation', // Set the return URL for redirection
     });
 
     // Handle successful payment
