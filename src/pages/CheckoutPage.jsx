@@ -45,7 +45,7 @@ function CheckoutPage() {
   const payNow = async token => {
     try {
       const response = await axios({
-        url: 'http://localhost:5000/payment',
+        url: 'http://localhost:5001/payment',
         method: 'post',
         data: {
           amount: priceForStripe,
