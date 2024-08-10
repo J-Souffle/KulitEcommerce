@@ -5,8 +5,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { CartContext } from "../App";
-import Navbar from "../components/Navbar"; // Import the Navbar component
-import { useNavigate, Link } from "react-router-dom"; // Import Link and useNavigate for navigation
+import Navbar from "../components/Navbar";
+import { useNavigate, Link } from "react-router-dom";
 
 const MySwal = withReactContent(Swal);
 
@@ -15,7 +15,7 @@ function CheckoutPage() {
   const { cartItem, setCartItem } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const total = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -54,14 +54,10 @@ function CheckoutPage() {
       });
       if (response.status === 200) {
         handleSuccess();
-        console.log('Your payment was successful');
-        // Redirect to confirmation page with success status
         navigate('/confirmation?status=success');
       }
     } catch (error) {
       handleFailure();
-      console.log(error);
-      // Redirect to confirmation page with failure status
       navigate('/confirmation?status=failure');
     }
   };
@@ -87,9 +83,9 @@ function CheckoutPage() {
 
   return (
     <>
-      <Navbar /> {/* Render the Navbar component */}
+      <Navbar />
       <div className="container">
-        <Link to="/" className="go-back-home-btn">Go Back Home</Link> {/* Link to navigate back to home page */}
+        <Link to="/" className="go-back-home-btn">Go Back Home</Link>
         <div className="header">
           <h2>Products in your cart:</h2>
         </div>
@@ -103,7 +99,6 @@ function CheckoutPage() {
               <p className="cart-price">
                 Color: Yellow <br />
                 Size: M <br />
-                {/* Price: ${item.price}.00 <br /> */}
                 Quantity: {item.quantity}
                 <button onClick={() => increaseQuantity(item.id)}>+</button>
                 <button onClick={() => decreaseQuantity(item.id)}>-</button>
@@ -117,19 +112,26 @@ function CheckoutPage() {
           <span>{totalItems} items </span> <br />
           <span>Subtotal ({totalItems} items): </span>${totalPrice.toFixed(2)}
         </p>
-        <StripeCheckout
-          stripeKey={publishableKey}
-          label="Pay Now"
-          name="Pay With Credit Card"
-          billingAddress
-          shippingAddress
-          amount={priceForStripe}
-          description={`Your total is $${totalPrice.toFixed(2)}`}
-          token={payNow}
-        />
+        <div className="stripe-checkout-button-wrapper">
+          <StripeCheckout
+            stripeKey={publishableKey}
+            label="" // Hide the default label
+            name="Pay With Credit Card"
+            billingAddress
+            shippingAddress
+            amount={priceForStripe}
+            description={`Your total is $${totalPrice.toFixed(2)}`}
+            token={payNow}
+            className="stripe-checkout-button-hidden" // Hide the default button
+          />
+          <button className="custom-pay-now" onClick={() => document.querySelector('.stripe-checkout-button-hidden').click()}>
+            Pay Now
+          </button>
+        </div>
       </div>
     </>
   );
+  
 }
 
 export default CheckoutPage;

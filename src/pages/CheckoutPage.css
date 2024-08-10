@@ -98,3 +98,52 @@ body {
     background-color: #5469d4;
   }
   
+  /* CheckoutPage.css */
+.stripe-checkout-button {
+  display: inline-block;
+  background-color: #28a745; /* Green background color */
+  color: #fff; /* White text color */
+  padding: 1rem 2rem; /* Padding around the text */
+  font-size: 1.5rem; /* Font size */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Ensure the wrapper is positioned relatively */
+.stripe-checkout-button-wrapper {
+  position: relative; /* Establishes a positioning context for child elements */
+  display: inline-block; /* Adjust if needed for button alignment */
+}
+
+/* Hide the default Stripe button */
+.stripe-checkout-button-hidden {
+  display: none; /* Completely hides the default Stripe button */
+}
+
+/* Custom Pay Now button styling */
+.custom-pay-now {
+  font-size: 1.5rem;
+  padding: 1.5rem 15rem;
+  text-align: center; /* Centers the text inside the button */
+  color: #fff;
+  background-color: #6772e5; /* Custom color */
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: absolute; /* Positioned relative to the wrapper */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-10%, -40%); /* Adjust position to truly center */
+  white-space: nowrap;
+  z-index: 10; /* Ensures it's on top of the hidden Stripe button */
+  width: auto; /* Automatically adjust width */
+  height: auto; /* Automatically adjust height */
+}
+
+/* Hover effect for the custom button */
+.custom-pay-now:hover {
+  background-color: #5469d4; /* Darker color on hover */
+}
