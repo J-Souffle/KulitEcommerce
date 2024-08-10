@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import CartWithItems from "./CartWithItems.jsx";
 import EmptyCart from "./EmptyCart.jsx";
-import { CartContext } from "../pages/ProductPage.jsx";
+import { CartContext } from "../App";
 import { IconMenu2, IconShoppingCart, IconX } from "@tabler/icons-react";
 
 function Navbar() {
@@ -12,7 +12,7 @@ function Navbar() {
   const [mobileNav, setMobileNav] = useState(false);
   const [cart, setCart] = useState(false);
 
-  const { cartItem } = useContext(CartContext);
+  const { cartItem, getTotalQuantity } = useContext(CartContext);
 
   const handleScroll = () => {
     if (window.scrollY > 10) {
@@ -100,13 +100,14 @@ function Navbar() {
                 Support
               </Link>
               <i
-                data-array-length={cartItem.length}
+                data-array-length={getTotalQuantity()}
                 onClick={openCart}
                 className={`${
                   cartItem.length < 1 ? "cart-icon" : "cart-icon with-items"
                 }`}
               >
                 <IconShoppingCart />
+                {/* <span className="cart-quantity">{getTotalQuantity()}</span> Display total quantity */}
               </i>
             </div>
             <div className="hamburger-menu">
@@ -118,6 +119,7 @@ function Navbar() {
                 }`}
               >
                 <IconShoppingCart />
+                <span className="cart-quantity">{getTotalQuantity()}</span> {/* Display total quantity */}
               </i>
               <i
                 onClick={() => setMobileNav(!mobileNav)}

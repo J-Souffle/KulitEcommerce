@@ -9,6 +9,7 @@ function CategoriesHeader() {
     setBtnName(e);
   };
 
+  // NEED TO UPDATE THIS
   return (
     <>
       <div className="container">
@@ -23,28 +24,12 @@ function CategoriesHeader() {
             <Link to="all" onClick={() => handleBtnName("all")}>
               <button>All</button>
             </Link>
-            {/* <Link to="furnitures">
-              <button onClick={() => handleBtnName("furnitures")}>
-                Furnitures
-              </button>
-            </Link>
-            <Link to="electronics">
-              <button onClick={() => handleBtnName("electronics")}>
-                Electronics
-              </button>
-            </Link>
-            <Link to="lamps">
-              <button onClick={() => handleBtnName("lamps")}>Lamps</button>
-            </Link>
-            <Link to="kitchen">
-              <button onClick={() => handleBtnName("kitchen")}>Kitchen</button>
-            </Link> */}
             <Link to="shirts">
-              <button onClick={() => handleBtnName("shirts")}>Shirts</button>
+              <button onClick={() => handleBtnName("shirts")}>Tops</button>
             </Link>
             <Link to="sweatshirt">
               <button onClick={() => handleBtnName("sweatshirts")}>
-                Sweatshirts
+                Bottoms
               </button>
             </Link>
             <Link to="other">

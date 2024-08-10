@@ -1,62 +1,47 @@
-import { useContext, useEffect, useState } from "react";
-import { CartContext } from "../pages/ProductPage.jsx";
-import { IconX } from "@tabler/icons-react";
+import React, { useContext } from 'react';
+import { CartContext } from '../App';
 
-function CartItem() {
-  const [quantity, setQuantity] = useState(1);
+function CartItem({ item }) {
   const { cartItem, setCartItem } = useContext(CartContext);
 
-  const increase = () => {
-    if (quantity >= 1) {
-      setQuantity(quantity + 1);
+  const handleIncrease = () => {
+    setCartItem(cartItem.map(cartItem =>
+      cartItem.id === item.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    ));
+  };
+
+  const handleDecrease = () => {
+    if (item.quantity > 1) {
+      setCartItem(cartItem.map(cartItem =>
+        cartItem.id === item.id
+          ? { ...cartItem, quantity: cartItem.quantity - 1 }
+          : cartItem
+      ));
     }
   };
 
-  const decrease = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+  const handleRemove = () => {
+    setCartItem(cartItem.filter(cartItem => cartItem.id !== item.id));
   };
-
-  const calcPrice = (quantity, item) => {
-    return quantity * item;
-  };
-
-  const [deleteItem, setDeleteItem] = useState(cartItem);
-
-  const removeFromCart = (id) => {
-    const updateCart = cartItem.filter((item) => item.id !== id);
-    setDeleteItem(updateCart);
-    const json = JSON.stringify(cartItem.id);
-    localStorage.removeItem("cartItem", json);
-  };
-
-  useEffect(() => {
-    setCartItem(deleteItem);
-  }, [deleteItem, setCartItem]);
 
   return (
-    <>
-      {cartItem.map((item, id) => (
-        <div key={id} className="cart-item">
-          <div className="cart-img">
-            <img src={item.img} alt="product" />
-          </div>
-          <div className="cart-middle">
-            <p className="cart-name">{item.description}</p>
-            <div className="cart-btns">
-              <button onClick={decrease}>-</button>
-              <p className="quantity">{quantity}</p>
-              <button onClick={increase}>+</button>
-            </div>
-          </div>
-          <div className="cart-right">
-            <p className="cart-price">{calcPrice(quantity, item.price)}.00$</p>
-            <IconX onClick={() => removeFromCart(item.id)} />
-          </div>
+    <div className="cart-item">
+      <div className="cart-img">
+        <img src={item.img} alt="product" />
+      </div>
+      <div className="cart-item-info">
+        <p className="cart-item-description">{item.description}</p>
+        <p className="cart-item-price">${item.price * item.quantity}.00</p>
+        <div className="quantity-controls">
+          <button onClick={handleDecrease}>-</button>
+          <span>{item.quantity}</span>
+          <button onClick={handleIncrease}>+</button>
         </div>
-      ))}
-    </>
+        <button className="remove-btn" onClick={handleRemove}>Remove</button>
+      </div>
+    </div>
   );
 }
 

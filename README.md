@@ -5,8 +5,8 @@
 - [ ] mobile support
 - [ ] Add a thank you screen for purchasing
 - [ ] Style it different from the original website (https://minimalist-e-commerce.vercel.app/) (make it more filipino)
-- [ ] Put products in Trending Now or Replace it with something else
-- [ ] Copy pixel vibe apparel store
+- [x] Put products in Trending Now or Replace it with something else
+- [x] Copy pixel vibe apparel store
 - [ ] Make a backend server for newsletter and support responses
 - [ ] style checkout stuff
 - [ ] Need to clean the files

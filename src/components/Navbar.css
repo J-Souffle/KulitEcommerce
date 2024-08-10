@@ -297,7 +297,7 @@
     position: absolute;
     left: 12px;
     font-size: 11px;
-    background-color: #B6002C;
+    background-color: #b63700;
     color: white;
     padding: 5px;
     border-radius: 50%;
@@ -346,24 +346,36 @@
     font-weight: 600;
 }
 
-.sub-left a {
+.sub-left button {
     font-size: 2rem;
+    width: 20rem;
+    padding: 1rem 2rem;
     color: black;
-    border: 2px solid black;
-    text-decoration: none;
-    background-color: transparent;
-    padding: 1rem 3.5rem;
+    background-color: white;
+    cursor: pointer;
+    border: 2px solid black !important;
     transition: all 0.2s;
 }
 
-.sub-left a:hover {
-    background-color: #000000;
-    color: white;
+.sub-left button:hover {
+    background-color: black; /* Change background color to black on hover */
+    color: white; /* Change text color to white on hover */
 }
 
-.sub-left {
-    padding-top: 4rem;
-}
+.cart-quantity {
+    position: fixed;
+    top: 30px;  /* Adjust this value to move the icon down */
+    left: 130.5rem;  /* Adjust this value to move the icon to the right */
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    z-index: 1000; /* Ensure it's above other content */
+  }
+  
+  
+
 
 @media (max-width:600px) {
     .nav-links {
