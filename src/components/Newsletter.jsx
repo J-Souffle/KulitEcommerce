@@ -4,12 +4,11 @@ import './Newsletter.css';
 function Newsletter() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [messageType, setMessageType] = useState(''); // Add state for message type
+  const [messageType, setMessageType] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Example of a POST request to your newsletter backend endpoint
     try {
       const response = await fetch('/newsletter', {
         method: 'POST',
@@ -19,13 +18,16 @@ function Newsletter() {
         body: JSON.stringify({ email }),
       });
 
+      const data = await response.json(); // Parse the response data
+
       if (response.ok) {
         setMessage('Thank you for subscribing!');
         setMessageType('success');
         setEmail('');
       } else {
-        setMessage('There was an issue with your subscription. Please try again.');
+        setMessage(data.error || 'There was an issue with your subscription. Please try again.');
         setMessageType('error');
+        console.error('Error response:', data); // Log the error response to the console
       }
     } catch (error) {
       console.error('Error:', error);
