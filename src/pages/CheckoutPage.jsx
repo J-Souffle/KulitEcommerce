@@ -11,7 +11,7 @@ import { useNavigate, Link } from "react-router-dom"; // Import Link and useNavi
 const MySwal = withReactContent(Swal);
 
 function CheckoutPage() {
-  const publishableKey = 'pk_test_51P7ai8LO5J7ORzPKB8mr7QaPvwECu3ebmWth80FNICCRX6ehA62vlkqUNwskIb678eCsIxmNNMPOVsL7sbv3M8CP00TFgHUti4';
+  const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
   const { cartItem, setCartItem } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
