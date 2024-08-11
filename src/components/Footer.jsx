@@ -11,10 +11,10 @@ function Footer() {
           <button onClick={() => window.location.href = "#"}>FAQs</button>
           <button onClick={() => window.location.href = "#"}>News</button>
           {/* <button onClick={() => window.location.href = "#"}>Blog</button> */}
-          <button onClick={() => window.location.href = "#"}>Contact Us</button>
+          {/* <button onClick={() => window.location.href = "#"}>Contact Us</button> */}
         </div>
         <div className="footer-social-media">
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/kulitapparel?igsh=MWZ4YWI1cTljZmNteg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
             <IconBrandInstagram />
           </a>
           <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">

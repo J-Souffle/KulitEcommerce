@@ -1,7 +1,9 @@
+/* General Body Styling */
 body {
-    padding-top: 200px;
+  padding-top: 200px;
 }
 
+/* Header Styles */
 .main-header h2 {
   font-size: 5rem;
 }
@@ -10,140 +12,281 @@ body {
   font-size: 3.5rem;
 }
 
+/* Checkout Container */
 .checkout-container {
-    max-width: 1200px; /* Increase the maximum width */
-    margin: 0 auto;
-    padding: 3rem; /* Increase padding */
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    padding-bottom: 200px;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding-bottom: 200px;
+}
 
 .sub-header h3 {
   font-size: 3.5rem;
 }
-  
-  .checkout-container h2 {
-    font-size: 3.5rem; /* Increase font size */
-    margin-bottom: 3rem; /* Increase margin */
-    color: #333;
-  }
-  
-  .checkout-container h3 {
-    font-size: 2.5rem; /* Increase font size */
-    margin-bottom: 2rem; /* Increase margin */
-    color: #666;
-  }
-  
-  .cart-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0rem; /* Increase padding */
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .cart-img {
-    max-width: 125px; /* Increase the container size */
-    margin-right: 2rem; /* Increase margin for spacing */
-  }
-  
-  .cart-img img {
-    width: 100%; /* Make the image fit within the container */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensure the entire image fits within the container */
-    border-radius: 10px;
-  }
-  
-  .cart-details {
-    flex: 1;
-    text-align: left;
-  }
-  
-  .cart-name {
-    font-size: 2rem; /* Increase font size */
-    margin-bottom: 1rem; /* Increase margin */
-    color: #333;
-  }
-  
-  .cart-price {
-    font-size: 1.8rem; /* Increase font size */
-    color: #999;
-  }
-  
-  .cart-total-price {
-    font-size: 2.5rem; /* Increase font size */
-    font-weight: bold;
-    margin: 3rem 0; /* Increase margin */
-    color: #333;
-  }
-  
-  .StripeCheckout {
-    display: inline-block;
-    margin-top: 3rem; /* Increase margin */
-  }
-  
-  .StripeCheckout span {
-    font-size: 2rem; /* Increase font size */
-    padding: 1.5rem 3rem; /* Increase padding */
-    color: #fff;
-    background-color: #6772e5;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .StripeCheckout span:hover {
-    background-color: #5469d4;
-  }
-  
-  /* CheckoutPage.css */
+
+.checkout-container h2 {
+  font-size: 3.5rem;
+  margin-bottom: 3rem;
+  color: #333;
+}
+
+.checkout-container h3 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #666;
+}
+
+/* Cart Item Styles */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-img {
+  max-width: 125px;
+  margin-right: 2rem;
+}
+
+.cart-img img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.cart-details {
+  flex: 1;
+  text-align: left;
+}
+
+.cart-name {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.cart-price {
+  font-size: 1.8rem;
+  color: #999;
+}
+
+.cart-total-price {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 3rem 0;
+  color: #333;
+}
+
+/* Button Styles */
+.delete-btn {
+  margin-left: auto;
+  margin-top: auto;
+  text-decoration: underline;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Stripe Checkout Styles */
+.StripeCheckout {
+  display: inline-block;
+  margin-top: 3rem;
+}
+
+.StripeCheckout span {
+  font-size: 2rem;
+  padding: 1.5rem 3rem;
+  color: #fff;
+  background-color: #6772e5;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.StripeCheckout span:hover {
+  background-color: #5469d4;
+}
+
 .stripe-checkout-button {
   display: inline-block;
-  background-color: #28a745; /* Green background color */
-  color: #fff; /* White text color */
-  padding: 1rem 2rem; /* Padding around the text */
-  font-size: 1.5rem; /* Font size */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+  background-color: #28a745;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Ensure the wrapper is positioned relatively */
 .stripe-checkout-button-wrapper {
-  position: relative; /* Establishes a positioning context for child elements */
-  display: inline-block; /* Adjust if needed for button alignment */
+  position: relative;
+  display: inline-block;
 }
 
-/* Hide the default Stripe button */
 .stripe-checkout-button-hidden {
-  display: none; /* Completely hides the default Stripe button */
+  display: none;
 }
 
-/* Custom Pay Now button styling */
 .custom-pay-now {
   font-size: 1.5rem;
   padding: 1.5rem 15rem;
-  text-align: center; /* Centers the text inside the button */
+  text-align: center;
   color: #fff;
-  background-color: #6772e5; /* Custom color */
+  background-color: #6772e5;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
-  position: absolute; /* Positioned relative to the wrapper */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-10%, -40%); /* Adjust position to truly center */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   white-space: nowrap;
-  z-index: 10; /* Ensures it's on top of the hidden Stripe button */
-  width: auto; /* Automatically adjust width */
-  height: auto; /* Automatically adjust height */
+  z-index: 10;
+  width: auto;
+  height: auto;
 }
 
-/* Hover effect for the custom button */
 .custom-pay-now:hover {
-  background-color: #5469d4; /* Darker color on hover */
+  background-color: #5469d4;
+}
+
+/* Address Form Styles */
+.address-form {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.address-form input {
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.address-form button {
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  color: #fff;
+  background-color: #6772e5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.address-form button:hover {
+  background-color: #5469d4;
+}
+
+.address-form select {
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  text-align-last: center;
+  color: #333;
+}
+
+.address-form select::-ms-expand {
+  display: none;
+}
+
+.address-form select::after {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  pointer-events: none;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.address-form select:hover {
+  background-color: #e6e6e6;
+}
+
+.address-form select:focus {
+  outline: none;
+  border-color: #6772e5;
+  box-shadow: 0 0 5px rgba(103, 114, 229, 0.5);
+}
+
+/* Quantity Buttons Styles */
+.quantity-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-button {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+.quantity-button:hover {
+  background-color: #ddd;
+}
+
+.quantity-text {
+  font-size: 1.8rem;
+  margin: 0 10px;
+}
+
+.go-back-home-btn {
+  display: inline-block;
+  margin-right: 100rem;
+  padding: 0.75rem 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #256033;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.go-back-home-btn:hover {
+  background-color: #218838;
+  transform: scale(1.05);
 }

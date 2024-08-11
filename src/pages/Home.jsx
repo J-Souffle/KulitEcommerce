@@ -6,7 +6,7 @@ import Hero from "../components/Hero.jsx";
 import Newsletter from "../components/Newsletter.jsx";
 import ProudProducts from "../components/ProudProducts.jsx";
 import TrendingSlider from "../components/TrendingSlider.jsx";
-import Banner1 from "../img/banner/FilipinoFood.jpg";
+import Banner1 from "../img/banner/FilipinoTribePattern.png";
 import Banner2 from "../img/banner/FilipinoTransportation.jpg";
 
 function Home() {
