@@ -15,11 +15,14 @@ function CheckoutPage() {
   const { cartItem, setCartItem } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const [shippingCost, setShippingCost] = useState(0); // New state for shipping cost
-  const [address, setAddress] = useState(""); // New state for address
-  const [city, setCity] = useState(""); // New state for city
-  const [state, setState] = useState(""); // New state for state
-  const [zip, setZip] = useState(""); // New state for zip code
+  const [shippingCost, setShippingCost] = useState(0);
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [promoCodeError, setPromoCodeError] = useState(""); // State for promo code error
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,9 +48,20 @@ function CheckoutPage() {
     calculateShipping(state);
   }, [state]);
 
+  const applyPromoCode = () => {
+    if (promoCode === "10OFF!") {
+      setDiscount(0.1); // Apply 10% discount
+      setPromoCodeError(""); // Clear any previous error message
+    } else {
+      setDiscount(0);
+      setPromoCodeError("Invalid promo code"); // Set error message
+    }
+  };
+
   const priceForStripe = (totalPrice + shippingCost) * 100;
   const estimatedTaxes = 10; // Adjust if needed
-  const totalAmount = totalPrice + shippingCost + estimatedTaxes;
+  const discountAmount = totalPrice * discount;
+  const totalAmount = totalPrice + shippingCost + estimatedTaxes - discountAmount;
 
   const handleSuccess = () => {
     MySwal.fire({
@@ -178,11 +192,26 @@ function CheckoutPage() {
             placeholder="Zip Code"
           />
         </form>
+        <form className="promo-code-form">
+          <h3>Promo Code</h3>
+          <input
+            type="text"
+            value={promoCode}
+            onChange={(e) => setPromoCode(e.target.value)}
+            placeholder="Enter Promo Code"
+            className={`promo-code-input ${promoCodeError ? 'error' : ''}`}
+          />
+          <button type="button" onClick={applyPromoCode} className="apply-promo-btn">Apply</button>
+          {promoCodeError && <p className="promo-code-error">{promoCodeError}</p>}
+        </form>
         <p className="cart-total-price">
           <span>{totalItems} items </span> <br />
           <span>Subtotal: </span>${totalPrice.toFixed(2)} <br />
           <span>Shipping: </span>${shippingCost.toFixed(2)} <br />
           <span>Estimated Taxes: </span>${estimatedTaxes.toFixed(2)} <br />
+          {discount > 0 && (
+            <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
+          )}
           <span>Total: </span>${totalAmount.toFixed(2)}
         </p>
         <div className="stripe-checkout-button-wrapper">

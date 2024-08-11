@@ -1,6 +1,10 @@
+/* General styles for the confirmation page */
 .confirmation-page {
     font-family: Arial, sans-serif;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 15rem;
   }
   
   .confirmation-header {
@@ -8,50 +12,117 @@
     margin-bottom: 30px;
   }
   
-  .order-summary, .order-products, .confirmation-actions {
-    margin-bottom: 20px;
+  .confirmation-header h1 {
+    font-size: 2rem;
+    color: #333;
   }
   
-  .order-summary h2, .order-products h2 {
+  .confirmation-header p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .order-summary, .order-products, .confirmation-actions {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .order-summary h3, .order-products h3 {
     font-size: 1.5rem;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: #333;
   }
   
   .order-summary p, .order-products p {
     font-size: 1rem;
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .order-products-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
   }
   
   .product-item {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .product-img {
+    flex-shrink: 0;
+    margin-right: 15px;
   }
   
   .product-img img {
-    width: 100px;
+    width: 100px; /* Adjust as needed */
     height: 100px;
     object-fit: cover;
-    border-radius: 5px;
-    margin-right: 15px;
+    border-radius: 8px;
+  }
+  
+  .product-info {
+    flex: 1;
   }
   
   .product-info p {
     margin: 5px 0;
   }
   
-  .go-back-home-btn {
+  .confirmation-actions {
+    text-align: center;
+  }
+  
+  .go-back-home-btn, .retry-payment-btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: #007bff;
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-size: 1rem;
     text-align: center;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
   }
   
-  .go-back-home-btn:hover {
+  .go-back-home-btn:hover, .retry-payment-btn:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .retry-payment-btn {
+    background-color: #dc3545;
+    margin-left: 10px;
+  }
+  
+  .retry-payment-btn:hover {
+    background-color: #c82333;
+  }
+  
+  /* Specific styles for the success and failure messages */
+  .confirmation-success, .confirmation-failure {
+    text-align: center;
+  }
+  
+  .confirmation-failure h1, .confirmation-success h1 {
+    color: #dc3545; /* Red for failure, green for success */
+  }
+  
+  .confirmation-success h1 {
+    color: #28a745; /* Green for success */
+  }
+  
+  .confirmation-failure p, .confirmation-success p {
+    font-size: 1.2rem;
+    color: #666;
   }
   
