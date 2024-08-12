@@ -14,7 +14,7 @@ import ProductPage from "./pages/ProductPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
 import ConfirmationPage from "./pages/ConfirmationPage.jsx"; // Import the ConfirmationPage component
 import Navbar from "./components/Navbar.jsx";
-import CheckoutNavbar from "./components/CheckoutComponents/NavbarCheckout.jsx";
+import NavbarCheckout from "./components/CheckoutComponents/CheckoutNavbar.jsx";
 import Support from "./components/Support.jsx";
 import CartWithItems from "./components/CartWithItems.jsx";
 
@@ -87,7 +87,7 @@ function App() {
           <Route path="other" element={<Other />} />
         </Route>
         <Route path="/categories/product/:id" element={<ProductPage />} />
-        <Route path="/checkout/*" element={<CheckoutNavbar />} /> {/* Use wildcard for nested routes */}
+        <Route path="/checkout/*" element={<NavbarCheckout />} /> {/* Use wildcard for nested routes */}
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/confirmation" element={<ConfirmationPage />} /> {/* Added route for ConfirmationPage */}
         <Route path="/support" element={<Support />} />

@@ -5,8 +5,9 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { CartContext } from "../App";
-import Navbar from "../components/Navbar";
+import CheckoutNavbar from "../components/CheckoutComponents/CheckoutNavbar";
 import { useNavigate, Link } from 'react-router-dom';
+import FooterCheckout from "../components/CheckoutComponents/FooterCheckout";
 
 const MySwal = withReactContent(Swal);
 
@@ -136,9 +137,9 @@ function CheckoutPage() {
 
   return (
     <>
-      <Navbar />
+      <CheckoutNavbar />
       <div className="checkout-container">
-        <Link to="/" className="go-back-home-btn">Go Back Home</Link>
+        {/* <Link to="/" className="go-back-home-btn">Go Back Home</Link> */}
         <div className="header">
           <h2>Products in your cart:</h2>
         </div>
@@ -230,6 +231,9 @@ function CheckoutPage() {
             Pay Now
           </button>
         </div>
+      </div>
+      <div>
+      <FooterCheckout />
       </div>
     </>
   );

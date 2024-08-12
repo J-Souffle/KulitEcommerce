@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import './ConfirmationPage.css'; // Ensure to include this file
-import Navbar from '../components/Navbar';
+import CheckoutNavbar from '../components/CheckoutComponents/CheckoutNavbar';
+import FooterCheckout from '../components/CheckoutComponents/FooterCheckout';
 
 const ConfirmationPage = () => {
   const location = useLocation();
@@ -20,7 +21,7 @@ const ConfirmationPage = () => {
 
   return (
     <>
-      <Navbar />
+      <CheckoutNavbar />
       <div className="confirmation-page">
         {paymentStatus === 'success' ? (
           <div className="confirmation-success">
@@ -29,6 +30,7 @@ const ConfirmationPage = () => {
             <p><strong>Order Number:</strong> {orderNumber}</p>
             <p><strong>Estimated Delivery Date:</strong> {estimatedDeliveryDate}</p>
             <p><strong>Order Confirmed Date:</strong> {confirmedDate}</p>
+            <br></br>
             <div className="order-summary">
               <h3>Order Summary</h3>
               <ul className="order-products-list">
@@ -63,6 +65,9 @@ const ConfirmationPage = () => {
             </div>
           </div>
         )}
+      </div>
+      <div>
+        <FooterCheckout />
       </div>
     </>
   );

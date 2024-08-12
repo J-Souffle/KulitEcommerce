@@ -7,6 +7,10 @@ footer {
     background-color: black;
 }
 
+p {
+    color: white;
+}
+
 .footer-links {
     display: flex;
     gap: 3rem;

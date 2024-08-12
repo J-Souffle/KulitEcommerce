@@ -75,7 +75,8 @@
   }
   
   .product-info p {
-    margin: 5px 0;
+    margin: 5px 0px;
+    margin-right: 10.5rem;
   }
   
   .confirmation-actions {
