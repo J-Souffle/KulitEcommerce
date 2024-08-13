@@ -1,5 +1,10 @@
+p {
+    color: black;
+}
+
 .product-page-div {
     padding-top: 14rem;
+    margin-top: 10rem;
 }
 
 .product-div {

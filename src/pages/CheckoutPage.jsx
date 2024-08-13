@@ -81,6 +81,7 @@ function CheckoutPage() {
   };
 
   const payNow = async token => {
+    // console.log("Cart items before payment:", cartItem)
     try {
       const response = await axios({
         url: 'http://localhost:5001/payment',
@@ -88,6 +89,7 @@ function CheckoutPage() {
         data: {
           amount: priceForStripe,
           token,
+          cartItems: cartItem,
         },
       });
       if (response.status === 200) {
@@ -115,7 +117,6 @@ function CheckoutPage() {
       });
     }
   };
-
   const increaseQuantity = (itemId) => {
     const updatedCart = cartItem.map(item =>
       item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item

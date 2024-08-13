@@ -16,8 +16,8 @@ function TrendingItem() {
               <img src={item.img} alt="product" />
             </div>
             <div className="item-description">
-              <p>{item.description}</p>
-              <p className="item-price">{item.price}$</p>
+              <p style={{color: "black",}}>{item.description}</p>
+              <p className="item-price" style={{color: "black",}}>{item.price}$</p>
             </div>
           </Link>
         </div>

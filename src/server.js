@@ -23,7 +23,7 @@ app.use(cors(corsOptions));
 const stripe = Stripe(process.env.SECRET_KEY);
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://jdcancio1:Pissword123@clusternewsletter.zduuq.mongodb.net/?retryWrites=true&w=majority&appName=ClusterNewsletter', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -39,9 +39,17 @@ const Email = mongoose.model('Email', emailSchema);
 
 // Payment route
 app.post('/payment', async (req, res) => {
-  const { token, amount } = req.body;
+  const { token, amount, cartItems } = req.body;
 
-  console.log('Received payment request:', { token, amount }); // Log the received data
+  // Check if cartItems is provided and is an array
+  if (!Array.isArray(cartItems) || cartItems.length === 0) {
+    return res.status(400).json({ error: 'Cart items are required' });
+  }
+
+  console.log('Received payment request:', { token, amount, cartItems }); // Log the received data
+
+  // Create a string description of the purchased products
+  const productDescriptions = cartItems.map(item => `Description: ${item.description} | Quantity: ${item.quantity} | Price: $${item.price}`).join(', ');
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -50,21 +58,22 @@ app.post('/payment', async (req, res) => {
       payment_method_data: {
         type: 'card',
         card: {
-          token: token.id, // Use the token here
+          token: token.id,
         },
       },
-      description: 'Payment for products',
+      description: `${productDescriptions}`,
       confirm: true,
       return_url: 'http://localhost:3000/confirmation',
     });
 
-    console.log('Payment successful:', paymentIntent); // Log payment success
+    console.log('Payment successful:', paymentIntent);
     res.json({ success: true });
   } catch (error) {
-    console.error('Error processing payment:', error); // Log payment failure
+    console.error('Error processing payment:', error);
     res.status(500).json({ error: 'Payment failed', details: error.message });
   }
 });
+
 
 // Newsletter sign-up route
 app.post('/newsletter', async (req, res) => {
@@ -75,13 +84,11 @@ app.post('/newsletter', async (req, res) => {
   }
 
   try {
-    // Check if email already exists
     const existingEmail = await Email.findOne({ email });
     if (existingEmail) {
       return res.status(400).json({ error: 'Email already subscribed' });
     }
 
-    // Create a new email document
     const newEmail = new Email({ email });
     await newEmail.save();
     return res.status(200).json({ success: true, message: 'Subscribed successfully' });
