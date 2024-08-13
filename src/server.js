@@ -37,18 +37,26 @@ const emailSchema = new mongoose.Schema({
 
 const Email = mongoose.model('Email', emailSchema);
 
+// Define a schema and model for storing support form submissions
+const supportSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  comment: { type: String, required: true },
+});
+
+const Support = mongoose.model('Support', supportSchema);
+
 // Payment route
 app.post('/payment', async (req, res) => {
   const { token, amount, cartItems } = req.body;
 
-  // Check if cartItems is provided and is an array
   if (!Array.isArray(cartItems) || cartItems.length === 0) {
     return res.status(400).json({ error: 'Cart items are required' });
   }
 
-  console.log('Received payment request:', { token, amount, cartItems }); // Log the received data
+  console.log('Received payment request:', { token, amount, cartItems });
 
-  // Create a string description of the purchased products
   const productDescriptions = cartItems.map(item => `Description: ${item.description} | Quantity: ${item.quantity} | Price: $${item.price}`).join(', ');
 
   try {
@@ -74,7 +82,6 @@ app.post('/payment', async (req, res) => {
   }
 });
 
-
 // Newsletter sign-up route
 app.post('/newsletter', async (req, res) => {
   const { email } = req.body;
@@ -95,6 +102,24 @@ app.post('/newsletter', async (req, res) => {
   } catch (error) {
     console.error('Error saving email:', error);
     res.status(500).json({ error: 'Error saving email' });
+  }
+});
+
+// Support form submission route
+app.post('/support', async (req, res) => {
+  const { name, email, phone, comment } = req.body;
+
+  if (!name || !email || !phone || !comment) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  try {
+    const newSupport = new Support({ name, email, phone, comment });
+    await newSupport.save();
+    return res.status(200).json({ success: true, message: 'Support request submitted successfully' });
+  } catch (error) {
+    console.error('Error saving support request:', error);
+    res.status(500).json({ error: 'Error saving support request' });
   }
 });
 
