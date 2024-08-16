@@ -5,8 +5,9 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { CartContext } from "../App";
-import Navbar from "../components/Navbar"; // Import the Navbar component
-import { useNavigate, Link } from "react-router-dom"; // Import Link and useNavigate for navigation
+import CheckoutNavbar from "../components/CheckoutComponents/CheckoutNavbar";
+import { useNavigate, Link } from 'react-router-dom';
+import FooterCheckout from "../components/CheckoutComponents/FooterCheckout";
 
 const MySwal = withReactContent(Swal);
 
@@ -15,7 +16,15 @@ function CheckoutPage() {
   const { cartItem, setCartItem } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [shippingCost, setShippingCost] = useState(0);
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip, setZip] = useState("");
+  const [promoCode, setPromoCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [promoCodeError, setPromoCodeError] = useState(""); // State for promo code error
+  const navigate = useNavigate();
 
   useEffect(() => {
     const total = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -24,7 +33,36 @@ function CheckoutPage() {
     setTotalItems(items);
   }, [cartItem]);
 
-  const priceForStripe = totalPrice * 100;
+  const calculateShipping = (state) => {
+    let cost = 0;
+
+    if (state === 'VA') {
+      cost = 10;
+    } else if (state === 'FL') {
+      cost = 20;
+    }
+
+    setShippingCost(cost);
+  };
+
+  useEffect(() => {
+    calculateShipping(state);
+  }, [state]);
+
+  const applyPromoCode = () => {
+    if (promoCode === "10OFF!") {
+      setDiscount(0.1); // Apply 10% discount
+      setPromoCodeError(""); // Clear any previous error message
+    } else {
+      setDiscount(0);
+      setPromoCodeError("Invalid promo code"); // Set error message
+    }
+  };
+
+  const priceForStripe = (totalPrice + shippingCost) * 100;
+  const estimatedTaxes = 10; // Adjust if needed
+  const discountAmount = totalPrice * discount;
+  const totalAmount = totalPrice + shippingCost + estimatedTaxes - discountAmount;
 
   const handleSuccess = () => {
     MySwal.fire({
@@ -43,6 +81,7 @@ function CheckoutPage() {
   };
 
   const payNow = async token => {
+    // console.log("Cart items before payment:", cartItem)
     try {
       const response = await axios({
         url: 'http://localhost:5001/payment',
@@ -50,22 +89,34 @@ function CheckoutPage() {
         data: {
           amount: priceForStripe,
           token,
+          cartItems: cartItem,
         },
       });
       if (response.status === 200) {
         handleSuccess();
-        console.log('Your payment was successful');
-        // Redirect to confirmation page with success status
-        navigate('/confirmation?status=success');
+        navigate('/confirmation', {
+          state: {
+            status: 'success',
+            orderDetails: {
+              orderNumber: "123456", // Sample order number
+              estimatedDeliveryDate: "2024-08-20", // Sample estimated delivery date
+              products: cartItem,
+              confirmedDate: new Date().toISOString().split('T')[0],
+              shippingCost,
+              estimatedTaxes,
+            }
+          }
+        });
       }
     } catch (error) {
       handleFailure();
-      console.log(error);
-      // Redirect to confirmation page with failure status
-      navigate('/confirmation?status=failure');
+      navigate('/confirmation', {
+        state: {
+          status: 'failure'
+        }
+      });
     }
   };
-
   const increaseQuantity = (itemId) => {
     const updatedCart = cartItem.map(item =>
       item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
@@ -87,9 +138,9 @@ function CheckoutPage() {
 
   return (
     <>
-      <Navbar /> {/* Render the Navbar component */}
-      <div className="container">
-        <Link to="/" className="go-back-home-btn">Go Back Home</Link> {/* Link to navigate back to home page */}
+      <CheckoutNavbar />
+      <div className="checkout-container">
+        {/* <Link to="/" className="go-back-home-btn">Go Back Home</Link> */}
         <div className="header">
           <h2>Products in your cart:</h2>
         </div>
@@ -101,32 +152,89 @@ function CheckoutPage() {
             <div className="cart-details">
               <p className="cart-name">{item.description}</p>
               <p className="cart-price">
-                Color: Yellow <br />
-                Size: M <br />
-                {/* Price: ${item.price}.00 <br /> */}
-                Quantity: {item.quantity}
-                <button onClick={() => increaseQuantity(item.id)}>+</button>
-                <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                <div className="quantity-buttons">
+                  <button className="quantity-button" onClick={() => increaseQuantity(item.id)}>+</button>
+                  <span className="quantity-text">{item.quantity}</span>
+                  <button className="quantity-button" onClick={() => decreaseQuantity(item.id)}>-</button>
+                </div>
+                <span className="cart-total-item-price">${(item.price * item.quantity).toFixed(2)}</span>
               </p>
-              <p className="cart-total-item-price">${(item.price * item.quantity).toFixed(2)}</p>
               <button className="delete-btn" onClick={() => removeItem(item.id)}>Delete</button>
             </div>
           </div>
         ))}
+        <form className="address-form">
+          <h3>Ship To</h3>
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Address"
+          />
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="City"
+          />
+          <select
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            placeholder="State"
+          >
+            <option value="">Select State</option>
+            <option value="VA">Virginia (VA)</option>
+            <option value="FL">Florida (FL)</option>
+            {/* Add more states as needed */}
+          </select>
+          <input
+            type="text"
+            value={zip}
+            onChange={(e) => setZip(e.target.value)}
+            placeholder="Zip Code"
+          />
+        </form>
+        <form className="promo-code-form">
+          <h3>Promo Code</h3>
+          <input
+            type="text"
+            value={promoCode}
+            onChange={(e) => setPromoCode(e.target.value)}
+            placeholder="Enter Promo Code"
+            className={`promo-code-input ${promoCodeError ? 'error' : ''}`}
+          />
+          <button type="button" onClick={applyPromoCode} className="apply-promo-btn">Apply</button>
+          {promoCodeError && <p className="promo-code-error">{promoCodeError}</p>}
+        </form>
         <p className="cart-total-price">
           <span>{totalItems} items </span> <br />
-          <span>Subtotal ({totalItems} items): </span>${totalPrice.toFixed(2)}
+          <span>Subtotal: </span>${totalPrice.toFixed(2)} <br />
+          <span>Shipping: </span>${shippingCost.toFixed(2)} <br />
+          <span>Estimated Taxes: </span>${estimatedTaxes.toFixed(2)} <br />
+          {discount > 0 && (
+            <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
+          )}
+          <span>Total: </span>${totalAmount.toFixed(2)}
         </p>
-        <StripeCheckout
-          stripeKey={publishableKey}
-          label="Pay Now"
-          name="Pay With Credit Card"
-          billingAddress
-          shippingAddress
-          amount={priceForStripe}
-          description={`Your total is $${totalPrice.toFixed(2)}`}
-          token={payNow}
-        />
+        <div className="stripe-checkout-button-wrapper">
+          <StripeCheckout
+            stripeKey={publishableKey}
+            label="" // Hide the default label
+            name="Pay With Credit Card"
+            billingAddress
+            shippingAddress
+            amount={priceForStripe}
+            description={`Your total is $${totalAmount.toFixed(2)}`}
+            token={payNow}
+            className="stripe-checkout-button-hidden" // Hide the default button
+          />
+          <button className="custom-pay-now" onClick={() => document.querySelector('.stripe-checkout-button-hidden').click()}>
+            Pay Now
+          </button>
+        </div>
+      </div>
+      <div>
+      <FooterCheckout />
       </div>
     </>
   );

@@ -7,14 +7,12 @@ function Footer() {
       <footer>
         <div className="footer-links">
           <button onClick={() => window.location.href = "#"}>About</button>
-          {/* <button onClick={() => window.location.href = "#"}>Store locator</button> */}
           <button onClick={() => window.location.href = "#"}>FAQs</button>
           <button onClick={() => window.location.href = "#"}>News</button>
-          {/* <button onClick={() => window.location.href = "#"}>Blog</button> */}
-          <button onClick={() => window.location.href = "#"}>Contact Us</button>
+          <button onClick={() => window.location.href = "#"}>Terms Of Service</button>
         </div>
         <div className="footer-social-media">
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/kulitapparel?igsh=MWZ4YWI1cTljZmNteg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
             <IconBrandInstagram />
           </a>
           <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
@@ -23,6 +21,9 @@ function Footer() {
           <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">
             <IconBrandTiktok />
           </a>
+        </div>
+        <div className="footer-info">
+          <p>All Rights Reserved © 2024 Kulit</p>
         </div>
       </footer>
     </>

@@ -19,6 +19,8 @@
     margin: 0 auto;
     padding: 3rem; /* Increased padding */
     text-align: center;
+    margin-top: 15rem;
+    margin-bottom: 15rem;
   }
   
   .support-container h1 {
@@ -69,6 +71,12 @@
   .form-group textarea {
     resize: vertical;
     height: 150px; /* Increased height */
+  }
+
+  .message p {
+    margin-top: 5rem;
+    text-decoration: underline;
+    border-radius: 4px;
   }
   
   button[type="submit"] {

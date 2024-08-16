@@ -17,8 +17,8 @@ function ProductItem() {
               <img src={item.img} alt="product1" />
             </div>
             <div className="product-details">
-              <p>{item.description}</p>
-              <p className="item-price">{item.price}$</p>
+              <p style={{color: "black",}}>{item.description}</p>
+              <p className="item-price" style={{color: "black",}}>{item.price}$</p>
             </div>
           </Link>
         </div>

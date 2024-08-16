@@ -37,11 +37,27 @@ const emailSchema = new mongoose.Schema({
 
 const Email = mongoose.model('Email', emailSchema);
 
+// Define a schema and model for storing support form submissions
+const supportSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  comment: { type: String, required: true },
+});
+
+const Support = mongoose.model('Support', supportSchema);
+
 // Payment route
 app.post('/payment', async (req, res) => {
-  const { token, amount } = req.body;
+  const { token, amount, cartItems } = req.body;
 
-  console.log('Received payment request:', { token, amount }); // Log the received data
+  if (!Array.isArray(cartItems) || cartItems.length === 0) {
+    return res.status(400).json({ error: 'Cart items are required' });
+  }
+
+  console.log('Received payment request:', { token, amount, cartItems });
+
+  const productDescriptions = cartItems.map(item => `Description: ${item.description} | Quantity: ${item.quantity} | Price: $${item.price}`).join(', ');
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -50,18 +66,18 @@ app.post('/payment', async (req, res) => {
       payment_method_data: {
         type: 'card',
         card: {
-          token: token.id, // Use the token here
+          token: token.id,
         },
       },
-      description: 'Payment for products',
+      description: `${productDescriptions}`,
       confirm: true,
       return_url: 'http://localhost:3000/confirmation',
     });
 
-    console.log('Payment successful:', paymentIntent); // Log payment success
+    console.log('Payment successful:', paymentIntent);
     res.json({ success: true });
   } catch (error) {
-    console.error('Error processing payment:', error); // Log payment failure
+    console.error('Error processing payment:', error);
     res.status(500).json({ error: 'Payment failed', details: error.message });
   }
 });
@@ -75,19 +91,35 @@ app.post('/newsletter', async (req, res) => {
   }
 
   try {
-    // Check if email already exists
     const existingEmail = await Email.findOne({ email });
     if (existingEmail) {
       return res.status(400).json({ error: 'Email already subscribed' });
     }
 
-    // Create a new email document
     const newEmail = new Email({ email });
     await newEmail.save();
     return res.status(200).json({ success: true, message: 'Subscribed successfully' });
   } catch (error) {
     console.error('Error saving email:', error);
     res.status(500).json({ error: 'Error saving email' });
+  }
+});
+
+// Support form submission route
+app.post('/support', async (req, res) => {
+  const { name, email, phone, comment } = req.body;
+
+  if (!name || !email || !phone || !comment) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  try {
+    const newSupport = new Support({ name, email, phone, comment });
+    await newSupport.save();
+    return res.status(200).json({ success: true, message: 'Support request submitted successfully' });
+  } catch (error) {
+    console.error('Error saving support request:', error);
+    res.status(500).json({ error: 'Error saving support request' });
   }
 });
 

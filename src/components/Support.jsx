@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './Support.css';
+import axios from 'axios';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function Support() {
   const [formData, setFormData] = useState({
@@ -8,19 +11,27 @@ function Support() {
     phone: '',
     comment: ''
   });
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // handle form submission logic here
-    console.log(formData);
+    try {
+      const response = await axios.post('http://localhost:5001/support', formData);
+      setMessage(response.data.message);
+    } catch (error) {
+      console.error('Error submitting support request:', error);
+      setMessage("Failed to submit support request. Please try again later.");
+    }
   };
 
   return (
+    <>
+    <Navbar />
     <div className="support-container">
       <h1>Contact</h1>
       <p>
@@ -72,7 +83,12 @@ function Support() {
         </div>
         <button type="submit">Submit</button>
       </form>
+      <div class="message">
+      {message && <p>{message}</p>}
+      </div>
     </div>
+    <Footer />
+    </>
   );
 }
 
