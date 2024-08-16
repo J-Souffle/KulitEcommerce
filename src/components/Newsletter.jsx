@@ -18,23 +18,28 @@ function Newsletter() {
         body: JSON.stringify({ email }),
       });
 
-      const data = await response.json(); // Parse the response data
+      const textResponse = await response.text(); // Get the response as text
 
-      if (response.ok) {
-        setMessage('Thank you for subscribing!');
-        setMessageType('success');
-        setEmail('');
-      } else {
-        setMessage(data.error || 'There was an issue with your subscription. Please try again.');
+      try {
+        const data = JSON.parse(textResponse); // Try parsing the response as JSON
+
+        if (response.ok) {
+          setMessage('Thank you for subscribing!');
+          setMessageType('success');
+          setEmail('');
+        } else {
+          setMessage(data.error || 'There was an issue with your subscription. Please try again.');
+          setMessageType('error');
+          console.error('Error response:', data);
+        }
+      } catch (jsonError) {
+        console.error('JSON Parsing Error:', jsonError);
+        console.error('Response received:', textResponse); // Log the raw response
+        setMessage('There was an error with the server response. Please try again.');
         setMessageType('error');
-        console.error('Error response:', data); // Log the error response to the console
       }
     } catch (error) {
       console.error('Error:', error);
-      const textResponse = await response.text();
-      console.log(textResponse); // Log the response as text first
-      const jsonResponse = JSON.parse(textResponse); // Parse the JSON response
-      console.log(jsonResponse);
       setMessage('There was an error. Please try again.');
       setMessageType('error');
     }
