@@ -40,6 +40,10 @@ function Newsletter() {
       }
     } catch (error) {
       console.error('Error:', error);
+      const textResponse = await response.text();
+      console.log(textResponse); // Log the response as text first
+      const jsonResponse = JSON.parse(textResponse); // Parse the JSON response
+      console.log(jsonResponse);
       setMessage('There was an error. Please try again.');
       setMessageType('error');
     }
