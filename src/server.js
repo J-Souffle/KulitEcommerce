@@ -23,7 +23,7 @@ app.use(cors(corsOptions));
 const stripe = Stripe(process.env.SECRET_KEY);
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://jdcancio1:Pissword123@clusternewsletter.zduuq.mongodb.net/?retryWrites=true&w=majority&appName=ClusterNewsletter', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
