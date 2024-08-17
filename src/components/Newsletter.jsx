@@ -8,7 +8,7 @@ function Newsletter() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('/newsletter', {
         method: 'POST',
@@ -17,12 +17,13 @@ function Newsletter() {
         },
         body: JSON.stringify({ email }),
       });
-
-      const textResponse = await response.text(); // Get the response as text
-
+  
+      const textResponse = await response.text(); // Get response as text
+      console.log('Raw server response:', textResponse); // Log raw response
+  
       try {
         const data = JSON.parse(textResponse); // Try parsing the response as JSON
-
+  
         if (response.ok) {
           setMessage('Thank you for subscribing!');
           setMessageType('success');
@@ -34,8 +35,7 @@ function Newsletter() {
         }
       } catch (jsonError) {
         console.error('JSON Parsing Error:', jsonError);
-        console.error('Response received:', textResponse); // Log the raw response
-        setMessage('There was an error with the server response. Please try again.');
+        setMessage('There was an error with the server response.');
         setMessageType('error');
       }
     } catch (error) {
@@ -44,7 +44,7 @@ function Newsletter() {
       setMessageType('error');
     }
   };
-
+  
   return (
     <div className="news">
       <div className="news-text">
