@@ -101,10 +101,10 @@ function ProductPage() {
               <p className="spec-title">Texture:</p>
               <p className="title-desc">{item ? item.texture : ""}</p>
             </div>
-            <div className="spec">
+            {/* <div className="spec">
               <p className="spec-title">Weight:</p>
               <p className="title-desc">{item ? item.weight : ""}</p>
-            </div>
+            </div> */}
             <div className="spec">
               <p className="spec-title">Size:</p>
               <p className="title-desc">{item ? item.size : ""}</p>

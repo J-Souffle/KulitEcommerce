@@ -32,8 +32,8 @@ export const items = [
     price: 45,
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
     specs:
-      "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water.",
-    texture: "Liquid",
+      "This CrewNeck sweatshirt is inspired by basketball teams made in the Philippines and is designed with a streetwear style. Made with cotton and polyester for a comfortable, relaxed fit, Perfect for cool weather.",
+    texture: "50% Cotton / 50% Polyester",
     weight: "50ml",
     size: "10cm x 5cm",
   },
