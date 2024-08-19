@@ -2,7 +2,11 @@ import Img1 from "../img/products/1.jpeg";
 import Img2 from "../img/products/2.jpeg";
 import Img3 from "../img/products/3.jpeg";
 import Img4 from "../img/products/4.jpeg";
-import Img5 from "../img/products/5.jpeg";
+// import Img5 from "../img/products/5.jpeg";
+import Img6 from "../img/products/6.jpeg";
+import Img7 from "../img/products/7.jpeg";
+import Img8 from "../img/products/8.jpeg";
+import Img9 from "../img/products/9.jpeg";
 import PasawayUniversity1 from "../img/products/otherProducts/PasawayUniversityCrewneck1.jpeg";
 import PasawayUniversity2 from "../img/products/otherProducts/PasawayUniversityCrewneck2.jpeg";
 import FirstKulit1 from "../img/products/otherProducts/FirstKulitHoodie1.jpeg"
@@ -11,8 +15,13 @@ import Kamao1 from "../img/products/otherProducts/Kamao1.jpeg";
 import Kamao2 from "../img/products/otherProducts/Kamao2.jpeg";
 import Kalayaan1 from "../img/products/otherProducts/Kalayaan1.jpeg";
 import Kalayaan2 from "../img/products/otherProducts/Kalayaan2.jpeg";
-import Barangay1 from "../img/products/otherProducts/BarangayKulitCrewneck1.jpeg";
-import Barangay2 from "../img/products/otherProducts/BarangayKulitCrewneck2.jpeg";
+// import Barangay1 from "../img/products/otherProducts/BarangayKulitCrewneck1.jpeg";
+// import Barangay2 from "../img/products/otherProducts/BarangayKulitCrewneck2.jpeg";
+import KulitTee1 from "../img/products/otherProducts/KulitTee1.jpeg";
+import KulitTee2 from "../img/products/otherProducts/KulitTee2.jpeg";
+import PasawaySticker1 from "../img/products/otherProducts/PasawaySticker1.jpeg";
+import KulitCar1 from "../img/products/otherProducts/KulitCar1.jpeg";
+import BayaniPoster1 from "../img/products/otherProducts/BayaniPoster1.jpeg";
 
 export const items = [
   {
@@ -67,15 +76,67 @@ export const items = [
     weight: "200ml",
     size: "10cm x 5cm",
   },
+  // {
+  //   id: 5,
+  //   category: "shirt",
+  //   img: Img5,
+  //   description: "Barangay Kulit Crewneck",
+  //   price: 67,
+  //   otherImgs: [Barangay1, Barangay2],
+  //   specs:
+  //     "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water",
+  //   texture: "Cotton",
+  //   weight: "200ml",
+  //   size: "10cm x 5cm",
+  // },
   {
     id: 5,
     category: "shirt",
-    img: Img5,
-    description: "Barangay Kulit Crewneck",
+    img: Img6,
+    description: "Kulit T-Shirt",
     price: 67,
-    otherImgs: [Barangay1, Barangay2],
+    otherImgs: [KulitTee1, KulitTee2],
     specs:
-      "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water",
+      "A classic styled tee representing the Kulit brand. Made with 100% wingspun cotton to make it an excellent daily choice.",
+    texture: "Cotton",
+    weight: "200ml",
+    size: "10cm x 5cm",
+  },
+  {
+    id: 6,
+    category: "shirt",
+    img: Img7,
+    description: "Pasaway Sticker",
+    price: 67,
+    otherImgs: [PasawaySticker1],
+    specs:
+      "A decal representing a Japanese drift vehicle and is design with a cool blue background. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
+    texture: "Cotton",
+    weight: "200ml",
+    size: "10cm x 5cm",
+  },
+  {
+    id: 7,
+    category: "shirt",
+    img: Img8,
+    description: "Kulit Drift Sticker",
+    price: 67,
+    otherImgs: [KulitCar1, null],
+    specs:
+      "A decal representing a Japanese drift vehicle and is design with a cool blue background. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
+    texture: "White vinyl with a satin finish",
+    weight: "Remove Weight!!!",
+    size: "10cm x 5cm",
+  },
+  {
+    id: 8,
+    category: "shirt",
+    img: Img9,
+    description: "Bayani Poster",
+    price: 67,
+    otherImgs: [BayaniPoster1],
+    specs:
+      "A poster representing a bayani in the Philippines, José Rizal. Made with a modern style poster and a collage of different colored paint splatters in the background. Made with museum grade paper, available in 3 sizes.",
     texture: "Cotton",
     weight: "200ml",
     size: "10cm x 5cm",
