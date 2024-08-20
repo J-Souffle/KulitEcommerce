@@ -47,6 +47,11 @@ const supportSchema = new mongoose.Schema({
 
 const Support = mongoose.model('Support', supportSchema);
 
+// Utility function to generate a random 6-digit number
+const generateOrderNumber = () => {
+  return Math.floor(100000 + Math.random() * 900000);
+};
+
 // Payment route
 app.post('/payment', async (req, res) => {
   const { token, amount, cartItems } = req.body;
@@ -57,10 +62,8 @@ app.post('/payment', async (req, res) => {
 
   console.log('Received payment request:', { token, amount, cartItems });
 
-  // Include size information in the product descriptions
-  const productDescriptions = cartItems.map(item => 
-    `Description: ${item.description} | Size: ${item.size ? item.size : 'N/A'} | Quantity: ${item.quantity} | Price: $${item.price}`
-  ).join(', ');
+  const orderNumber = generateOrderNumber();
+  const productDescriptions = `Order Number: ${orderNumber} | ${cartItems.map(item => `Description: ${item.description} | Size: ${item.size} | Quantity: ${item.quantity} | Price: $${item.price}`).join(', ')}`;
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
@@ -72,18 +75,22 @@ app.post('/payment', async (req, res) => {
           token: token.id,
         },
       },
-      description: `${productDescriptions}`,
+      description: productDescriptions,
       confirm: true,
       return_url: 'http://localhost:3000/confirmation',
     });
 
     console.log('Payment successful:', paymentIntent);
-    res.json({ success: true });
+    res.json({
+      success: true,
+      orderNumber, // Ensure orderNumber is sent in the response
+    });
   } catch (error) {
     console.error('Error processing payment:', error);
     res.status(500).json({ error: 'Payment failed', details: error.message });
   }
 });
+
 
 // Newsletter sign-up route
 app.post('/newsletter', async (req, res) => {

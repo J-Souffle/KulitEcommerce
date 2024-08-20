@@ -64,11 +64,29 @@ function CheckoutPage() {
   const discountAmount = totalPrice * discount;
   const totalAmount = totalPrice + shippingCost + estimatedTaxes - discountAmount;
 
-  const handleSuccess = () => {
+  const generateOrderNumber = () => {
+    return Math.floor(100000 + Math.random() * 900000); // Generates a random 6-digit number
+  };
+
+  const handleSuccess = (orderNumber) => {
     MySwal.fire({
       icon: 'success',
       title: 'Payment was successful',
       timer: 4000,
+    });
+
+    navigate('/confirmation', {
+      state: {
+        status: 'success',
+        orderDetails: {
+          orderNumber,
+          estimatedDeliveryDate: "2024-08-20", // Sample estimated delivery date
+          products: cartItem,
+          confirmedDate: new Date().toISOString().split('T')[0],
+          shippingCost,
+          estimatedTaxes,
+        }
+      }
     });
   };
 
@@ -77,6 +95,12 @@ function CheckoutPage() {
       icon: 'error',
       title: 'Payment was not successful',
       timer: 4000,
+    });
+
+    navigate('/confirmation', {
+      state: {
+        status: 'failure'
+      }
     });
   };
 
@@ -92,12 +116,13 @@ function CheckoutPage() {
         },
       });
       if (response.status === 200) {
+        const { orderNumber } = response.data;
         handleSuccess();
         navigate('/confirmation', {
           state: {
             status: 'success',
             orderDetails: {
-              orderNumber: "123456", // Sample order number
+              orderNumber, // Pass orderNumber to the confirmation page
               estimatedDeliveryDate: "2024-08-20", // Sample estimated delivery date
               products: cartItem,
               confirmedDate: new Date().toISOString().split('T')[0],
@@ -116,6 +141,7 @@ function CheckoutPage() {
       });
     }
   };
+  
 
   const increaseQuantity = (itemId) => {
     const updatedCart = cartItem.map(item =>
