@@ -26,11 +26,11 @@ const ConfirmationPage = () => {
         {paymentStatus === 'success' ? (
           <div className="confirmation-success">
             <h1>Payment Successful!</h1>
-            <p>Thank you for your purchase. Your order has been processed successfully.</p>
+            <p>Thank you for your purchase! The order has been processed successfully and you will recieve a confirmation email soon. Please give 2-5 business days to process and deliver your order.</p>
             <p><strong>Order Number:</strong> {orderNumber}</p>
-            <p><strong>Estimated Delivery Date:</strong> {estimatedDeliveryDate}</p>
+            {/* <p><strong>Estimated Delivery Date:</strong> {estimatedDeliveryDate}</p> */}
             <p><strong>Order Confirmed Date:</strong> {confirmedDate}</p>
-            <br></br>
+            <br />
             <div className="order-summary">
               <h3>Order Summary</h3>
               <ul className="order-products-list">
@@ -41,6 +41,7 @@ const ConfirmationPage = () => {
                     </div>
                     <div className="product-info">
                       <p>{item.description}</p>
+                      <p>Size: {item.size}</p> {/* Added size information */}
                       <p>Quantity: {item.quantity}</p>
                       <p>Total: ${ (item.price * item.quantity).toFixed(2) }</p>
                     </div>
@@ -52,9 +53,7 @@ const ConfirmationPage = () => {
               <p><strong>Estimated Taxes:</strong> ${ estimatedTaxes?.toFixed(2) || 0 }</p>
               <p><strong>Total Amount:</strong> ${ totalAmount.toFixed(2) }</p>
             </div>
-          
-              <Link to="/" className="go-back-home-btn">Continue Shopping</Link>
-       
+            <Link to="/" className="go-back-home-btn">Continue Shopping</Link>
           </div>
         ) : (
           <div className="confirmation-failure">

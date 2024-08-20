@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { CartContext } from "../App";
 import CheckoutNavbar from "../components/CheckoutComponents/CheckoutNavbar";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import FooterCheckout from "../components/CheckoutComponents/FooterCheckout";
 
 const MySwal = withReactContent(Swal);
@@ -81,7 +81,6 @@ function CheckoutPage() {
   };
 
   const payNow = async token => {
-    // console.log("Cart items before payment:", cartItem)
     try {
       const response = await axios({
         url: 'http://localhost:5001/payment',
@@ -117,6 +116,7 @@ function CheckoutPage() {
       });
     }
   };
+
   const increaseQuantity = (itemId) => {
     const updatedCart = cartItem.map(item =>
       item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
@@ -140,7 +140,6 @@ function CheckoutPage() {
     <>
       <CheckoutNavbar />
       <div className="checkout-container">
-        {/* <Link to="/" className="go-back-home-btn">Go Back Home</Link> */}
         <div className="header">
           <h2>Products in your cart:</h2>
         </div>
@@ -151,6 +150,7 @@ function CheckoutPage() {
             </div>
             <div className="cart-details">
               <p className="cart-name">{item.description}</p>
+              {item.size && <p className="cart-size">Size: {item.size}</p>}
               <p className="cart-price">
                 <div className="quantity-buttons">
                   <button className="quantity-button" onClick={() => increaseQuantity(item.id)}>+</button>
@@ -180,7 +180,6 @@ function CheckoutPage() {
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            placeholder="State"
           >
             <option value="">Select State</option>
             <option value="VA">Virginia (VA)</option>
@@ -233,9 +232,7 @@ function CheckoutPage() {
           </button>
         </div>
       </div>
-      <div>
       <FooterCheckout />
-      </div>
     </>
   );
 }

@@ -4,8 +4,8 @@ import TrendingSlider from "../components/TrendingSlider.jsx";
 import Newsletter from "../components/Newsletter.jsx";
 import Footer from "../components/Footer.jsx";
 import Navbar from "../components/Navbar.jsx";
-import { useParams } from "react-router-dom"; // Import useParams from react-router-dom
-import { CartContext } from "../App"; // Adjust the import path based on your folder structure
+import { useParams } from "react-router-dom";
+import { CartContext } from "../App";
 import "../pages/ProductPage.css";
 
 function ProductPage() {
@@ -14,8 +14,10 @@ function ProductPage() {
 
   const [quantity, setQuantity] = useState(1);
   const [image, setImage] = useState(item ? item.img : "");
+  const [selectedSize, setSelectedSize] = useState(item?.sizes ? item.sizes[0] : "");
 
   const { addToCart } = useContext(CartContext);
+  const [notify, setNotify] = useState(false);
 
   const changeImage = (e) => {
     setImage(e.target.src);
@@ -35,9 +37,12 @@ function ProductPage() {
     return quantity * (item ? item.price : 0);
   };
 
-  const [notify, setNotify] = useState(false);
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  };
 
-  const showNotify = () => {
+  const handleAddToCart = () => {
+    addToCart({ ...item, quantity, size: selectedSize });
     setNotify(true);
     setTimeout(() => setNotify(false), 2000); // Hide notification after 2 seconds
   };
@@ -65,13 +70,33 @@ function ProductPage() {
                 {item && item.otherImgs && item.otherImgs.length > 0 && (
                   <>
                     <img onMouseOver={changeImage} src={item.otherImgs[0]} alt="product" />
-                    <img onMouseOver={changeImage} src={item.otherImgs[1]} alt="product" />
+                    {item.otherImgs.length > 1 && (
+                      <img onMouseOver={changeImage} src={item.otherImgs[1]} alt="product" />
+                    )}
                   </>
                 )}
               </div>
             </div>
             <div className="product-right">
               <p className="product-spec">{item ? item.specs : ""}</p>
+
+              {item?.sizes && (
+                <div className="product-size">
+                  <p>Select Size:</p>
+                  <div className="size-buttons">
+                    {item.sizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => handleSizeChange(size)}
+                        className={selectedSize === size ? 'selected' : ''}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="product-quant">
                 <p>Quantity</p>
                 <div className="product-btns">
@@ -82,13 +107,7 @@ function ProductPage() {
                 <p className="product-price">${calcPrice(quantity)}.00</p>
               </div>
               <div className="atc-buy">
-                <button
-                  onClick={() => {
-                    addToCart({ ...item, quantity });
-                    showNotify();
-                  }}
-                  className="atc-btn"
-                >
+                <button onClick={handleAddToCart} className="atc-btn">
                   add to cart
                 </button>
                 {/* <button className="buy-btn">buy now</button> */}
@@ -106,8 +125,8 @@ function ProductPage() {
               <p className="title-desc">{item ? item.weight : ""}</p>
             </div> */}
             <div className="spec">
-              <p className="spec-title">Size:</p>
-              <p className="title-desc">{item ? item.size : ""}</p>
+              <p className="spec-title">Reviews:</p>
+              <p className="title-desc">None (TrustPilot Added Soon)</p>
             </div>
           </div>
         </div>

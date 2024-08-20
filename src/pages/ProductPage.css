@@ -7,6 +7,40 @@ p {
     margin-top: 10rem;
 }
 
+.product-size {
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    font-weight: 600;
+    justify-content: center;
+  }
+
+  .product-size p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .size-buttons {
+    display: flex; /* Display buttons side by side */
+    gap: 0.5rem; /* Space between buttons */
+  }
+  
+  .size-buttons button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    font-weight: 600; /* Adjust font weight */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .size-buttons button:hover {
+    background-color: #ddd;
+  }
+  
+  .size-buttons button.selected {
+    background-color: #007bff; /* Selected button color */
+    color: white; /* Selected button text color */
+  }
 .product-div {
     /* height: 100%; */
     margin-bottom: 10rem;

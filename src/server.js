@@ -57,7 +57,10 @@ app.post('/payment', async (req, res) => {
 
   console.log('Received payment request:', { token, amount, cartItems });
 
-  const productDescriptions = cartItems.map(item => `Description: ${item.description} | Quantity: ${item.quantity} | Price: $${item.price}`).join(', ');
+  // Include size information in the product descriptions
+  const productDescriptions = cartItems.map(item => 
+    `Description: ${item.description} | Size: ${item.size ? item.size : 'N/A'} | Quantity: ${item.quantity} | Price: $${item.price}`
+  ).join(', ');
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
