@@ -20,8 +20,11 @@ import Kalayaan2 from "../img/products/otherProducts/Kalayaan2.jpeg";
 import KulitTee1 from "../img/products/otherProducts/KulitTee1.jpeg";
 import KulitTee2 from "../img/products/otherProducts/KulitTee2.jpeg";
 import PasawaySticker1 from "../img/products/otherProducts/PasawaySticker1.jpeg";
+import PasawaySticker2 from "../img/products/otherProducts/PasawaySticker2.jpeg";
 import KulitCar1 from "../img/products/otherProducts/KulitCar1.jpeg";
+import KulitCar2 from "../img/products/otherProducts/KulitCar2.jpeg";
 import BayaniPoster1 from "../img/products/otherProducts/BayaniPoster1.jpeg";
+import BayaniPoster2 from "../img/products/otherProducts/BayaniPoster2.jpeg";
 
 export const items = [
   {
@@ -29,7 +32,7 @@ export const items = [
     category: "sweatshirt",
     img: Img1,
     description: "Pasaway University Crewneck",
-    price: 45,
+    price: 25,
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
     specs:
       "This CrewNeck sweatshirt is inspired by basketball teams made in the Philippines and is designed with a streetwear style. Made with cotton and polyester for a comfortable, relaxed fit, Perfect for cool weather.",
@@ -90,7 +93,7 @@ export const items = [
     img: Img7,
     description: "Pasaway Sticker",
     price: 67,
-    otherImgs: [PasawaySticker1],
+    otherImgs: [PasawaySticker1, PasawaySticker2],
     specs:
       "A decal representing a Japanese drift vehicle and is design with a cool blue background. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
     texture: "Cotton",
@@ -102,7 +105,7 @@ export const items = [
     img: Img8,
     description: "Kulit Drift Sticker",
     price: 67,
-    otherImgs: [KulitCar1, null],
+    otherImgs: [KulitCar1, KulitCar2],
     specs:
       "A decal representing a Japanese drift vehicle and is design with a cool blue background. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
     texture: "White vinyl with a satin finish",
@@ -114,7 +117,7 @@ export const items = [
     img: Img9,
     description: "Bayani Poster",
     price: 67,
-    otherImgs: [BayaniPoster1],
+    otherImgs: [BayaniPoster1, BayaniPoster2],
     specs:
       "A poster representing a bayani in the Philippines, José Rizal. Made with a modern style poster and a collage of different colored paint splatters in the background. Made with museum grade paper, available in 3 sizes.",
     texture: "Cotton",

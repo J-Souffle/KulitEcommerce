@@ -59,15 +59,10 @@ function CheckoutPage() {
     }
   };
 
-  const priceForStripe = (totalPrice + shippingCost) * 100;
-  const estimatedTaxes = 10; // Adjust if needed
+  const estimatedTaxes = 15; // Adjust if needed
   const discountAmount = totalPrice * discount;
   const totalAmount = totalPrice + shippingCost + estimatedTaxes - discountAmount;
-
-  const generateOrderNumber = () => {
-    return Math.floor(100000 + Math.random() * 900000); // Generates a random 6-digit number
-  };
-
+  const priceForStripe = (totalPrice + shippingCost + estimatedTaxes - discountAmount) * 100;
   const handleSuccess = (orderNumber) => {
     MySwal.fire({
       icon: 'success',

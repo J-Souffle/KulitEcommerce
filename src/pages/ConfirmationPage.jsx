@@ -15,7 +15,7 @@ const ConfirmationPage = () => {
     return <p>Loading...</p>;
   }
 
-  const { products, shippingCost, estimatedTaxes, orderNumber, estimatedDeliveryDate, confirmedDate } = orderDetails || {};
+  const { products, shippingCost, estimatedTaxes, orderNumber, confirmedDate } = orderDetails || {};
   const subtotal = products?.reduce((total, item) => total + item.price * item.quantity, 0) || 0;
   const totalAmount = subtotal + (shippingCost || 0) + (estimatedTaxes || 0);
 
