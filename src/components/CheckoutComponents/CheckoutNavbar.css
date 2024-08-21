@@ -403,6 +403,11 @@
 
     }
 
+    .hamburger-menu-checkout {
+        display: flex;
+
+    }
+
     .hamburger-cart,
     .hamburger-hamb {
         display: flex;
@@ -411,6 +416,19 @@
     .cart-div {
         width: 100%;
     }
+    .go-back-arrow {
+        display: flex;
+        font-size: 2rem;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s;
+        margin-left: 1.5rem;
+    }
+    
+    .go-back-arrow:hover {
+        color: #007bff; /* Or any color you prefer */
+    }
+    
 
 }
 
@@ -439,6 +457,15 @@
         flex-direction: column;
         align-items: center;
     }
+
+    .go-back-arrow {
+        font-size: 2rem;
+        color: #000;
+        cursor: pointer;
+        transition: color 0.3s;
+        z-index: 101; /* Ensure it's above other content */
+    }
+    
 
     /* .full-cart-div {
         height: 63%;

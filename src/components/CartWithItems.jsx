@@ -3,6 +3,7 @@ import { CartContext } from "../App";
 import EmptyCart from "./EmptyCart.jsx";
 import CartItem from "./CartItem.jsx"; 
 import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import './Navbar.css';
 
 function CartWithItems() {
   const { cartItem, setCartItem } = useContext(CartContext);

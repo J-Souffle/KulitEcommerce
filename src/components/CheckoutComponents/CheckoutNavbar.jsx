@@ -104,12 +104,14 @@ function CheckoutNavbar() {
               </Link>
 
             </div>
-            <div className="hamburger-menu">
+            <div className="hamburger-menu-checkout">
               <i
                 onClick={() => setMobileNav(!mobileNav)}
                 className="hamburger-hamb"
               >
-                <IconMenu2 />
+                <Link to="/">
+                <IconArrowLeft className="go-back-arrow" />
+              </Link>
               </i>
             </div>
           </div>
