@@ -22,14 +22,14 @@ function Hero() {
               <Link to="categories/sweatshirt">
                 <div id="img2" className="lil-overlay"></div>
                 <img src={Main2} alt="img2" />
-                <p className="main-description">Hoodies</p>
+                <p className="main-description">Tops</p>
               </Link>
             </div>
             <div className="featured grid-four">
-              <Link to="categories/shirts">
+              <Link to="categories/accessories">
                 <div id="img3" className="lil-overlay"></div>
                 <img src={Main3} alt="img3" />
-                <p className="main-description">Tees</p>
+                <p className="main-description">Accessories</p>
               </Link>
             </div>
             <div className="featured grid-four-low">

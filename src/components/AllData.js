@@ -29,7 +29,7 @@ import BayaniPoster2 from "../img/products/otherProducts/BayaniPoster2.jpeg";
 export const items = [
   {
     id: 1,
-    category: "sweatshirt",
+    category: "tops",
     img: Img1,
     description: "Pasaway University Crewneck",
     price: 24.99,
@@ -41,7 +41,7 @@ export const items = [
   },
   {
     id: 2,
-    category: "sweatshirt",
+    category: "tops",
     img: Img2,
     description: "Classic Kulit Sweatshirt",
     price: 39.99,
@@ -53,7 +53,7 @@ export const items = [
   },
   {
     id: 3,
-    category: "shirt",
+    category: "tops",
     img: Img3,
     description: "Kamao T-Shirt",
     price: 24.99,
@@ -65,7 +65,7 @@ export const items = [
   },
   {
     id: 4,
-    category: "shirt",
+    category: "tops",
     img: Img4,
     description: "Kalayaan T-Shirt",
     price: 24.99,
@@ -77,7 +77,7 @@ export const items = [
   },
   {
     id: 5,
-    category: "shirt",
+    category: "tops",
     img: Img6,
     description: "Kulit T-Shirt",
     price: 24.99,
@@ -89,7 +89,7 @@ export const items = [
   },
   {
     id: 6,
-    category: "shirt",
+    category: "accessories",
     img: Img7,
     description: "Pasaway Sticker",
     price: 1.99,
@@ -101,7 +101,7 @@ export const items = [
   },
   {
     id: 7,
-    category: "shirt",
+    category: "accessories",
     img: Img8,
     description: "Kulit Drift Sticker",
     price: 1.99,
@@ -113,7 +113,7 @@ export const items = [
   },
   {
     id: 8,
-    category: "shirt",
+    category: "accessories",
     img: Img9,
     description: "Bayani Poster",
     price: 67,
