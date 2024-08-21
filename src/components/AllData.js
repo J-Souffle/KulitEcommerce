@@ -32,7 +32,7 @@ export const items = [
     category: "sweatshirt",
     img: Img1,
     description: "Pasaway University Crewneck",
-    price: 25,
+    price: 24.99,
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
     specs:
       "This CrewNeck sweatshirt is inspired by basketball teams made in the Philippines and is designed with a streetwear style. Made with cotton and polyester for a comfortable, relaxed fit, Perfect for cool weather.",
@@ -44,11 +44,11 @@ export const items = [
     category: "sweatshirt",
     img: Img2,
     description: "Classic Kulit Sweatshirt",
-    price: 67,
+    price: 39.99,
     otherImgs: [FirstKulit1, FirstKulit2],
     specs:
-      "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water",
-    texture: "Cotton",
+      "A classic styled hoodie respresenting the Kulit brand. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+    texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
   },
   {
@@ -56,11 +56,11 @@ export const items = [
     category: "shirt",
     img: Img3,
     description: "Kamao T-Shirt",
-    price: 67,
+    price: 24.99,
     otherImgs: [Kamao1, Kamao2],
     specs:
-      "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water",
-    texture: "Cotton",
+      "This Tee is designed with a 2d pixelated style and is inspired by our pambansang kamao to represent the bravery and dedication of Filipinos. Made with 100% ringspun cotton to make it an excellent daily choice.",
+    texture: "100% Cotton", 
     sizes: ["Small", "Medium", "Large", "Extra Large"],
   },
   {
@@ -68,11 +68,11 @@ export const items = [
     category: "shirt",
     img: Img4,
     description: "Kalayaan T-Shirt",
-    price: 67,
+    price: 24.99,
     otherImgs: [Kalayaan1, Kalayaan2],
     specs:
-      "Made from 100% plant-based oils with olive oil as the main ingredient, this cleansing oil is gentle on the skin. Free from fragrance, colours and, mineral oils, paraben free, alcohol free, allergy tested (we cannot guarantee that it will not cause allergies in any users) * How to use: Take a small amount in the palm of your hand, and massage into the face to remove make-up and dirt. Rinse well with cold or warm water",
-    texture: "Cotton",
+      "This tee is designed with the Philippine Eagle symbolizing kalayaan, Freedom. Made with 100% wingspun cotton to make it an excellent daily choice.",
+    texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
   },
   {
@@ -80,11 +80,11 @@ export const items = [
     category: "shirt",
     img: Img6,
     description: "Kulit T-Shirt",
-    price: 67,
+    price: 24.99,
     otherImgs: [KulitTee1, KulitTee2],
     specs:
       "A classic styled tee representing the Kulit brand. Made with 100% wingspun cotton to make it an excellent daily choice.",
-    texture: "Cotton",
+    texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
   },
   {
@@ -92,11 +92,11 @@ export const items = [
     category: "shirt",
     img: Img7,
     description: "Pasaway Sticker",
-    price: 67,
+    price: 1.99,
     otherImgs: [PasawaySticker1, PasawaySticker2],
     specs:
-      "A decal representing a Japanese drift vehicle and is design with a cool blue background. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
-    texture: "Cotton",
+      "A decal representing the Pasaway University. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
+    texture: "White vinyl with a satin finish",
     size: "10cm x 5cm",
   },
   {
@@ -104,7 +104,7 @@ export const items = [
     category: "shirt",
     img: Img8,
     description: "Kulit Drift Sticker",
-    price: 67,
+    price: 1.99,
     otherImgs: [KulitCar1, KulitCar2],
     specs:
       "A decal representing a Japanese drift vehicle and is design with a cool blue background. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
@@ -121,6 +121,6 @@ export const items = [
     specs:
       "A poster representing a bayani in the Philippines, José Rizal. Made with a modern style poster and a collage of different colored paint splatters in the background. Made with museum grade paper, available in 3 sizes.",
     texture: "Cotton",
-    size: "10cm x 5cm",
+    size: ["9 x 11", "12 x 18", "24 x 36"],
   },
 ];

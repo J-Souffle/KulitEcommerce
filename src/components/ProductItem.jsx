@@ -18,7 +18,7 @@ function ProductItem() {
             </div>
             <div className="product-details">
               <p style={{color: "black",}}>{item.description}</p>
-              <p className="item-price" style={{color: "black",}}>{item.price}$</p>
+              <p className="item-price" style={{color: "black",}}>${item.price}</p>
             </div>
           </Link>
         </div>
