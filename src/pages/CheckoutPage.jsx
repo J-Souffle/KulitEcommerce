@@ -27,29 +27,31 @@ function CheckoutPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const total = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    const subtotal = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const totalItemCount = cartItem.reduce((acc, item) => acc + item.quantity, 0);
-    setTotalPrice(total);
+    setTotalPrice(subtotal);
     setTotalItems(totalItemCount);
 
-    const calculateShippingCost = (cartItems) => {
-      let totalShippingCost = 0;
-
-      cartItems.forEach(item => {
-        const { quantity, shippingCost, additionalShippingCost } = item;
-        if (quantity > 0) {
-          totalShippingCost += shippingCost; // Base cost for the first item
-          if (quantity > 1) {
-            totalShippingCost += additionalShippingCost * (quantity - 1); // Additional cost for extra items
+    const calculateShippingCost = () => {
+      if (subtotal >= 50) {
+        return 0; // Free shipping if subtotal is $50 or more
+      } else {
+        let totalShippingCost = 0;
+        cartItem.forEach(item => {
+          const { quantity, shippingCost, additionalShippingCost } = item;
+          if (quantity > 0) {
+            totalShippingCost += shippingCost; // Base cost for the first item
+            if (quantity > 1) {
+              totalShippingCost += additionalShippingCost * (quantity - 1); // Additional cost for extra items
+            }
           }
-        }
-      });
-
-      return totalShippingCost;
+        });
+        return totalShippingCost;
+      }
     };
 
     // Calculate and set the total shipping cost
-    setShippingCost(calculateShippingCost(cartItem));
+    setShippingCost(calculateShippingCost());
   }, [cartItem]);
 
   const applyPromoCode = () => {
@@ -65,7 +67,7 @@ function CheckoutPage() {
   const salesTax = (totalPrice - discount * totalPrice) * 0.06; // Adjust if needed
   const discountAmount = totalPrice * discount;
   const totalAmount = totalPrice + shippingCost + salesTax - discountAmount;
-  const priceForStripe = totalAmount * 100; // Stripe expects amount in cents
+  const priceForStripe = Math.round(totalAmount * 100);
 
   const handleSuccess = (orderNumber) => {
     MySwal.fire({
@@ -214,7 +216,7 @@ function CheckoutPage() {
         <p className="cart-total-price">
           <span>{totalItems} items </span> <br />
           <span>Subtotal: </span>${totalPrice.toFixed(2)} <br />
-          <span>Shipping: </span>${shippingCost.toFixed(2)} <br />
+          <span>Shipping: </span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`} <br />
           <span>Sales Tax: </span>${salesTax.toFixed(2)} <br />
           {discount > 0 && (
             <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
