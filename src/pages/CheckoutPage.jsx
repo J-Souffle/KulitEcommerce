@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { CartContext } from "../App";
 import CheckoutNavbar from "../components/CheckoutComponents/CheckoutNavbar";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import FooterCheckout from "../components/CheckoutComponents/FooterCheckout";
 
 const MySwal = withReactContent(Swal);
@@ -28,26 +28,29 @@ function CheckoutPage() {
 
   useEffect(() => {
     const total = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const items = cartItem.reduce((acc, item) => acc + item.quantity, 0);
+    const totalItemCount = cartItem.reduce((acc, item) => acc + item.quantity, 0);
     setTotalPrice(total);
-    setTotalItems(items);
+    setTotalItems(totalItemCount);
+
+    const calculateShippingCost = (cartItems) => {
+      let totalShippingCost = 0;
+
+      cartItems.forEach(item => {
+        const { quantity, shippingCost, additionalShippingCost } = item;
+        if (quantity > 0) {
+          totalShippingCost += shippingCost; // Base cost for the first item
+          if (quantity > 1) {
+            totalShippingCost += additionalShippingCost * (quantity - 1); // Additional cost for extra items
+          }
+        }
+      });
+
+      return totalShippingCost;
+    };
+
+    // Calculate and set the total shipping cost
+    setShippingCost(calculateShippingCost(cartItem));
   }, [cartItem]);
-
-  const calculateShipping = (state) => {
-    let cost = 0;
-
-    if (state === 'VA') {
-      cost = 10;
-    } else if (state === 'FL') {
-      cost = 20;
-    }
-
-    setShippingCost(cost);
-  };
-
-  useEffect(() => {
-    calculateShipping(state);
-  }, [state]);
 
   const applyPromoCode = () => {
     if (promoCode === "10OFF!") {
@@ -59,16 +62,30 @@ function CheckoutPage() {
     }
   };
 
-  const priceForStripe = (totalPrice + shippingCost) * 100;
-  const estimatedTaxes = 10; // Adjust if needed
+  const salesTax = (totalPrice - discount * totalPrice) * 0.06; // Adjust if needed
   const discountAmount = totalPrice * discount;
-  const totalAmount = totalPrice + shippingCost + estimatedTaxes - discountAmount;
+  const totalAmount = totalPrice + shippingCost + salesTax - discountAmount;
+  const priceForStripe = totalAmount * 100; // Stripe expects amount in cents
 
-  const handleSuccess = () => {
+  const handleSuccess = (orderNumber) => {
     MySwal.fire({
       icon: 'success',
       title: 'Payment was successful',
       timer: 4000,
+    });
+
+    navigate('/confirmation', {
+      state: {
+        status: 'success',
+        orderDetails: {
+          orderNumber,
+          estimatedDeliveryDate: "2024-08-20", // Sample estimated delivery date
+          products: cartItem,
+          confirmedDate: new Date().toISOString().split('T')[0],
+          shippingCost,
+          salesTax,
+        }
+      }
     });
   };
 
@@ -78,10 +95,15 @@ function CheckoutPage() {
       title: 'Payment was not successful',
       timer: 4000,
     });
+
+    navigate('/confirmation', {
+      state: {
+        status: 'failure'
+      }
+    });
   };
 
   const payNow = async token => {
-    // console.log("Cart items before payment:", cartItem)
     try {
       const response = await axios({
         url: 'http://localhost:5001/payment',
@@ -93,30 +115,14 @@ function CheckoutPage() {
         },
       });
       if (response.status === 200) {
-        handleSuccess();
-        navigate('/confirmation', {
-          state: {
-            status: 'success',
-            orderDetails: {
-              orderNumber: "123456", // Sample order number
-              estimatedDeliveryDate: "2024-08-20", // Sample estimated delivery date
-              products: cartItem,
-              confirmedDate: new Date().toISOString().split('T')[0],
-              shippingCost,
-              estimatedTaxes,
-            }
-          }
-        });
+        const { orderNumber } = response.data;
+        handleSuccess(orderNumber); // Pass orderNumber to handleSuccess
       }
     } catch (error) {
       handleFailure();
-      navigate('/confirmation', {
-        state: {
-          status: 'failure'
-        }
-      });
     }
   };
+
   const increaseQuantity = (itemId) => {
     const updatedCart = cartItem.map(item =>
       item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
@@ -140,7 +146,6 @@ function CheckoutPage() {
     <>
       <CheckoutNavbar />
       <div className="checkout-container">
-        {/* <Link to="/" className="go-back-home-btn">Go Back Home</Link> */}
         <div className="header">
           <h2>Products in your cart:</h2>
         </div>
@@ -151,6 +156,7 @@ function CheckoutPage() {
             </div>
             <div className="cart-details">
               <p className="cart-name">{item.description}</p>
+              {item.size && <p className="cart-size">Size: {item.size}</p>}
               <p className="cart-price">
                 <div className="quantity-buttons">
                   <button className="quantity-button" onClick={() => increaseQuantity(item.id)}>+</button>
@@ -180,7 +186,6 @@ function CheckoutPage() {
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
-            placeholder="State"
           >
             <option value="">Select State</option>
             <option value="VA">Virginia (VA)</option>
@@ -210,7 +215,7 @@ function CheckoutPage() {
           <span>{totalItems} items </span> <br />
           <span>Subtotal: </span>${totalPrice.toFixed(2)} <br />
           <span>Shipping: </span>${shippingCost.toFixed(2)} <br />
-          <span>Estimated Taxes: </span>${estimatedTaxes.toFixed(2)} <br />
+          <span>Sales Tax: </span>${salesTax.toFixed(2)} <br />
           {discount > 0 && (
             <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
           )}
@@ -233,9 +238,7 @@ function CheckoutPage() {
           </button>
         </div>
       </div>
-      <div>
       <FooterCheckout />
-      </div>
     </>
   );
 }

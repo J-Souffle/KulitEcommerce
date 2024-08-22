@@ -3,6 +3,7 @@ import { CartContext } from "../App";
 import EmptyCart from "./EmptyCart.jsx";
 import CartItem from "./CartItem.jsx"; 
 import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import './Navbar.css';
 
 function CartWithItems() {
   const { cartItem, setCartItem } = useContext(CartContext);
@@ -35,7 +36,7 @@ function CartWithItems() {
       <div className="subtotal-div">
         <div className="sub-right">
           <p>Subtotal</p>
-          <p className="total-price">${totalPrice + ".00"}</p>
+          <p className="total-price">${totalPrice.toFixed(2)}</p>
         </div>
         <div className="sub-left">
           <button onClick={handleCheckout}>Go to Checkout</button>

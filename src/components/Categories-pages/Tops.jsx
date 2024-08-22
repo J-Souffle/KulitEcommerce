@@ -1,15 +1,15 @@
-import CategoriesItemShirts from "./CategoriesItemShirts.jsx";
+import CategoriesItemTops from "./CategoriesItemTops.jsx";
 import Footer from "../Footer.jsx";
 import Newsletter from "../Newsletter.jsx";
 
-function Shirts() {
+function Hoodies() {
   return (
     <>
-      <CategoriesItemShirts />
+      <CategoriesItemTops />
       <Newsletter />
       <Footer />
     </>
   );
 }
 
-export default Shirts;
+export default Hoodies;

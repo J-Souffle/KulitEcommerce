@@ -24,12 +24,12 @@ function CategoriesHeader() {
             <Link to="all" onClick={() => handleBtnName("all")}>
               <button>All</button>
             </Link>
-            <Link to="shirts">
-              <button onClick={() => handleBtnName("shirts")}>Tops</button>
+            <Link to="tops">
+              <button onClick={() => handleBtnName("tops")}>Tops</button>
             </Link>
-            <Link to="sweatshirt">
-              <button onClick={() => handleBtnName("sweatshirts")}>
-                Bottoms
+            <Link to="accessories">
+              <button onClick={() => handleBtnName("accessories")}>
+                Accessories
               </button>
             </Link>
             <Link to="other">

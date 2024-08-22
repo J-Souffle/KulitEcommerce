@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import CartWithItems from "../CartWithItems.jsx";
 import EmptyCart from "../EmptyCart.jsx";
 import { CartContext } from "../../App.js";
-import { IconMenu2, IconX, IconArrowLeft } from "@tabler/icons-react";
+import { IconX, IconArrowLeft } from "@tabler/icons-react";
 
 function CheckoutNavbar() {
   const [sticky, setSticky] = useState(false);
@@ -104,12 +104,14 @@ function CheckoutNavbar() {
               </Link>
 
             </div>
-            <div className="hamburger-menu">
+            <div className="hamburger-menu-checkout">
               <i
                 onClick={() => setMobileNav(!mobileNav)}
                 className="hamburger-hamb"
               >
-                <IconMenu2 />
+                <Link to="/">
+                <IconArrowLeft className="go-back-arrow" />
+              </Link>
               </i>
             </div>
           </div>

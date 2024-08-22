@@ -7,8 +7,8 @@ import Furnitures from "./components/Categories-pages/Furnitures.jsx";
 import Electronics from "./components/Categories-pages/Electronics.jsx";
 import Lamps from "./components/Categories-pages/Lamps.jsx";
 import Kitchen from "./components/Categories-pages/Kitchen.jsx";
-import Shirts from "./components/Categories-pages/Shirts.jsx";
-import Hoodies from "./components/Categories-pages/Hoodies.jsx";
+import Accessories from "./components/Categories-pages/Accessories.jsx";
+import Tops from "./components/Categories-pages/Tops.jsx";
 import Other from "./components/Categories-pages/Other.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
@@ -82,8 +82,8 @@ function App() {
           <Route path="electronics" element={<Electronics />} />
           <Route path="lamps" element={<Lamps />} />
           <Route path="kitchen" element={<Kitchen />} />
-          <Route path="shirts" element={<Shirts />} />
-          <Route path="sweatshirt" element={<Hoodies />} />
+          <Route path="accessories" element={<Accessories />} />
+          <Route path="tops" element={<Tops />} />
           <Route path="other" element={<Other />} />
         </Route>
         <Route path="/categories/product/:id" element={<ProductPage />} />
