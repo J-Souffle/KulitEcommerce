@@ -28,26 +28,29 @@ function CheckoutPage() {
 
   useEffect(() => {
     const total = cartItem.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    const items = cartItem.reduce((acc, item) => acc + item.quantity, 0);
+    const totalItemCount = cartItem.reduce((acc, item) => acc + item.quantity, 0);
     setTotalPrice(total);
-    setTotalItems(items);
+    setTotalItems(totalItemCount);
+
+    const calculateShippingCost = (cartItems) => {
+      let totalShippingCost = 0;
+
+      cartItems.forEach(item => {
+        const { quantity, shippingCost, additionalShippingCost } = item;
+        if (quantity > 0) {
+          totalShippingCost += shippingCost; // Base cost for the first item
+          if (quantity > 1) {
+            totalShippingCost += additionalShippingCost * (quantity - 1); // Additional cost for extra items
+          }
+        }
+      });
+
+      return totalShippingCost;
+    };
+
+    // Calculate and set the total shipping cost
+    setShippingCost(calculateShippingCost(cartItem));
   }, [cartItem]);
-
-  const calculateShipping = (state) => {
-    let cost = 0;
-
-    if (state === 'VA') {
-      cost = 10;
-    } else if (state === 'FL') {
-      cost = 20;
-    }
-
-    setShippingCost(cost);
-  };
-
-  useEffect(() => {
-    calculateShipping(state);
-  }, [state]);
 
   const applyPromoCode = () => {
     if (promoCode === "10OFF!") {
@@ -59,10 +62,11 @@ function CheckoutPage() {
     }
   };
 
-  const salesTax = (totalPrice - discount) * 0.06; // Adjust if needed
+  const salesTax = (totalPrice - discount * totalPrice) * 0.06; // Adjust if needed
   const discountAmount = totalPrice * discount;
   const totalAmount = totalPrice + shippingCost + salesTax - discountAmount;
-  const priceForStripe = (totalPrice + shippingCost + salesTax - discountAmount) * 100;
+  const priceForStripe = totalAmount * 100; // Stripe expects amount in cents
+
   const handleSuccess = (orderNumber) => {
     MySwal.fire({
       icon: 'success',
@@ -112,31 +116,12 @@ function CheckoutPage() {
       });
       if (response.status === 200) {
         const { orderNumber } = response.data;
-        handleSuccess();
-        navigate('/confirmation', {
-          state: {
-            status: 'success',
-            orderDetails: {
-              orderNumber, // Pass orderNumber to the confirmation page
-              estimatedDeliveryDate: "2024-08-20", // Sample estimated delivery date
-              products: cartItem,
-              confirmedDate: new Date().toISOString().split('T')[0],
-              shippingCost,
-              salesTax,
-            }
-          }
-        });
+        handleSuccess(orderNumber); // Pass orderNumber to handleSuccess
       }
     } catch (error) {
       handleFailure();
-      navigate('/confirmation', {
-        state: {
-          status: 'failure'
-        }
-      });
     }
   };
-  
 
   const increaseQuantity = (itemId) => {
     const updatedCart = cartItem.map(item =>

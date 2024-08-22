@@ -33,6 +33,8 @@ export const items = [
     img: Img1,
     description: "Pasaway University Crewneck",
     price: 24.99,
+    shippingCost: 10, // Base shipping cost
+    additionalShippingCost: 5, // Reduced cost for each additional item
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
     specs:
       "This CrewNeck sweatshirt is inspired by basketball teams made in the Philippines and is designed with a streetwear style. Made with cotton and polyester for a comfortable, relaxed fit, Perfect for cool weather.",
@@ -45,6 +47,8 @@ export const items = [
     img: Img2,
     description: "Classic Kulit Sweatshirt",
     price: 39.99,
+    shippingCost: 12, // Base shipping cost
+    additionalShippingCost: 6, // Reduced cost for each additional item
     otherImgs: [FirstKulit1, FirstKulit2],
     specs:
       "A classic styled hoodie respresenting the Kulit brand. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",

@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import CartWithItems from "../CartWithItems.jsx";
 import EmptyCart from "../EmptyCart.jsx";
 import { CartContext } from "../../App.js";
-import { IconMenu2, IconX, IconArrowLeft } from "@tabler/icons-react";
+import { IconX, IconArrowLeft } from "@tabler/icons-react";
 
 function CheckoutNavbar() {
   const [sticky, setSticky] = useState(false);

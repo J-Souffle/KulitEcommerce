@@ -36,7 +36,7 @@ function CartWithItems() {
       <div className="subtotal-div">
         <div className="sub-right">
           <p>Subtotal</p>
-          <p className="total-price">${totalPrice}</p>
+          <p className="total-price">${totalPrice.toFixed(2)}</p>
         </div>
         <div className="sub-left">
           <button onClick={handleCheckout}>Go to Checkout</button>
