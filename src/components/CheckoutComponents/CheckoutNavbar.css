@@ -58,9 +58,10 @@
 
 /* hamburget menu */
 
-.hamburger-menu {
+.hamburger-menu-checkout {
     display: none;
     gap: 3rem;
+    margin-right: 10.5rem;
 }
 
 .hamburger-hamb,

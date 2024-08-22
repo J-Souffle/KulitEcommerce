@@ -59,10 +59,10 @@ function CheckoutPage() {
     }
   };
 
-  const estimatedTaxes = 15; // Adjust if needed
+  const salesTax = (totalPrice - discount) * 0.06; // Adjust if needed
   const discountAmount = totalPrice * discount;
-  const totalAmount = totalPrice + shippingCost + estimatedTaxes - discountAmount;
-  const priceForStripe = (totalPrice + shippingCost + estimatedTaxes - discountAmount) * 100;
+  const totalAmount = totalPrice + shippingCost + salesTax - discountAmount;
+  const priceForStripe = (totalPrice + shippingCost + salesTax - discountAmount) * 100;
   const handleSuccess = (orderNumber) => {
     MySwal.fire({
       icon: 'success',
@@ -79,7 +79,7 @@ function CheckoutPage() {
           products: cartItem,
           confirmedDate: new Date().toISOString().split('T')[0],
           shippingCost,
-          estimatedTaxes,
+          salesTax,
         }
       }
     });
@@ -122,7 +122,7 @@ function CheckoutPage() {
               products: cartItem,
               confirmedDate: new Date().toISOString().split('T')[0],
               shippingCost,
-              estimatedTaxes,
+              salesTax,
             }
           }
         });
@@ -230,7 +230,7 @@ function CheckoutPage() {
           <span>{totalItems} items </span> <br />
           <span>Subtotal: </span>${totalPrice.toFixed(2)} <br />
           <span>Shipping: </span>${shippingCost.toFixed(2)} <br />
-          <span>Estimated Taxes: </span>${estimatedTaxes.toFixed(2)} <br />
+          <span>Sales Tax: </span>${salesTax.toFixed(2)} <br />
           {discount > 0 && (
             <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
           )}
