@@ -10,7 +10,7 @@ function Newsletter() {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://kulit.us/newsletter', {
+      const response = await fetch('http://localhost:3000/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

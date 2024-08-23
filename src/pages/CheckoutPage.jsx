@@ -91,24 +91,45 @@ function CheckoutPage() {
     });
   };
 
-  const handleFailure = () => {
+  const handleFailure = (error) => {
+    // Extract detailed error information
+    const errorDetails = {
+      message: error.message || "An unknown error occurred.",
+      response: error.response?.data || "No response data",
+      stack: error.stack || "No stack trace available",
+    };
+  
+    // Log the detailed error to the console for debugging
+    console.error('Payment failed:', errorDetails);
+  
+    // Show the error details in a SweetAlert
     MySwal.fire({
       icon: 'error',
       title: 'Payment was not successful',
-      timer: 4000,
+      html: `
+        <p><strong>Error Message:</strong> ${errorDetails.message}</p>
+        <p><strong>Response Data:</strong> ${JSON.stringify(errorDetails.response, null, 2)}</p>
+        <p><strong>Stack Trace:</strong> <pre>${errorDetails.stack}</pre></p>
+      `,
+      timer: 10000,
+      showConfirmButton: true,
     });
-
+  
+    // Navigate to the confirmation page with failure status and detailed error
     navigate('/confirmation', {
       state: {
-        status: 'failure'
+        status: 'failure',
+        error: errorDetails
       }
     });
   };
+  
+  
 
   const payNow = async token => {
     try {
       const response = await axios({
-        url: 'http://kulit.us:5001/payment',
+        url: 'http://localhost:5001/payment',
         method: 'post',
         data: {
           amount: priceForStripe,
@@ -121,9 +142,9 @@ function CheckoutPage() {
         handleSuccess(orderNumber); // Pass orderNumber to handleSuccess
       }
     } catch (error) {
-      handleFailure();
+      handleFailure(error); // Pass error to handleFailure
     }
-  };
+  };  
 
   const increaseQuantity = (itemId) => {
     const updatedCart = cartItem.map(item =>
@@ -226,18 +247,12 @@ function CheckoutPage() {
         <div className="stripe-checkout-button-wrapper">
           <StripeCheckout
             stripeKey={publishableKey}
-            label="" // Hide the default label
-            name="Pay With Credit Card"
+            token={payNow}
+            amount={priceForStripe}
+            name="Ecommerce Checkout"
             billingAddress
             shippingAddress
-            amount={priceForStripe}
-            description={`Your total is $${totalAmount.toFixed(2)}`}
-            token={payNow}
-            className="stripe-checkout-button-hidden" // Hide the default button
           />
-          <button className="custom-pay-now" onClick={() => document.querySelector('.stripe-checkout-button-hidden').click()}>
-            Pay Now
-          </button>
         </div>
       </div>
       <FooterCheckout />
