@@ -12,12 +12,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
-const corsOptions = {
-  origin: 'https://kulit.us',
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://kulit.us'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-};
-app.use(cors(corsOptions));
+}));
 
 // Initialize Stripe with your API key
 const stripe = Stripe(process.env.SECRET_KEY);
@@ -30,27 +29,20 @@ mongoose.connect(process.env.MONGODB_URI, {
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
-// Define a schema and model for storing emails
-const emailSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-});
-
+// Define schemas and models
+const emailSchema = new mongoose.Schema({ email: { type: String, required: true, unique: true } });
 const Email = mongoose.model('Email', emailSchema);
 
-// Define a schema and model for storing support form submissions
 const supportSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   phone: { type: String, required: true },
   comment: { type: String, required: true },
 });
-
 const Support = mongoose.model('Support', supportSchema);
 
 // Utility function to generate a random 6-digit number
-const generateOrderNumber = () => {
-  return Math.floor(100000 + Math.random() * 900000);
-};
+const generateOrderNumber = () => Math.floor(100000 + Math.random() * 900000);
 
 // Payment route
 app.post('/payment', async (req, res) => {
@@ -81,16 +73,12 @@ app.post('/payment', async (req, res) => {
     });
 
     console.log('Payment successful:', paymentIntent);
-    res.json({
-      success: true,
-      orderNumber, // Ensure orderNumber is sent in the response
-    });
+    res.json({ success: true, orderNumber });
   } catch (error) {
     console.error('Error processing payment:', error);
     res.status(500).json({ error: 'Payment failed', details: error.message });
   }
 });
-
 
 // Newsletter sign-up route
 app.post('/newsletter', async (req, res) => {
