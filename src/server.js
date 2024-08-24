@@ -1,9 +1,9 @@
 const express = require('express');
-const cors = require('cors');
 const bodyParser = require('body-parser');
-const Stripe = require('stripe');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const Stripe = require('stripe');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
 dotenv.config();
 
@@ -13,16 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 app.use(cors({
-  origin: ['https://www.kulit.us'], // This allows any subdomain of kulit.us
-  methods: ['GET', 'POST', 'OPTIONS'],
+  origin: ['http://localhost:3000', 'https://kulit.us'],
+  methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-
-// Handle preflight OPTIONS requests
-app.options('*', cors());
-
-// Initialize Stripe
+// Initialize Stripe with your API key
 const stripe = Stripe(process.env.SECRET_KEY);
 
 // MongoDB connection
@@ -45,17 +41,20 @@ const supportSchema = new mongoose.Schema({
 });
 const Support = mongoose.model('Support', supportSchema);
 
+// Utility function to generate a random 6-digit number
+const generateOrderNumber = () => Math.floor(100000 + Math.random() * 900000);
+
 // Payment route
 app.post('/payment', async (req, res) => {
-  console.log('Received POST request at /payment');
-  console.log(req.body);
   const { token, amount, cartItems } = req.body;
 
   if (!Array.isArray(cartItems) || cartItems.length === 0) {
     return res.status(400).json({ error: 'Cart items are required' });
   }
 
-  const orderNumber = Math.floor(100000 + Math.random() * 900000);
+  console.log('Received payment request:', { token, amount, cartItems });
+
+  const orderNumber = generateOrderNumber();
   const productDescriptions = `Order Number: ${orderNumber} | ${cartItems.map(item => `Description: ${item.description} | Size: ${item.size} | Quantity: ${item.quantity} | Price: $${item.price}`).join(', ')}`;
 
   try {
@@ -70,9 +69,10 @@ app.post('/payment', async (req, res) => {
       },
       description: productDescriptions,
       confirm: true,
-      return_url: 'https://www.kulit.us/confirmation', // Ensure HTTPS URL
+      return_url: 'http://localhost:3000/confirmation',
     });
 
+    console.log('Payment successful:', paymentIntent);
     res.json({ success: true, orderNumber });
   } catch (error) {
     console.error('Error processing payment:', error);
