@@ -45,17 +45,17 @@ module.exports = {
     open: true,
     proxy: {
       '/payment': {
-        target: 'https://kulit.us',
+        target: 'https://www.kulit.us',
         secure: false,
         changeOrigin: true,
       },
       '/newsletter': {
-        target: 'https://kulit.us',
+        target: 'https://www.kulit.us',
         secure: false,
         changeOrigin: true,
       },
       '/support': {
-        target: 'https://kulit.us',
+        target: 'https://www.kulit.us',
         secure: false,
         changeOrigin: true,
       },
