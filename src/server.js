@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 app.use(cors({
-  origin: ['https://*.kulit.us'], // This allows any subdomain of kulit.us
+  origin: ['https://www.kulit.us'], // This allows any subdomain of kulit.us
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
