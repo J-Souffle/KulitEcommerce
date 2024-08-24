@@ -12,11 +12,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS for specific origins
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://kulit.us'],
-  methods: ['GET', 'POST'],
+const corsOptions = {
+  origin: 'https://www.kulit.us', // Frontend domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+  credentials: true, // Include cookies in requests
+};
+
+app.use(cors(corsOptions));
 
 // Handle CORS preflight requests for /payment
 app.options('/payment', (req, res) => {
