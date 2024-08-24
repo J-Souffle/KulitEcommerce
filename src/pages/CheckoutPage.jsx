@@ -227,32 +227,31 @@ function CheckoutPage() {
           {promoCodeError && <p className="promo-code-error">{promoCodeError}</p>}
         </form>
         <p className="cart-total-price">
-          <span>Total Price:</span> ${totalPrice.toFixed(2)}
+          <span>{totalItems} items </span> <br />
+          <span>Subtotal: </span>${totalPrice.toFixed(2)} <br />
+          <span>Shipping: </span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`} <br />
+          <span>Sales Tax: </span>${salesTax.toFixed(2)} <br />
+          {discount > 0 && (
+            <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
+          )}
+          <span>Total: </span>${totalAmount.toFixed(2)}
         </p>
-        <p className="shipping-cost">
-          <span>Shipping:</span> ${shippingCost.toFixed(2)}
-        </p>
-        <p className="discount">
-          <span>Discount:</span> -${discountAmount.toFixed(2)}
-        </p>
-        <p className="sales-tax">
-          <span>Sales Tax:</span> ${salesTax.toFixed(2)}
-        </p>
-        <p className="total-amount">
-          <span>Total Amount:</span> ${totalAmount.toFixed(2)}
-        </p>
-        <StripeCheckout
-          label="Pay Now"
-          name="Ecommerce Checkout"
-          billingAddress
-          shippingAddress
-          description={`Your total is $${totalAmount.toFixed(2)}`}
-          amount={priceForStripe}
-          panelLabel="Pay Now"
-          token={payNow}
-          stripeKey={publishableKey}
-          currency="USD"
-        />
+        <div className="stripe-checkout-button-wrapper">
+          <StripeCheckout
+            stripeKey={publishableKey}
+            label="" // Hide the default label
+            name="Pay With Credit Card"
+            billingAddress
+            shippingAddress
+            amount={priceForStripe}
+            description={`Your total is $${totalAmount.toFixed(2)}`}
+            token={payNow}
+            className="stripe-checkout-button-hidden" // Hide the default button
+          />
+          <button className="custom-pay-now" onClick={() => document.querySelector('.stripe-checkout-button-hidden').click()}>
+            Pay Now
+          </button>
+        </div>
       </div>
       <FooterCheckout />
     </>
