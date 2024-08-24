@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://kulit.us'], // List allowed origins
+  origin: ['https://kulit.us', 'http://localhost:3000'], // Ensure this list matches your frontend URLs
   methods: ['GET', 'POST', 'OPTIONS'], // Allow OPTIONS method for preflight requests
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
+  credentials: true, // If you use cookies or need credentials
 }));
 
 // Initialize Stripe with your API key
@@ -62,7 +62,7 @@ app.post('/payment', async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
-      payment_method: token.id, // Updated field for payment method
+      payment_method: token.id,
       description: productDescriptions,
       confirm: true,
     });
@@ -115,9 +115,6 @@ app.post('/support', async (req, res) => {
     res.status(500).json({ error: 'Error saving support request' });
   }
 });
-
-// Handle preflight requests
-app.options('*', cors());
 
 const port = process.env.PORT || 5001;
 
