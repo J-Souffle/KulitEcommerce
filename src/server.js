@@ -62,7 +62,7 @@ app.post('/payment', async (req, res) => {
       },
       description: productDescriptions,
       confirm: true,
-      return_url: 'http://localhost:3000/confirmation',
+      return_url: 'https://kulit.us/confirmation',
     });
 
     console.log('Payment successful:', paymentIntent);
