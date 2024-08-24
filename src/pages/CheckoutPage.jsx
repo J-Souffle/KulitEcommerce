@@ -23,7 +23,7 @@ function CheckoutPage() {
   const [zip, setZip] = useState("");
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
-  const [promoCodeError, setPromoCodeError] = useState(""); // State for promo code error
+  const [promoCodeError, setPromoCodeError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,38 +33,35 @@ function CheckoutPage() {
     setTotalItems(totalItemCount);
 
     const calculateShippingCost = () => {
-      if (subtotal >= 50) {
-        return 0; // Free shipping if subtotal is $50 or more
-      } else {
-        let totalShippingCost = 0;
-        cartItem.forEach(item => {
-          const { quantity, shippingCost, additionalShippingCost } = item;
-          if (quantity > 0) {
-            totalShippingCost += shippingCost; // Base cost for the first item
-            if (quantity > 1) {
-              totalShippingCost += additionalShippingCost * (quantity - 1); // Additional cost for extra items
-            }
+      if (subtotal >= 50) return 0; // Free shipping if subtotal is $50 or more
+
+      let totalShippingCost = 0;
+      cartItem.forEach(item => {
+        const { quantity, shippingCost, additionalShippingCost } = item;
+        if (quantity > 0) {
+          totalShippingCost += shippingCost;
+          if (quantity > 1) {
+            totalShippingCost += additionalShippingCost * (quantity - 1);
           }
-        });
-        return totalShippingCost;
-      }
+        }
+      });
+      return totalShippingCost;
     };
 
-    // Calculate and set the total shipping cost
     setShippingCost(calculateShippingCost());
   }, [cartItem]);
 
   const applyPromoCode = () => {
     if (promoCode === "10OFF!") {
-      setDiscount(0.1); // Apply 10% discount
-      setPromoCodeError(""); // Clear any previous error message
+      setDiscount(0.1);
+      setPromoCodeError("");
     } else {
       setDiscount(0);
-      setPromoCodeError("Invalid promo code"); // Set error message
+      setPromoCodeError("Invalid promo code");
     }
   };
 
-  const salesTax = (totalPrice - discount * totalPrice) * 0.06; // Adjust if needed
+  const salesTax = (totalPrice - discount * totalPrice) * 0.06;
   const discountAmount = totalPrice * discount;
   const totalAmount = totalPrice + shippingCost + salesTax - discountAmount;
   const priceForStripe = Math.round(totalAmount * 100);
@@ -81,7 +78,7 @@ function CheckoutPage() {
         status: 'success',
         orderDetails: {
           orderNumber,
-          estimatedDeliveryDate: "2024-08-20", // Sample estimated delivery date
+          estimatedDeliveryDate: "2024-08-20",
           products: cartItem,
           confirmedDate: new Date().toISOString().split('T')[0],
           shippingCost,
@@ -120,21 +117,17 @@ function CheckoutPage() {
 
   const payNow = async token => {
     try {
-      const response = await axios({
-        url: 'http://localhost:5001/payment',
-        method: 'post',
-        data: {
-          amount: priceForStripe,
-          token,
-          cartItems: cartItem,
-        },
+      const response = await axios.post(`https://kulit.us/payment`, {
+        amount: priceForStripe,
+        token,
+        cartItems: cartItem,
       });
       if (response.status === 200) {
         const { orderNumber } = response.data;
-        handleSuccess(orderNumber); // Pass orderNumber to handleSuccess
+        handleSuccess(orderNumber);
       }
     } catch (error) {
-      handleFailure(error); // Pass the error object to handleFailure
+      handleFailure(error);
     }
   };
 
