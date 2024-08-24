@@ -47,6 +47,8 @@ const Support = mongoose.model('Support', supportSchema);
 
 // Payment route
 app.post('/payment', async (req, res) => {
+  console.log('Received POST request at /payment');
+  console.log(req.body);
   const { token, amount, cartItems } = req.body;
 
   if (!Array.isArray(cartItems) || cartItems.length === 0) {
