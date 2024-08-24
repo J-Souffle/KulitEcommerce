@@ -13,10 +13,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://kulit.us'],
-  methods: ['GET', 'POST'],
+  origin: ['http://localhost:3000', 'https://www.kulit.us'],
+  methods: ['GET', 'POST', 'OPTIONS'], // Allow OPTIONS for preflight requests
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+// Handle preflight requests
+app.options('*', cors());
 
 // Initialize Stripe with your API key
 const stripe = Stripe(process.env.SECRET_KEY);
@@ -61,15 +64,10 @@ app.post('/payment', async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
-      payment_method_data: {
-        type: 'card',
-        card: {
-          token: token.id,
-        },
-      },
+      payment_method: token.id,
       description: productDescriptions,
       confirm: true,
-      return_url: 'http://localhost:3000/confirmation',
+      return_url: 'https://www.kulit.us/confirmation', // Use the production URL
     });
 
     console.log('Payment successful:', paymentIntent);
