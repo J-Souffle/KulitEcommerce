@@ -43,11 +43,22 @@ module.exports = {
     },
     port: 8001,
     open: true,
-    proxy: [{
-      context: ['/categories'], // Define the context path(s) to proxy
-      target: 'http://localhost:3000', // Define the target URL
-      secure: false,
-      changeOrigin: true,
-    }],
+    proxy: {
+      '/payment': {
+        target: 'http://localhost:5001',
+        secure: false,
+        changeOrigin: true,
+      },
+      '/newsletter': {
+        target: 'http://localhost:5001',
+        secure: false,
+        changeOrigin: true,
+      },
+      '/support': {
+        target: 'http://localhost:5001',
+        secure: false,
+        changeOrigin: true,
+      },
+    },
   },
 };
