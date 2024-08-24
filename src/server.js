@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 app.use(cors({
-  origin: ['https://kulit.us', 'http://localhost:3000'], // Ensure this list matches your frontend URLs
+  origin: 'https://kulit.us', // Ensure this list matches your frontend URLs
   methods: ['GET', 'POST', 'OPTIONS'], // Allow OPTIONS method for preflight requests
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // If you use cookies or need credentials
