@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const Stripe = require('stripe');
 const cors = require('cors');
+const Stripe = require('stripe');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -11,23 +11,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Enable CORS for specific origins
-const corsOptions = {
-  origin: 'https://www.kulit.us', // Frontend domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+// Enable CORS
+app.use(cors({
+  origin: 'https://www.kulit.us', // Your frontend domain
+  methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // Include cookies in requests
-};
-
-app.use(cors(corsOptions));
-
-// Handle CORS preflight requests for /payment
-app.options('/payment', (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://www.kulit.us');
-  res.set('Access-Control-Allow-Methods', 'GET, POST');
-  res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.sendStatus(200);
-});
+}));
 
 // Initialize Stripe with your API key
 const stripe = Stripe(process.env.SECRET_KEY);
@@ -40,6 +29,21 @@ mongoose.connect(process.env.MONGODB_URI, {
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
+// Define schemas and models
+const emailSchema = new mongoose.Schema({ email: { type: String, required: true, unique: true } });
+const Email = mongoose.model('Email', emailSchema);
+
+const supportSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  comment: { type: String, required: true },
+});
+const Support = mongoose.model('Support', supportSchema);
+
+// Utility function to generate a random 6-digit number
+const generateOrderNumber = () => Math.floor(100000 + Math.random() * 900000);
+
 // Payment route
 app.post('/payment', async (req, res) => {
   const { token, amount, cartItems } = req.body;
@@ -47,8 +51,6 @@ app.post('/payment', async (req, res) => {
   if (!Array.isArray(cartItems) || cartItems.length === 0) {
     return res.status(400).json({ error: 'Cart items are required' });
   }
-
-  console.log('Received payment request:', { token, amount, cartItems });
 
   const orderNumber = generateOrderNumber();
   const productDescriptions = `Order Number: ${orderNumber} | ${cartItems.map(item => `Description: ${item.description} | Size: ${item.size} | Quantity: ${item.quantity} | Price: $${item.price}`).join(', ')}`;
@@ -65,10 +67,9 @@ app.post('/payment', async (req, res) => {
       },
       description: productDescriptions,
       confirm: true,
-      return_url: 'https://kulit.us/confirmation',
+      return_url: 'https://www.kulit.us/confirmation', // Ensure HTTPS URL
     });
 
-    console.log('Payment successful:', paymentIntent);
     res.json({ success: true, orderNumber });
   } catch (error) {
     console.error('Error processing payment:', error);
