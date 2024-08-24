@@ -1,6 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const Stripe = require('stripe');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -13,12 +13,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 app.use(cors({
-  origin: 'https://www.kulit.us', // Your frontend domain
+  origin: 'https://www.kulit.us',
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-// Initialize Stripe with your API key
+// Handle preflight OPTIONS requests
+app.options('*', cors());
+
+// Initialize Stripe
 const stripe = Stripe(process.env.SECRET_KEY);
 
 // MongoDB connection
@@ -41,9 +44,6 @@ const supportSchema = new mongoose.Schema({
 });
 const Support = mongoose.model('Support', supportSchema);
 
-// Utility function to generate a random 6-digit number
-const generateOrderNumber = () => Math.floor(100000 + Math.random() * 900000);
-
 // Payment route
 app.post('/payment', async (req, res) => {
   const { token, amount, cartItems } = req.body;
@@ -52,7 +52,7 @@ app.post('/payment', async (req, res) => {
     return res.status(400).json({ error: 'Cart items are required' });
   }
 
-  const orderNumber = generateOrderNumber();
+  const orderNumber = Math.floor(100000 + Math.random() * 900000);
   const productDescriptions = `Order Number: ${orderNumber} | ${cartItems.map(item => `Description: ${item.description} | Size: ${item.size} | Quantity: ${item.quantity} | Price: $${item.price}`).join(', ')}`;
 
   try {
