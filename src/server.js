@@ -11,13 +11,20 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Enable CORS
+// Enable CORS for specific origins
 app.use(cors({
-  origin: 'https://kulit.us', // Ensure this list matches your frontend URLs
-  methods: ['GET', 'POST', 'OPTIONS'], // Allow OPTIONS method for preflight requests
+  origin: ['http://localhost:3000', 'https://kulit.us'],
+  methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // If you use cookies or need credentials
 }));
+
+// Handle CORS preflight requests for /payment
+app.options('/payment', (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://www.kulit.us');
+  res.set('Access-Control-Allow-Methods', 'GET, POST');
+  res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.sendStatus(200);
+});
 
 // Initialize Stripe with your API key
 const stripe = Stripe(process.env.SECRET_KEY);
@@ -29,21 +36,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
-
-// Define schemas and models
-const emailSchema = new mongoose.Schema({ email: { type: String, required: true, unique: true } });
-const Email = mongoose.model('Email', emailSchema);
-
-const supportSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  phone: { type: String, required: true },
-  comment: { type: String, required: true },
-});
-const Support = mongoose.model('Support', supportSchema);
-
-// Utility function to generate a random 6-digit number
-const generateOrderNumber = () => Math.floor(100000 + Math.random() * 900000);
 
 // Payment route
 app.post('/payment', async (req, res) => {
@@ -62,9 +54,15 @@ app.post('/payment', async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
       currency: 'usd',
-      payment_method: token.id,
+      payment_method_data: {
+        type: 'card',
+        card: {
+          token: token.id,
+        },
+      },
       description: productDescriptions,
       confirm: true,
+      return_url: 'http://localhost:3000/confirmation',
     });
 
     console.log('Payment successful:', paymentIntent);
