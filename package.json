@@ -58,7 +58,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://www.kulit.us",
+  "proxy": "https://localhost:5000",
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
