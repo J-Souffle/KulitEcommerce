@@ -13,13 +13,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://kulit.us'],
+  origin: ['http://localhost:3000', 'https://kulit.us', 'https://www.kulit.us'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // Allow cookies to be sent
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests
 
 // Initialize Stripe with your API key
 const stripe = Stripe(process.env.SECRET_KEY);
