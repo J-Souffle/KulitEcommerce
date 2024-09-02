@@ -34,26 +34,18 @@ function ProductPage() {
   };
 
   // Calculate the price based on the selected size and quantity
-  const calcPrice = (quantity) => {
-    const sizeExclusions = ["Small", "Medium", "Large", "Extra Large"];
-    
-    // Check if the selected size is not in the excluded sizes, then use the size-based pricing
-    if (!sizeExclusions.includes(selectedSize)) {
-      const price = item?.prices[selectedSize] || item?.price;
-      return quantity * price;
-    }
-  
-    // If the selected size is in the excluded sizes, return the default item price
-    return quantity * (item?.price || 0);
+  const calcPrice = () => {
+    const price = item?.prices ? item.prices[selectedSize] : item?.price;
+    return quantity * price;
   };
-  
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
   };
 
   const handleAddToCart = () => {
-    addToCart({ ...item, quantity, size: selectedSize });
+    const price = item?.prices ? item.prices[selectedSize] : item?.price;
+    addToCart({ ...item, quantity, size: selectedSize, price });
     setNotify(true);
     setTimeout(() => setNotify(false), 2000); // Hide notification after 2 seconds
   };
@@ -115,7 +107,7 @@ function ProductPage() {
                   <p className="quantity">{quantity}</p>
                   <button onClick={increase}>+</button>
                 </div>
-                <p className="product-price">${calcPrice(quantity).toFixed(2)}</p>
+                <p className="product-price">${calcPrice().toFixed(2)}</p>
               </div>
               <div className="atc-buy">
                 <button onClick={handleAddToCart} className="atc-btn">

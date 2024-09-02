@@ -12,7 +12,7 @@ import Tops from "./components/Categories-pages/Tops.jsx";
 import Other from "./components/Categories-pages/Other.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
-import ConfirmationPage from "./pages/ConfirmationPage.jsx"; // Import the ConfirmationPage component
+import ConfirmationPage from "./pages/ConfirmationPage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import NavbarCheckout from "./components/CheckoutComponents/CheckoutNavbar.jsx";
 import Support from "./components/Support.jsx";
@@ -25,14 +25,19 @@ function App() {
 
   const addToCart = (newItem) => {
     setCartItem((prevCartItems) => {
-      const existingItem = prevCartItems.find((cartItem) => cartItem.id === newItem.id);
+      const existingItem = prevCartItems.find(
+        (cartItem) => cartItem.id === newItem.id && cartItem.size === newItem.size
+      );
+      
       if (existingItem) {
+        // If the item with the same ID and size exists, update the quantity
         return prevCartItems.map((cartItem) =>
-          cartItem.id === newItem.id
+          cartItem.id === newItem.id && cartItem.size === newItem.size
             ? { ...cartItem, quantity: cartItem.quantity + newItem.quantity }
             : cartItem
         );
       } else {
+        // If the item doesn't exist in the cart, add it
         return [...prevCartItems, { ...newItem, quantity: newItem.quantity }];
       }
     });
