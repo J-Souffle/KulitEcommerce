@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 const corsOptions = {
-  origin: '*', // Adjust if you want to allow multiple origins
+  origin: ['http://localhost:3000', 'https://kulit.us'],
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // Allow cookies to be sent
