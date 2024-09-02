@@ -48,12 +48,6 @@ function Navbar() {
           <Link onClick={() => setMobileNav(!mobileNav)} to="/support">
             Support
           </Link>
-          {/* <Link
-            onClick={() => setMobileNav(!mobileNav)}
-            to="/categories/product/19"
-          >
-            product page
-          </Link> */}
         </div>
       </div>
 
@@ -67,7 +61,7 @@ function Navbar() {
       <div className={`cart-div ${cart ? "open-cart" : "closed-cart"}`}>
         <div className="cart-title-btn">
           <h2 className="cart-full-h2">
-            Your Shopping Cart ({cartItem.length})
+            Your Shopping Cart ({getTotalQuantity()})
           </h2>
           <IconX onClick={openCart} />
         </div>
@@ -102,24 +96,22 @@ function Navbar() {
               <i
                 data-array-length={getTotalQuantity()}
                 onClick={openCart}
-                className={`${
-                  cartItem.length < 1 ? "cart-icon" : "cart-icon with-items"
-                }`}
+                className={`cart-icon ${cartItem.length > 0 ? "with-items" : ""}`}
               >
                 <IconShoppingCart />
-                {/* <span className="cart-quantity">{getTotalQuantity()}</span> Display total quantity */}
+                {/* Cart quantity indicator */}
+                <span className="cart-quantity">{getTotalQuantity()}</span>
               </i>
             </div>
             <div className="hamburger-menu">
               <i
-                data-array-length={cartItem.length}
+                data-array-length={getTotalQuantity()}
                 onClick={openCart}
-                className={`hamburger-cart ${
-                  cartItem.length < 1 ? "cart-icon" : "cart-icon with-items"
-                }`}
+                className={`hamburger-cart ${cartItem.length > 0 ? "with-items" : ""}`}
               >
                 <IconShoppingCart />
-                <span className="cart-quantity">{getTotalQuantity()}</span> {/* Display total quantity */}
+                {/* Cart quantity indicator */}
+                <span className="cart-quantity">{getTotalQuantity()}</span>
               </i>
               <i
                 onClick={() => setMobileNav(!mobileNav)}

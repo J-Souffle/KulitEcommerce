@@ -104,7 +104,7 @@ function ProductPage() {
                   <p className="quantity">{quantity}</p>
                   <button onClick={increase}>+</button>
                 </div>
-                <p className="product-price">${calcPrice(quantity)}</p>
+                <p className="product-price">${calcPrice(quantity).toFixed(2)}</p>
               </div>
               <div className="atc-buy">
                 <button onClick={handleAddToCart} className="atc-btn">
