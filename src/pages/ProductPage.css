@@ -238,6 +238,10 @@ p {
     left: 50%;
 }
 
+.notify p {
+    color: white;
+}
+
 .notify.slide-in {
     animation-duration: 4s;
     animation-delay: -1s;

@@ -158,13 +158,14 @@
     padding: 0.5rem;
 }
 
-/* cart item styles omitted for brevity */
+/* cart icon styles */
 
 .cart-icon {
     position: relative;
     cursor: pointer;
 }
 
+/* Use this for the desktop view where the pseudo-element is preferred */
 .cart-icon::after {
     content: '';
     top: -18px;
@@ -188,11 +189,12 @@
     content: attr(data-array-length);
 }
 
+/* Ensure the `.cart-quantity` is not used with `::after` pseudo-element */
 .cart-quantity {
-    display: none; /* Hide this element if the `::after` pseudo-element is used */
+    display: none; /* Hide this element if using `::after` */
 }
 
-/* mobile styles omitted for brevity */
+/* mobile styles */
 
 .x-mobile {
     position: absolute;
@@ -200,3 +202,32 @@
     top: 3rem;
     cursor: pointer;
 }
+
+@media (max-width: 600px) {
+    .hamburger-menu {
+        display: flex; /* Show hamburger menu on mobile */
+    }
+
+    .hamburger-cart {
+        display: flex; /* Ensure it is visible */
+        position: relative; /* Important for positioning the quantity */
+    }
+    
+    .cart-quantity {
+        display: flex; /* Ensure it's displayed on mobile */
+        position: absolute; /* Position relative to the cart icon */
+        top: -10px; /* Adjust based on your layout */
+        right: -10px; /* Adjust based on your layout */
+        background: red; /* Ensure it's visible */
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        z-index: 1000; /* Ensure it's on top */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
