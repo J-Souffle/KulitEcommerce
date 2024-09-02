@@ -19,9 +19,9 @@ function FooterCheckout() {
     <>
       <footer>
         <div className="footer-links">
-          <button onClick={() => handleOpenModal("Refund Policy: Your refund policy details go here.")}>Refund Policy</button>
-          <button onClick={() => handleOpenModal("Privacy Policy: Your privacy policy details go here.")}>Privacy Policy</button>
-          <button onClick={() => handleOpenModal("Terms Of Service: Your terms of service details go here.")}>Terms Of Service</button>
+          <button onClick={() => handleOpenModal("Refund Policy: Coming Soon!")}>Refund Policy</button>
+          <button onClick={() => handleOpenModal("Privacy Policy: Coming Soon!")}>Privacy Policy</button>
+          <button onClick={() => handleOpenModal("Terms Of Service: Coming Soon!")}>Terms Of Service</button>
         </div>
         {/* <div className="footer-social-media">
           <a href="https://www.instagram.com/kulitapparel?igsh=MWZ4YWI1cTljZmNteg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">

@@ -15,9 +15,19 @@ const ConfirmationPage = () => {
     return <p>Loading...</p>;
   }
 
-  const { products, shippingCost, salesTax, orderNumber, confirmedDate } = orderDetails || {};
-  const subtotal = products?.reduce((total, item) => total + item.price * item.quantity, 0) || 0;
-  const totalAmount = subtotal + (shippingCost || 0) + (salesTax || 0);
+  // Destructure with default values
+  const {
+    products = [],
+    shippingCost = 0,
+    salesTax = 0,
+    discountAmount = 0,
+    totalAmount = 0,
+    orderNumber = '',
+    confirmedDate = ''
+  } = orderDetails || {};
+
+  const subtotal = products.reduce((total, item) => total + (item.price * item.quantity), 0);
+  const finalTotal = subtotal + shippingCost + salesTax - discountAmount;
 
   return (
     <>
@@ -33,14 +43,14 @@ const ConfirmationPage = () => {
             <div className="order-summary">
               <h3>Order Summary</h3>
               <ul className="order-products-list">
-                {products?.map((item, index) => (
+                {products.map((item, index) => (
                   <li key={index} className="product-item">
                     <div className="product-img">
                       <img src={item.img} alt={item.description} />
                     </div>
                     <div className="product-info">
                       <p>{item.description}</p>
-                      <p>Size: {item.size}</p> {/* Added size information */}
+                      <p>Size: {item.size}</p>
                       <p>Quantity: {item.quantity}</p>
                       <p>Total: ${ (item.price * item.quantity).toFixed(2) }</p>
                     </div>
@@ -48,9 +58,12 @@ const ConfirmationPage = () => {
                 ))}
               </ul>
               <p><strong>Subtotal:</strong> ${ subtotal.toFixed(2) }</p>
-              <p><strong>Shipping Cost:</strong> ${ shippingCost?.toFixed(2) || 0 }</p>
-              <p><strong>Sales Tax:</strong> ${ salesTax?.toFixed(2) || 0 }</p>
-              <p><strong>Total Amount:</strong> ${ totalAmount.toFixed(2) }</p>
+              <p><strong>Shipping Cost:</strong> ${ shippingCost.toFixed(2) }</p>
+              <p><strong>Sales Tax:</strong> ${ salesTax.toFixed(2) }</p>
+              {discountAmount > 0 && (
+                <p><strong>Discount Applied:</strong> -${ discountAmount.toFixed(2) }</p>
+              )}
+              <p><strong>Total Amount:</strong> ${ finalTotal.toFixed(2) }</p>
             </div>
             <Link to="/" className="go-back-home-btn">Continue Shopping</Link>
           </div>

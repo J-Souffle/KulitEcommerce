@@ -75,7 +75,7 @@ function CheckoutPage() {
       title: 'Payment was successful',
       timer: 4000,
     });
-
+  
     navigate('/confirmation', {
       state: {
         status: 'success',
@@ -86,10 +86,13 @@ function CheckoutPage() {
           confirmedDate: new Date().toISOString().split('T')[0],
           shippingCost,
           salesTax,
+          discountAmount, // Include discount amount
+          totalAmount, // Ensure totalAmount is included
         }
       }
     });
   };
+  
 
   const handleFailure = (error) => {
     const errorDetails = {
@@ -138,22 +141,22 @@ function CheckoutPage() {
     }
   };
 
-  const increaseQuantity = (itemId) => {
+  const increaseQuantity = (itemId, size) => {
     const updatedCart = cartItem.map(item =>
-      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      item.id === itemId && item.size === size ? { ...item, quantity: item.quantity + 1 } : item
     );
     setCartItem(updatedCart);
   };
 
-  const decreaseQuantity = (itemId) => {
+  const decreaseQuantity = (itemId, size) => {
     const updatedCart = cartItem.map(item =>
-      item.id === itemId && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
+      item.id === itemId && item.size === size && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
     );
     setCartItem(updatedCart);
   };
 
-  const removeItem = (itemId) => {
-    const updatedCart = cartItem.filter(item => item.id !== itemId);
+  const removeItem = (itemId, size) => {
+    const updatedCart = cartItem.filter(item => !(item.id === itemId && item.size === size));
     setCartItem(updatedCart);
   };
 
@@ -165,7 +168,7 @@ function CheckoutPage() {
           <h2>Products in your cart:</h2>
         </div>
         {cartItem.map((item, index) => (
-          <div key={index} className="cart-item">
+          <div key={`${item.id}-${item.size}`} className="cart-item">
             <div className="cart-img">
               <img src={item.img} alt="product" />
             </div>
@@ -174,13 +177,13 @@ function CheckoutPage() {
               {item.size && <p className="cart-size">Size: {item.size}</p>}
               <div className="cart-price"> {/* Change p to div here */}
                 <div className="quantity-buttons">
-                  <button className="quantity-button" onClick={() => increaseQuantity(item.id)}>+</button>
+                  <button className="quantity-button" onClick={() => increaseQuantity(item.id, item.size)}>+</button>
                   <span className="quantity-text">{item.quantity}</span>
-                  <button className="quantity-button" onClick={() => decreaseQuantity(item.id)}>-</button>
+                  <button className="quantity-button" onClick={() => decreaseQuantity(item.id, item.size)}>-</button>
                 </div>
                 <span className="cart-total-item-price">${(item.price * item.quantity).toFixed(2)}</span>
               </div>
-              <button className="delete-btn" onClick={() => removeItem(item.id)}>Delete</button>
+              <button className="delete-btn" onClick={() => removeItem(item.id, item.size)}>Delete</button>
             </div>
           </div>
         ))}
