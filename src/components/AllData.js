@@ -7,14 +7,17 @@ import Img6 from "../img/products/6.jpeg";
 import Img7 from "../img/products/7.jpeg";
 import Img8 from "../img/products/8.jpeg";
 import Img9 from "../img/products/9.jpeg";
+import Img10 from "../img/products/10.jpeg";
 import PasawayUniversity1 from "../img/products/otherProducts/PasawayUniversityCrewneck1.jpeg";
 import PasawayUniversity2 from "../img/products/otherProducts/PasawayUniversityCrewneck2.jpeg";
 import FirstKulit1 from "../img/products/otherProducts/FirstKulitHoodie1.jpeg"
 import FirstKulit2 from "../img/products/otherProducts/FirstKulitHoodie2.jpeg"
 import Kamao1 from "../img/products/otherProducts/Kamao1.jpeg";
 import Kamao2 from "../img/products/otherProducts/Kamao2.jpeg";
-import Kalayaan1 from "../img/products/otherProducts/Kalayaan1.jpeg";
-import Kalayaan2 from "../img/products/otherProducts/Kalayaan2.jpeg";
+import KoreanShirt1 from "../img/products/otherProducts/KulitKoreanShirt1.jpeg";
+import KoreanShirt2 from "../img/products/otherProducts/KulitKoreanShirt2.jpeg";
+import KoreanHoodie1 from "../img/products/otherProducts/KulitKoreanHoodie1.jpeg"
+import KoreanHoodie2 from "../img/products/otherProducts/KulitKoreanHoodie2.jpeg"
 // import Barangay1 from "../img/products/otherProducts/BarangayKulitCrewneck1.jpeg";
 // import Barangay2 from "../img/products/otherProducts/BarangayKulitCrewneck2.jpeg";
 import KulitTee1 from "../img/products/otherProducts/KulitTee1.jpeg";
@@ -71,9 +74,9 @@ export const items = [
     id: 4,
     category: "tops",
     img: Img4,
-    description: "Kalayaan T-Shirt",
+    description: "Korean Kulit T-Shirt",
     price: 24.99,
-    otherImgs: [Kalayaan1, Kalayaan2],
+    otherImgs: [KoreanShirt1, KoreanShirt2],
     specs:
       "This tee is designed with the Philippine Eagle symbolizing kalayaan, Freedom. Made with 100% wingspun cotton to make it an excellent daily choice.",
     texture: "100% Cotton",
@@ -126,5 +129,17 @@ export const items = [
       "A poster representing a bayani in the Philippines, José Rizal. Made with a modern style poster and a collage of different colored paint splatters in the background. Made with museum grade paper, available in 3 sizes.",
     texture: "Cotton",
     size: ["9 x 11", "12 x 18", "24 x 36"],
+  },
+  {
+    id: 9,
+    category: "tops",
+    img: Img10,
+    description: "Korean Kulit Hoodie",
+    price: 24.99,
+    otherImgs: [KoreanHoodie1, KoreanHoodie2],
+    specs:
+      "This tee is designed with the Philippine Eagle symbolizing kalayaan, Freedom. Made with 100% wingspun cotton to make it an excellent daily choice.",
+    texture: "100% Cotton",
+    sizes: ["Small", "Medium", "Large", "Extra Large"],
   },
 ];
