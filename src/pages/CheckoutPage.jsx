@@ -236,17 +236,21 @@ function CheckoutPage() {
           )}
           <span>Total: </span>${totalAmount.toFixed(2)}
         </div>
-        <div className="checkout-button">
+        <div className="stripe-checkout-button-wrapper">
           <StripeCheckout
-            label="Pay Now"
-            name="Your Company"
+            label=""
+            name="Pay With Credit Card"
             billingAddress
             shippingAddress
             description={`Your total is $${totalAmount.toFixed(2)}`}
             amount={priceForStripe}
             token={payNow}
             stripeKey={publishableKey}
+            className="stripe-checkout-button-hidden"
           />
+          <button className="custom-pay-now" onClick={() => document.querySelector('.stripe-checkout-button-hidden').click()}>
+            Pay Now
+          </button>
         </div>
       </div>
       <FooterCheckout />
