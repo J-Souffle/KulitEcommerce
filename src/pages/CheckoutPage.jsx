@@ -121,7 +121,7 @@ function CheckoutPage() {
   const payNow = async token => {
     try {
       const response = await axios({
-        url: 'https://localhost:5001/payment',
+        url: 'http://localhost:5001/payment', // Change to http for local testing
         method: 'post',
         data: {
           amount: priceForStripe,
@@ -172,14 +172,14 @@ function CheckoutPage() {
             <div className="cart-details">
               <p className="cart-name">{item.description}</p>
               {item.size && <p className="cart-size">Size: {item.size}</p>}
-              <p className="cart-price">
+              <div className="cart-price"> {/* Change p to div here */}
                 <div className="quantity-buttons">
                   <button className="quantity-button" onClick={() => increaseQuantity(item.id)}>+</button>
                   <span className="quantity-text">{item.quantity}</span>
                   <button className="quantity-button" onClick={() => decreaseQuantity(item.id)}>-</button>
                 </div>
                 <span className="cart-total-item-price">${(item.price * item.quantity).toFixed(2)}</span>
-              </p>
+              </div>
               <button className="delete-btn" onClick={() => removeItem(item.id)}>Delete</button>
             </div>
           </div>
@@ -226,7 +226,7 @@ function CheckoutPage() {
           <button type="button" onClick={applyPromoCode} className="apply-promo-btn">Apply</button>
           {promoCodeError && <p className="promo-code-error">{promoCodeError}</p>}
         </form>
-        <p className="cart-total-price">
+        <div className="cart-total-price"> {/* Change p to div here */}
           <span>{totalItems} items </span> <br />
           <span>Subtotal: </span>${totalPrice.toFixed(2)} <br />
           <span>Shipping: </span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`} <br />
@@ -235,22 +235,18 @@ function CheckoutPage() {
             <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
           )}
           <span>Total: </span>${totalAmount.toFixed(2)}
-        </p>
-        <div className="stripe-checkout-button-wrapper">
+        </div>
+        <div className="checkout-button">
           <StripeCheckout
-            stripeKey={publishableKey}
-            label="" // Hide the default label
-            name="Pay With Credit Card"
+            label="Pay Now"
+            name="Your Company"
             billingAddress
             shippingAddress
-            amount={priceForStripe}
             description={`Your total is $${totalAmount.toFixed(2)}`}
+            amount={priceForStripe}
             token={payNow}
-            className="stripe-checkout-button-hidden" // Hide the default button
+            stripeKey={publishableKey}
           />
-          <button className="custom-pay-now" onClick={() => document.querySelector('.stripe-checkout-button-hidden').click()}>
-            Pay Now
-          </button>
         </div>
       </div>
       <FooterCheckout />
