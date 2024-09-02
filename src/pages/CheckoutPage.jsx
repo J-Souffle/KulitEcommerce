@@ -121,7 +121,7 @@ function CheckoutPage() {
   const payNow = async token => {
     try {
       const response = await axios({
-        url: 'http://kulit.us/payment',
+        url: 'https://kulit.us/payment',
         method: 'post',
         data: {
           amount: priceForStripe,
