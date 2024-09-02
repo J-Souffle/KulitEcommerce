@@ -12,7 +12,7 @@ import FooterCheckout from "../components/CheckoutComponents/FooterCheckout";
 const MySwal = withReactContent(Swal);
 
 function CheckoutPage() {
-  const publishableKey = 'pk_test_51P7ai8LO5J7ORzPKB8mr7QaPvwECu3ebmWth80FNICCRX6ehA62vlkqUNwskIb678eCsIxmNNMPOVsL7sbv3M8CP00TFgHUti4';
+  const publishableKey = 'pk_live_51P7ai8LO5J7ORzPKqsPJmmY7BUgwIRhmlRz8euajFDUYywa5uTXxdxfBPESfaeBUt0HCO4wk88YNaYpIw5fvlI8H00JMrVPj0o';
   const { cartItem, setCartItem } = useContext(CartContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -23,7 +23,10 @@ function CheckoutPage() {
   const [zip, setZip] = useState("");
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
-  const [promoCodeError, setPromoCodeError] = useState(""); // State for promo code error
+  const [promoCodeError, setPromoCodeError] = useState("");
+  const [isFormValid, setIsFormValid] = useState(true); // Default to true
+  const [formErrorMessage, setFormErrorMessage] = useState(""); // State for form error message
+  const [shippingCostVisible, setShippingCostVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,15 +37,15 @@ function CheckoutPage() {
 
     const calculateShippingCost = () => {
       if (subtotal >= 50) {
-        return 0; // Free shipping if subtotal is $50 or more
+        return 0;
       } else {
         let totalShippingCost = 0;
         cartItem.forEach(item => {
           const { quantity, shippingCost, additionalShippingCost } = item;
           if (quantity > 0) {
-            totalShippingCost += shippingCost; // Base cost for the first item
+            totalShippingCost += shippingCost;
             if (quantity > 1) {
-              totalShippingCost += additionalShippingCost * (quantity - 1); // Additional cost for extra items
+              totalShippingCost += additionalShippingCost * (quantity - 1);
             }
           }
         });
@@ -50,21 +53,45 @@ function CheckoutPage() {
       }
     };
 
-    // Calculate and set the total shipping cost
-    setShippingCost(calculateShippingCost());
-  }, [cartItem]);
+    if (isFormValid) {
+      setShippingCost(calculateShippingCost());
+      setShippingCostVisible(true);
+    } else {
+      setShippingCost(0);
+      setShippingCostVisible(false);
+    }
+  }, [cartItem, isFormValid]);
+
+  useEffect(() => {
+    const validateForm = () => {
+      const isValid = address.trim() !== "" && 
+                      city.trim() !== "" && 
+                      state.trim() !== "" && 
+                      zip.trim() !== "" && 
+                      /^\d{5}$/.test(zip);
+      setIsFormValid(isValid);
+
+      if (!isValid) {
+        setFormErrorMessage("Please fill out all fields to calculate shipping.");
+      } else {
+        setFormErrorMessage("");
+      }
+    };
+
+    validateForm();
+  }, [address, city, state, zip]);
 
   const applyPromoCode = () => {
     if (promoCode === "10OFF!") {
-      setDiscount(0.1); // Apply 10% discount
-      setPromoCodeError(""); // Clear any previous error message
+      setDiscount(0.1);
+      setPromoCodeError("");
     } else {
       setDiscount(0);
-      setPromoCodeError("Invalid promo code"); // Set error message
+      setPromoCodeError("Invalid promo code");
     }
   };
 
-  const salesTax = (totalPrice - discount * totalPrice) * 0.06; // Adjust if needed
+  const salesTax = (totalPrice - discount * totalPrice) * 0.06;
   const discountAmount = totalPrice * discount;
   const totalAmount = totalPrice + shippingCost + salesTax - discountAmount;
   const priceForStripe = Math.round(totalAmount * 100);
@@ -75,24 +102,23 @@ function CheckoutPage() {
       title: 'Payment was successful',
       timer: 4000,
     });
-  
+
     navigate('/confirmation', {
       state: {
         status: 'success',
         orderDetails: {
           orderNumber,
-          estimatedDeliveryDate: "2024-08-20", // Sample estimated delivery date
+          estimatedDeliveryDate: "2024-08-20",
           products: cartItem,
           confirmedDate: new Date().toISOString().split('T')[0],
           shippingCost,
           salesTax,
-          discountAmount, // Include discount amount
-          totalAmount, // Ensure totalAmount is included
+          discountAmount,
+          totalAmount,
         }
       }
     });
   };
-  
 
   const handleFailure = (error) => {
     const errorDetails = {
@@ -122,9 +148,13 @@ function CheckoutPage() {
   };
 
   const payNow = async token => {
+    if (!isFormValid) {
+      return; // Exit the function if the form is not valid
+    }
+
     try {
       const response = await axios({
-        url: 'https://kulit-backend.vercel.app/payment', // Change to http for local testing
+        url: 'https://kulit-backend.vercel.app/payment',
         method: 'post',
         data: {
           amount: priceForStripe,
@@ -134,10 +164,10 @@ function CheckoutPage() {
       });
       if (response.status === 200) {
         const { orderNumber } = response.data;
-        handleSuccess(orderNumber); // Pass orderNumber to handleSuccess
+        handleSuccess(orderNumber);
       }
     } catch (error) {
-      handleFailure(error); // Pass the error object to handleFailure
+      handleFailure(error);
     }
   };
 
@@ -175,7 +205,7 @@ function CheckoutPage() {
             <div className="cart-details">
               <p className="cart-name">{item.description}</p>
               {item.size && <p className="cart-size">Size: {item.size}</p>}
-              <div className="cart-price"> {/* Change p to div here */}
+              <div className="cart-price">
                 <div className="quantity-buttons">
                   <button className="quantity-button" onClick={() => increaseQuantity(item.id, item.size)}>+</button>
                   <span className="quantity-text">{item.quantity}</span>
@@ -194,28 +224,80 @@ function CheckoutPage() {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="Address"
+            className={address.trim() === "" ? 'error' : ''}
           />
           <input
             type="text"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             placeholder="City"
+            className={city.trim() === "" ? 'error' : ''}
           />
           <select
             value={state}
             onChange={(e) => setState(e.target.value)}
+            className={state.trim() === "" ? 'error' : ''}
           >
-            <option value="">Select State</option>
-            <option value="VA">Virginia (VA)</option>
-            <option value="FL">Florida (FL)</option>
-            {/* Add more states as needed */}
+          <option value="">Select State</option>
+          <option value="AL">Alabama (AL)</option>
+<option value="AK">Alaska (AK)</option>
+<option value="AZ">Arizona (AZ)</option>
+<option value="AR">Arkansas (AR)</option>
+<option value="CA">California (CA)</option>
+<option value="CO">Colorado (CO)</option>
+<option value="CT">Connecticut (CT)</option>
+<option value="DE">Delaware (DE)</option>
+<option value="FL">Florida (FL)</option>
+<option value="GA">Georgia (GA)</option>
+<option value="HI">Hawaii (HI)</option>
+<option value="ID">Idaho (ID)</option>
+<option value="IL">Illinois (IL)</option>
+<option value="IN">Indiana (IN)</option>
+<option value="IA">Iowa (IA)</option>
+<option value="KS">Kansas (KS)</option>
+<option value="KY">Kentucky (KY)</option>
+<option value="LA">Louisiana (LA)</option>
+<option value="ME">Maine (ME)</option>
+<option value="MD">Maryland (MD)</option>
+<option value="MA">Massachusetts (MA)</option>
+<option value="MI">Michigan (MI)</option>
+<option value="MN">Minnesota (MN)</option>
+<option value="MS">Mississippi (MS)</option>
+<option value="MO">Missouri (MO)</option>
+<option value="MT">Montana (MT)</option>
+<option value="NE">Nebraska (NE)</option>
+<option value="NV">Nevada (NV)</option>
+<option value="NH">New Hampshire (NH)</option>
+<option value="NJ">New Jersey (NJ)</option>
+<option value="NM">New Mexico (NM)</option>
+<option value="NY">New York (NY)</option>
+<option value="NC">North Carolina (NC)</option>
+<option value="ND">North Dakota (ND)</option>
+<option value="OH">Ohio (OH)</option>
+<option value="OK">Oklahoma (OK)</option>
+<option value="OR">Oregon (OR)</option>
+<option value="PA">Pennsylvania (PA)</option>
+<option value="RI">Rhode Island (RI)</option>
+<option value="SC">South Carolina (SC)</option>
+<option value="SD">South Dakota (SD)</option>
+<option value="TN">Tennessee (TN)</option>
+<option value="TX">Texas (TX)</option>
+<option value="UT">Utah (UT)</option>
+<option value="VT">Vermont (VT)</option>
+<option value="VA">Virginia (VA)</option>
+<option value="WA">Washington (WA)</option>
+<option value="WV">West Virginia (WV)</option>
+<option value="WI">Wisconsin (WI)</option>
+<option value="WY">Wyoming (WY)</option>
           </select>
           <input
             type="text"
             value={zip}
             onChange={(e) => setZip(e.target.value)}
             placeholder="Zip Code"
+            className={zip.trim() === "" || !/^\d{5}$/.test(zip) ? 'error' : ''}
           />
+          {formErrorMessage && <p className="error-message">{formErrorMessage}</p>}
         </form>
         <form className="promo-code-form">
           <h3>Promo Code</h3>
@@ -229,10 +311,14 @@ function CheckoutPage() {
           <button type="button" onClick={applyPromoCode} className="apply-promo-btn">Apply</button>
           {promoCodeError && <p className="promo-code-error">{promoCodeError}</p>}
         </form>
-        <div className="cart-total-price"> {/* Change p to div here */}
+        <div className="cart-total-price">
           <span>{totalItems} items </span> <br />
           <span>Subtotal: </span>${totalPrice.toFixed(2)} <br />
-          <span>Shipping: </span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`} <br />
+          {shippingCostVisible && ( // Conditional rendering of shipping cost
+            <>
+              <span>Shipping: </span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`} <br />
+            </>
+          )}
           <span>Sales Tax: </span>${salesTax.toFixed(2)} <br />
           {discount > 0 && (
             <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
@@ -251,7 +337,11 @@ function CheckoutPage() {
             stripeKey={publishableKey}
             className="stripe-checkout-button-hidden"
           />
-          <button className="custom-pay-now" onClick={() => document.querySelector('.stripe-checkout-button-hidden').click()}>
+          <button
+            className="custom-pay-now"
+            onClick={() => document.querySelector('.stripe-checkout-button-hidden').click()}
+            disabled={!isFormValid} // Disable button if form is invalid
+          >
             Pay Now
           </button>
         </div>

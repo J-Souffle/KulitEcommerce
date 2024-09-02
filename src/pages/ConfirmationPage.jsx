@@ -21,7 +21,6 @@ const ConfirmationPage = () => {
     shippingCost = 0,
     salesTax = 0,
     discountAmount = 0,
-    totalAmount = 0,
     orderNumber = '',
     confirmedDate = ''
   } = orderDetails || {};
