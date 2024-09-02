@@ -78,7 +78,7 @@ export const items = [
     price: 24.99,
     otherImgs: [KoreanShirt1, KoreanShirt2],
     specs:
-      "This tee is designed with the Philippine Eagle symbolizing kalayaan, Freedom. Made with 100% wingspun cotton to make it an excellent daily choice.",
+      "A simple styled tee representing the Kulit brand in Korean. Made with 100% wingspun cotton to make it an excellent daily choice.",
     texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
   },
@@ -123,13 +123,17 @@ export const items = [
     category: "accessories",
     img: Img9,
     description: "Bayani Poster",
-    price: 67,
+    price: 7.99,
+    prices: { 
+      "9 x 11": 7.99, 
+      "12 x 18": 14.99, 
+      "24 x 36": 24.99 
+    },
     otherImgs: [BayaniPoster1, BayaniPoster2],
-    specs:
-      "A poster representing a bayani in the Philippines, José Rizal. Made with a modern style poster and a collage of different colored paint splatters in the background. Made with museum grade paper, available in 3 sizes.",
+    specs: "A poster representing a bayani in the Philippines, José Rizal. Made with a modern style poster and a collage of different colored paint splatters in the background. Made with museum grade paper, available in 3 sizes.",
     texture: "Cotton",
-    size: ["9 x 11", "12 x 18", "24 x 36"],
-  },
+    sizes: ["9 x 11", "12 x 18", "24 x 36"],
+  },  
   {
     id: 9,
     category: "tops",
@@ -138,8 +142,8 @@ export const items = [
     price: 24.99,
     otherImgs: [KoreanHoodie1, KoreanHoodie2],
     specs:
-      "This tee is designed with the Philippine Eagle symbolizing kalayaan, Freedom. Made with 100% wingspun cotton to make it an excellent daily choice.",
-    texture: "100% Cotton",
+      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+    texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
   },
 ];

@@ -33,9 +33,20 @@ function ProductPage() {
     }
   };
 
+  // Calculate the price based on the selected size and quantity
   const calcPrice = (quantity) => {
-    return quantity * (item ? item.price : 0);
+    const sizeExclusions = ["Small", "Medium", "Large", "Extra Large"];
+    
+    // Check if the selected size is not in the excluded sizes, then use the size-based pricing
+    if (!sizeExclusions.includes(selectedSize)) {
+      const price = item?.prices[selectedSize] || item?.price;
+      return quantity * price;
+    }
+  
+    // If the selected size is in the excluded sizes, return the default item price
+    return quantity * (item?.price || 0);
   };
+  
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
@@ -110,7 +121,6 @@ function ProductPage() {
                 <button onClick={handleAddToCart} className="atc-btn">
                   add to cart
                 </button>
-                {/* <button className="buy-btn">buy now</button> */}
               </div>
             </div>
           </div>
@@ -120,10 +130,6 @@ function ProductPage() {
               <p className="spec-title">Texture:</p>
               <p className="title-desc">{item ? item.texture : ""}</p>
             </div>
-            {/* <div className="spec">
-              <p className="spec-title">Weight:</p>
-              <p className="title-desc">{item ? item.weight : ""}</p>
-            </div> */}
             <div className="spec">
               <p className="spec-title">Reviews:</p>
               <p className="title-desc">None (TrustPilot Added Soon)</p>
