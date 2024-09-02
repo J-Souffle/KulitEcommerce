@@ -12,11 +12,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
-app.use(cors({
-  origin: '*',
+const corsOptions = {
+  origin: '*', // Adjust if you want to allow multiple origins
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+  credentials: true, // Allow cookies to be sent
+};
+
+app.use(cors(corsOptions));
 
 // Initialize Stripe with your API key
 const stripe = Stripe(process.env.SECRET_KEY);
