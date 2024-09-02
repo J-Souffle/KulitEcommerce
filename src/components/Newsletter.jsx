@@ -10,7 +10,7 @@ function Newsletter() {
     e.preventDefault();
   
     try {
-      const response = await fetch('http://localhost:3000/newsletter', {
+      const response = await fetch('https://kulit-backend.vercel.app/newsletter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
