@@ -121,7 +121,7 @@ function CheckoutPage() {
   const payNow = async token => {
     try {
       const response = await axios({
-        url: 'http://localhost:5001/payment', // Change to http for local testing
+        url: 'http://kulit-backend.vercel.app/payment', // Change to http for local testing
         method: 'post',
         data: {
           amount: priceForStripe,

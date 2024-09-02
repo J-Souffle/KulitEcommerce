@@ -21,7 +21,7 @@ function Support() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5001/support', formData);
+      const response = await axios.post('http://kulit-backend.vercel.app/support', formData);
       setMessage(response.data.message);
     } catch (error) {
       console.error('Error submitting support request:', error);
