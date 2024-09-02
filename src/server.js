@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Enable CORS
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://kulit.us', 'https://www.kulit.us', 'https://checkout.stripe.com'],
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // Allow cookies to be sent
+  origin: '*', // Allow any domain
+  methods: ['GET', 'POST'], // Specify allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+  credentials: true, // Allow cookies to be sent (optional, but be cautious with this when using '*')
 };
 
 app.use(cors(corsOptions));
