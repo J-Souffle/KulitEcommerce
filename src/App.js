@@ -28,7 +28,7 @@ function App() {
       const existingItem = prevCartItems.find(
         (cartItem) => cartItem.id === newItem.id && cartItem.size === newItem.size
       );
-      
+
       if (existingItem) {
         // If the item with the same ID and size exists, update the quantity
         return prevCartItems.map((cartItem) =>
@@ -41,6 +41,12 @@ function App() {
         return [...prevCartItems, { ...newItem, quantity: newItem.quantity }];
       }
     });
+  };
+
+  const removeFromCart = (id, size) => {
+    setCartItem((prevCartItems) =>
+      prevCartItems.filter((cartItem) => !(cartItem.id === id && cartItem.size === size))
+    );
   };
 
   // local storage
@@ -62,7 +68,7 @@ function App() {
   };
 
   return (
-    <CartContext.Provider value={{ cartItem, addToCart, setCartItem, getTotalQuantity }}>
+    <CartContext.Provider value={{ cartItem, addToCart, removeFromCart, setCartItem, getTotalQuantity }}>
       <Routes>
         <Route
           path="/"

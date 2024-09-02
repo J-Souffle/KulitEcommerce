@@ -7,7 +7,7 @@ function CartItem({ item }) {
 
   const handleIncrease = () => {
     setCartItem(cartItem.map(cartItem =>
-      cartItem.id === item.id
+      cartItem.id === item.id && cartItem.size === item.size
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     ));
@@ -16,7 +16,7 @@ function CartItem({ item }) {
   const handleDecrease = () => {
     if (item.quantity > 1) {
       setCartItem(cartItem.map(cartItem =>
-        cartItem.id === item.id
+        cartItem.id === item.id && cartItem.size === item.size
           ? { ...cartItem, quantity: cartItem.quantity - 1 }
           : cartItem
       ));
@@ -24,7 +24,7 @@ function CartItem({ item }) {
   };
 
   const handleRemove = () => {
-    setCartItem(cartItem.filter(cartItem => cartItem.id !== item.id));
+    setCartItem(cartItem.filter(cartItem => !(cartItem.id === item.id && cartItem.size === item.size)));
   };
 
   return (
