@@ -15,9 +15,9 @@ const ConfirmationPage = () => {
     return <p>Loading...</p>;
   }
 
-  const { products, shippingCost, estimatedTaxes, orderNumber, confirmedDate } = orderDetails || {};
+  const { products, shippingCost, salesTax, orderNumber, confirmedDate } = orderDetails || {};
   const subtotal = products?.reduce((total, item) => total + item.price * item.quantity, 0) || 0;
-  const totalAmount = subtotal + (shippingCost || 0) + (estimatedTaxes || 0);
+  const totalAmount = subtotal + (shippingCost || 0) + (salesTax || 0);
 
   return (
     <>
@@ -28,7 +28,6 @@ const ConfirmationPage = () => {
             <h1>Payment Successful!</h1>
             <p>Thank you for your purchase! The order has been processed successfully and you will receive a confirmation email soon. Please give 2-5 business days to process and deliver your order.</p>
             <p><strong>Order Number:</strong> {orderNumber}</p>
-            {/* <p><strong>Estimated Delivery Date:</strong> {estimatedDeliveryDate}</p> */}
             <p><strong>Order Confirmed Date:</strong> {confirmedDate}</p>
             <br />
             <div className="order-summary">
@@ -50,7 +49,7 @@ const ConfirmationPage = () => {
               </ul>
               <p><strong>Subtotal:</strong> ${ subtotal.toFixed(2) }</p>
               <p><strong>Shipping Cost:</strong> ${ shippingCost?.toFixed(2) || 0 }</p>
-              <p><strong>Estimated Taxes:</strong> ${ estimatedTaxes?.toFixed(2) || 0 }</p>
+              <p><strong>Sales Tax:</strong> ${ salesTax?.toFixed(2) || 0 }</p>
               <p><strong>Total Amount:</strong> ${ totalAmount.toFixed(2) }</p>
             </div>
             <Link to="/" className="go-back-home-btn">Continue Shopping</Link>
@@ -65,9 +64,7 @@ const ConfirmationPage = () => {
           </div>
         )}
       </div>
-      <div>
-        <FooterCheckout />
-      </div>
+      <FooterCheckout />
     </>
   );
 };

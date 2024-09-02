@@ -36,8 +36,8 @@ export const items = [
     img: Img1,
     description: "Pasaway University Crewneck",
     price: 24.99,
-    shippingCost: 10, // Base shipping cost
-    additionalShippingCost: 5, // Reduced cost for each additional item
+    shippingCost: 8.49, // Base shipping cost
+    additionalShippingCost: 2.09, // Reduced cost for each additional item
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
     specs:
       "This CrewNeck sweatshirt is inspired by basketball teams made in the Philippines and is designed with a streetwear style. Made with cotton and polyester for a comfortable, relaxed fit, Perfect for cool weather.",
@@ -48,10 +48,10 @@ export const items = [
     id: 2,
     category: "tops",
     img: Img2,
-    description: "Classic Kulit Sweatshirt",
+    description: "Classic Kulit Hoodie",
     price: 39.99,
-    shippingCost: 12, // Base shipping cost
-    additionalShippingCost: 6, // Reduced cost for each additional item
+    shippingCost: 8.49, // Base shipping cost
+    additionalShippingCost: 2.09, // Reduced cost for each additional item
     otherImgs: [FirstKulit1, FirstKulit2],
     specs:
       "A classic styled hoodie respresenting the Kulit brand. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
@@ -64,6 +64,8 @@ export const items = [
     img: Img3,
     description: "Kamao T-Shirt",
     price: 24.99,
+    shippingCost: 4.75, // Base shipping cost
+    additionalShippingCost: 2.40, // Reduced cost for each additional item
     otherImgs: [Kamao1, Kamao2],
     specs:
       "This Tee is designed with a 2d pixelated style and is inspired by our pambansang kamao to represent the bravery and dedication of Filipinos. Made with 100% ringspun cotton to make it an excellent daily choice.",
@@ -76,6 +78,8 @@ export const items = [
     img: Img4,
     description: "Korean Kulit T-Shirt",
     price: 24.99,
+    shippingCost: 4.75, // Base shipping cost
+    additionalShippingCost: 2.40, // Reduced cost for each additional item
     otherImgs: [KoreanShirt1, KoreanShirt2],
     specs:
       "A simple styled tee representing the Kulit brand in Korean. Made with 100% wingspun cotton to make it an excellent daily choice.",
@@ -88,6 +92,8 @@ export const items = [
     img: Img6,
     description: "Kulit T-Shirt",
     price: 24.99,
+    shippingCost: 4.75, // Base shipping cost
+    additionalShippingCost: 2.40, // Reduced cost for each additional item
     otherImgs: [KulitTee1, KulitTee2],
     specs:
       "A classic styled tee representing the Kulit brand. Made with 100% wingspun cotton to make it an excellent daily choice.",
@@ -100,6 +106,8 @@ export const items = [
     img: Img7,
     description: "Pasaway Sticker",
     price: 1.99,
+    shippingCost: 4.69, // Base shipping cost
+    additionalShippingCost: 0.09, // Reduced cost for each additional item
     otherImgs: [PasawaySticker1, PasawaySticker2],
     specs:
       "A decal representing the Pasaway University. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
@@ -112,6 +120,8 @@ export const items = [
     img: Img8,
     description: "Kulit Drift Sticker",
     price: 1.99,
+    shippingCost: 4.69, // Base shipping cost
+    additionalShippingCost: 0.09, // Reduced cost for each additional item
     otherImgs: [KulitCar1, KulitCar2],
     specs:
       "A decal representing a Japanese drift vehicle and is design with a cool blue background. Made with a high quality white vinyl, these decals deliver great looks that are water, scratch, and UV-resistant.",
@@ -124,6 +134,8 @@ export const items = [
     img: Img9,
     description: "Bayani Poster",
     price: 7.99,
+    shippingCost: 6.79, // Base shipping cost
+    additionalShippingCost: 0.99, // Reduced cost for each additional item
     prices: { 
       "9 x 11": 7.99, 
       "12 x 18": 14.99, 
@@ -139,7 +151,9 @@ export const items = [
     category: "tops",
     img: Img10,
     description: "Korean Kulit Hoodie",
-    price: 24.99,
+    price: 39.99,
+    shippingCost: 8.49, // Base shipping cost
+    additionalShippingCost: 2.09, // Reduced cost for each additional item
     otherImgs: [KoreanHoodie1, KoreanHoodie2],
     specs:
       "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
