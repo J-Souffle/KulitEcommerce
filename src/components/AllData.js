@@ -36,13 +36,17 @@ export const items = [
     img: Img1,
     description: "Pasaway University Crewneck",
     price: 24.99,
-    shippingCost: 8.49, // Base shipping cost
-    additionalShippingCost: 2.09, // Reduced cost for each additional item
+    shippingCost: 8.49,
+    additionalShippingCost: 2.09,
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
     specs:
       "This CrewNeck sweatshirt is inspired by basketball teams made in the Philippines and is designed with a streetwear style. Made with cotton and polyester for a comfortable, relaxed fit, Perfect for cool weather.",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Red", img: PasawayUniversity1 },
+      { color: "Blue", img: PasawayUniversity2 },
+    ],
   },
   {
     id: 2,

@@ -15,6 +15,7 @@ function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const [image, setImage] = useState(item ? item.img : "");
   const [selectedSize, setSelectedSize] = useState(item?.sizes ? item.sizes[0] : "");
+  const [selectedColor, setSelectedColor] = useState(item?.colors ? item.colors[0].color : "");
 
   const { addToCart } = useContext(CartContext);
   const [notify, setNotify] = useState(false);
@@ -23,29 +24,26 @@ function ProductPage() {
     setImage(e.target.src);
   };
 
-  const increase = () => {
-    setQuantity(quantity + 1);
+  const handleColorChange = (color, img) => {
+    setSelectedColor(color);
+    setImage(img);
   };
 
-  const decrease = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  // Calculate the price based on the selected size and quantity
   const calcPrice = () => {
     const price = item?.prices ? item.prices[selectedSize] : item?.price;
     return quantity * price;
   };
 
-  const handleSizeChange = (size) => {
-    setSelectedSize(size);
-  };
-
   const handleAddToCart = () => {
     const price = item?.prices ? item.prices[selectedSize] : item?.price;
-    addToCart({ ...item, quantity, size: selectedSize, price });
+    addToCart({ 
+      ...item, 
+      quantity, 
+      size: selectedSize, 
+      color: selectedColor, 
+      img: image, 
+      price 
+    });
     setNotify(true);
     setTimeout(() => setNotify(false), 2000); // Hide notification after 2 seconds
   };
@@ -53,10 +51,7 @@ function ProductPage() {
   return (
     <>
       <Navbar />
-      <div
-        onAnimationEnd={() => setNotify(false)}
-        className={`notify ${notify ? "slide-in" : ""}`}
-      >
+      <div onAnimationEnd={() => setNotify(false)} className={`notify ${notify ? "slide-in" : ""}`}>
         <p>Item has been added to the cart &nbsp; ✅</p>
       </div>
 
@@ -90,7 +85,7 @@ function ProductPage() {
                     {item.sizes.map((size) => (
                       <button
                         key={size}
-                        onClick={() => handleSizeChange(size)}
+                        onClick={() => setSelectedSize(size)}
                         className={selectedSize === size ? 'selected' : ''}
                       >
                         {size}
@@ -100,12 +95,29 @@ function ProductPage() {
                 </div>
               )}
 
+              {item?.colors && (
+                <div className="product-color">
+                  <p>Select Color:</p>
+                  <div className="color-buttons">
+                    {item.colors.map(({ color, img }) => (
+                      <button
+                        key={color}
+                        onClick={() => handleColorChange(color, img)}
+                        className={selectedColor === color ? 'selected' : ''}
+                      >
+                        {color}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="product-quant">
                 <p>Quantity</p>
                 <div className="product-btns">
-                  <button onClick={decrease}>-</button>
+                  <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}>-</button>
                   <p className="quantity">{quantity}</p>
-                  <button onClick={increase}>+</button>
+                  <button onClick={() => setQuantity(quantity + 1)}>+</button>
                 </div>
                 <p className="product-price">${calcPrice().toFixed(2)}</p>
               </div>

@@ -7,24 +7,26 @@ function CartItem({ item }) {
 
   const handleIncrease = () => {
     setCartItem(cartItem.map(cartItem =>
-      cartItem.id === item.id && cartItem.size === item.size
-        ? { ...cartItem, quantity: cartItem.quantity + 1 }
-        : cartItem
+        cartItem.id === item.id && cartItem.size === item.size && cartItem.color === item.color
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
     ));
   };
 
   const handleDecrease = () => {
     if (item.quantity > 1) {
-      setCartItem(cartItem.map(cartItem =>
-        cartItem.id === item.id && cartItem.size === item.size
-          ? { ...cartItem, quantity: cartItem.quantity - 1 }
-          : cartItem
-      ));
+        setCartItem(cartItem.map(cartItem =>
+            cartItem.id === item.id && cartItem.size === item.size && cartItem.color === item.color
+                ? { ...cartItem, quantity: cartItem.quantity - 1 }
+                : cartItem
+        ));
     }
   };
 
   const handleRemove = () => {
-    setCartItem(cartItem.filter(cartItem => !(cartItem.id === item.id && cartItem.size === item.size)));
+    setCartItem(cartItem.filter(cartItem => 
+        !(cartItem.id === item.id && cartItem.size === item.size && cartItem.color === item.color)
+    ));
   };
 
   return (
@@ -35,6 +37,7 @@ function CartItem({ item }) {
       <div className="cart-item-info">
         <p className="cart-item-description">{item.description}</p>
         {item.size && <p className="cart-item-size">Size: {item.size}</p>}
+        {item.color && <p className="cart-item-color">Color: {item.color}</p>}
         <p className="cart-item-price">Price: ${(item.price * item.quantity).toFixed(2)}</p>
         <div className="quantity-controls">
           <button onClick={handleDecrease}>-</button>

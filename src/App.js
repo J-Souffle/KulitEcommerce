@@ -25,14 +25,17 @@ function App() {
 
   const addToCart = (newItem) => {
     setCartItem((prevCartItems) => {
-      const existingItem = prevCartItems.find(
-        (cartItem) => cartItem.id === newItem.id && cartItem.size === newItem.size
+      const existingItemIndex = prevCartItems.findIndex(
+        (cartItem) =>
+          cartItem.id === newItem.id &&
+          cartItem.size === newItem.size &&
+          cartItem.color === newItem.color
       );
 
-      if (existingItem) {
-        // If the item with the same ID and size exists, update the quantity
-        return prevCartItems.map((cartItem) =>
-          cartItem.id === newItem.id && cartItem.size === newItem.size
+      if (existingItemIndex !== -1) {
+        // If the item with the same ID, size, and color exists, update the quantity
+        return prevCartItems.map((cartItem, index) =>
+          index === existingItemIndex
             ? { ...cartItem, quantity: cartItem.quantity + newItem.quantity }
             : cartItem
         );
@@ -43,9 +46,12 @@ function App() {
     });
   };
 
-  const removeFromCart = (id, size) => {
+  const removeFromCart = (id, size, color) => {
     setCartItem((prevCartItems) =>
-      prevCartItems.filter((cartItem) => !(cartItem.id === id && cartItem.size === size))
+      prevCartItems.filter(
+        (cartItem) =>
+          !(cartItem.id === id && cartItem.size === size && cartItem.color === color)
+      )
     );
   };
 
@@ -68,7 +74,9 @@ function App() {
   };
 
   return (
-    <CartContext.Provider value={{ cartItem, addToCart, removeFromCart, setCartItem, getTotalQuantity }}>
+    <CartContext.Provider
+      value={{ cartItem, addToCart, removeFromCart, setCartItem, getTotalQuantity }}
+    >
       <Routes>
         <Route
           path="/"
