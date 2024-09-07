@@ -28,6 +28,15 @@ import KulitCar1 from "../img/products/otherProducts/KulitCar1.jpeg";
 import KulitCar2 from "../img/products/otherProducts/KulitCar2.jpeg";
 import BayaniPoster1 from "../img/products/otherProducts/BayaniPoster1.jpeg";
 import BayaniPoster2 from "../img/products/otherProducts/BayaniPoster2.jpeg";
+import PasawayUniversityGray from "../img/products/otherProducts/PasawayUniversityGray.jpeg";
+import PasawayUniversityBlack from "../img/products/otherProducts/PasawayUniversityBlack.jpeg";
+import PasawayUniversityWhite from "../img/products/otherProducts/PasawayUniversityWhite.jpeg";
+import KamaoChambray from "../img/products/otherProducts/KamaoChambray.jpeg";
+import KamaoBlack from "../img/products/otherProducts/KamaoBlack.jpeg";
+import KoreanIvory from "../img/products/otherProducts/KoreanIvory.jpeg";
+import KoreanGranite from "../img/products/otherProducts/KoreanGranite.jpeg";
+import KulitTeeIvory from "../img/products/otherProducts/KulitTeeIvory.jpeg";
+import KulitTeeBlack from "../img/products/otherProducts/KulitTeeBlack.jpeg";
 
 export const items = [
   {
@@ -44,8 +53,9 @@ export const items = [
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
-      { color: "Red", img: PasawayUniversity1 },
-      { color: "Blue", img: PasawayUniversity2 },
+      { color: "Gray", img: PasawayUniversityGray },
+      { color: "Black", img: PasawayUniversityBlack },
+      { color: "White", img: PasawayUniversityWhite },
     ],
   },
   {
@@ -75,6 +85,10 @@ export const items = [
       "This Tee is designed with a 2d pixelated style and is inspired by our pambansang kamao to represent the bravery and dedication of Filipinos. Made with 100% ringspun cotton to make it an excellent daily choice.",
     texture: "100% Cotton", 
     sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Chambray", img: KamaoChambray },
+      { color: "Black", img: KamaoBlack },
+    ],
   },
   {
     id: 4,
@@ -89,6 +103,10 @@ export const items = [
       "A simple styled tee representing the Kulit brand in Korean. Made with 100% wingspun cotton to make it an excellent daily choice.",
     texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Granite", img: KoreanGranite },
+      { color: "Ivory", img: KoreanIvory },
+    ],
   },
   {
     id: 5,
@@ -103,6 +121,10 @@ export const items = [
       "A classic styled tee representing the Kulit brand. Made with 100% wingspun cotton to make it an excellent daily choice.",
     texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Ivory", img: KulitTeeIvory },
+      { color: "Black", img: KulitTeeBlack },
+    ],
   },
   {
     id: 6,
