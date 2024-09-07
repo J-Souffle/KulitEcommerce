@@ -203,18 +203,20 @@ function CheckoutPage() {
               <img src={item.img} alt="product" />
             </div>
             <div className="cart-details">
-              <p className="cart-name">{item.description}</p>
-              {item.size && <p className="cart-size">Size: {item.size}</p>}
-              <div className="cart-price">
-                <div className="quantity-buttons">
-                  <button className="quantity-button" onClick={() => increaseQuantity(item.id, item.size)}>+</button>
-                  <span className="quantity-text">{item.quantity}</span>
-                  <button className="quantity-button" onClick={() => decreaseQuantity(item.id, item.size)}>-</button>
-                </div>
-                <span className="cart-total-item-price">${(item.price * item.quantity).toFixed(2)}</span>
-              </div>
-              <button className="delete-btn" onClick={() => removeItem(item.id, item.size)}>Delete</button>
-            </div>
+  <p className="cart-name">{item.description}</p>
+  {item.color && <p className="cart-color">Color: {item.color}</p>}  {/* Display color */}
+  {item.size && <p className="cart-size">Size: {item.size}</p>}
+  <div className="cart-price">
+    <div className="quantity-buttons">
+      <button className="quantity-button" onClick={() => increaseQuantity(item.id, item.size)}>+</button>
+      <span className="quantity-text">{item.quantity}</span>
+      <button className="quantity-button" onClick={() => decreaseQuantity(item.id, item.size)}>-</button>
+    </div>
+    <span className="cart-total-item-price">${(item.price * item.quantity).toFixed(2)}</span>
+  </div>
+  <button className="delete-btn" onClick={() => removeItem(item.id, item.size)}>Delete</button>
+</div>
+
           </div>
         ))}
         <form className="address-form">
