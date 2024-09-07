@@ -53,6 +53,7 @@ export const items = [
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
+      { color: "Ivory", img: Img1 },
       { color: "Gray", img: PasawayUniversityGray },
       { color: "Black", img: PasawayUniversityBlack },
       { color: "White", img: PasawayUniversityWhite },
@@ -86,6 +87,7 @@ export const items = [
     texture: "100% Cotton", 
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
+      { color: "Ivory", img: Img3 },
       { color: "Chambray", img: KamaoChambray },
       { color: "Black", img: KamaoBlack },
     ],
@@ -104,6 +106,7 @@ export const items = [
     texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
+      { color: "White", img: Img4 },
       { color: "Granite", img: KoreanGranite },
       { color: "Ivory", img: KoreanIvory },
     ],
@@ -122,6 +125,7 @@ export const items = [
     texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
+      { color: "White", img: Img6 },
       { color: "Ivory", img: KulitTeeIvory },
       { color: "Black", img: KulitTeeBlack },
     ],
