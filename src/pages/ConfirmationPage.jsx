@@ -49,6 +49,7 @@ const ConfirmationPage = () => {
                     </div>
                     <div className="product-info">
                       <p>{item.description}</p>
+                      {item.color && <p>Color: {item.color}</p>} 
                       <p>Size: {item.size}</p>
                       <p>Quantity: {item.quantity}</p>
                       <p>Total: ${ (item.price * item.quantity).toFixed(2) }</p>
