@@ -10,14 +10,14 @@ import Img9 from "../img/products/9.jpeg";
 import Img10 from "../img/products/10.jpeg";
 import PasawayUniversity1 from "../img/products/otherProducts/PasawayUniversityCrewneck1.jpeg";
 import PasawayUniversity2 from "../img/products/otherProducts/PasawayUniversityCrewneck2.jpeg";
-import FirstKulit1 from "../img/products/otherProducts/FirstKulitHoodie1.jpeg"
-import FirstKulit2 from "../img/products/otherProducts/FirstKulitHoodie2.jpeg"
+import FirstKulit1 from "../img/products/otherProducts/FirstKulitHoodie1.jpeg";
+import FirstKulit2 from "../img/products/otherProducts/FirstKulitHoodie2.jpeg";
 import Kamao1 from "../img/products/otherProducts/Kamao1.jpeg";
 import Kamao2 from "../img/products/otherProducts/Kamao2.jpeg";
 import KoreanShirt1 from "../img/products/otherProducts/KulitKoreanShirt1.jpeg";
 import KoreanShirt2 from "../img/products/otherProducts/KulitKoreanShirt2.jpeg";
-import KoreanHoodie1 from "../img/products/otherProducts/KulitKoreanHoodie1.jpeg"
-import KoreanHoodie2 from "../img/products/otherProducts/KulitKoreanHoodie2.jpeg"
+import KoreanHoodie1 from "../img/products/otherProducts/KulitKoreanHoodie1.jpeg";
+import KoreanHoodie2 from "../img/products/otherProducts/KulitKoreanHoodie2.jpeg";
 // import Barangay1 from "../img/products/otherProducts/BarangayKulitCrewneck1.jpeg";
 // import Barangay2 from "../img/products/otherProducts/BarangayKulitCrewneck2.jpeg";
 import KulitTee1 from "../img/products/otherProducts/KulitTee1.jpeg";
@@ -37,41 +37,61 @@ import KoreanIvory from "../img/products/otherProducts/KoreanIvory.jpeg";
 import KoreanGranite from "../img/products/otherProducts/KoreanGranite.jpeg";
 import KulitTeeIvory from "../img/products/otherProducts/KulitTeeIvory.jpeg";
 import KulitTeeBlack from "../img/products/otherProducts/KulitTeeBlack.jpeg";
+import PasawayUniversityGray1 from "../img/products/otherProducts/PasawayUniversityGray1.jpeg";
+import PasawayUniversityGray2 from "../img/products/otherProducts/PasawayUniversityGray2.jpeg";
+import PasawayUniversityBlack1 from "../img/products/otherProducts/PasawayUniversityBlack1.jpeg";
+import PasawayUniversityBlack2 from "../img/products/otherProducts/PasawayUniversityBlack2.jpeg";
+import PasawayUniversityWhite1 from "../img/products/otherProducts/PasawayUniversityWhite1.jpeg";
+import PasawayUniversityWhite2 from "../img/products/otherProducts/PasawayUniversityWhite2.jpeg";
+import KamaoChambray1 from "../img/products/otherProducts/KamaoChambray1.jpeg";
+import KamaoChambray2 from "../img/products/otherProducts/KamaoChambray2.jpeg";
+import KamaoBlack1 from "../img/products/otherProducts/KamaoBlack1.jpeg";
+import KamaoBlack2 from "../img/products/otherProducts/KamaoBlack2.jpeg";
+import KoreanGranite1 from "../img/products/otherProducts/KoreanTeeGranite1.jpeg";
+import KoreanGranite2 from "../img/products/otherProducts/KoreanTeeGranite2.jpeg";
+import KoreanIvory1 from "../img/products/otherProducts/KoreanTeeIvory1.jpeg";
+import KoreanIvory2 from "../img/products/otherProducts/KoreanTeeIvory2.jpeg";
+import KulitTeeIvory1 from "../img/products/otherProducts/KulitIvory1.jpeg";
+import KulitTeeIvory2 from "../img/products/otherProducts/KulitIvory2.jpeg";
+import KulitTeeBlack1 from "../img/products/otherProducts/KulitBlack1.jpeg";
+import KulitTeeBlack2 from "../img/products/otherProducts/KulitBlack2.jpeg";
+
 
 export const items = [
   {
     id: 1,
     category: "tops",
-    img: Img1,
+    img: Img1, // Default image
     description: "Pasaway University Crewneck",
     price: 24.99,
     shippingCost: 8.49,
     additionalShippingCost: 2.09,
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
-    specs:
-      "This CrewNeck sweatshirt is inspired by basketball teams made in the Philippines and is designed with a streetwear style. Made with cotton and polyester for a comfortable, relaxed fit, Perfect for cool weather.",
+    specs: "This CrewNeck sweatshirt is inspired by basketball teams made in the Philippines and is designed with a streetwear style.",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
-      { color: "Ivory", img: Img1 },
-      { color: "Gray", img: PasawayUniversityGray },
-      { color: "Black", img: PasawayUniversityBlack },
-      { color: "White", img: PasawayUniversityWhite },
+      { color: "Ivory", img: Img1, additionalImgs: [PasawayUniversity1, PasawayUniversity2] },
+      { color: "Gray", img: PasawayUniversityGray, additionalImgs: [PasawayUniversityGray, PasawayUniversityGray1, PasawayUniversityGray2] },
+      { color: "Black", img: PasawayUniversityBlack, additionalImgs: [PasawayUniversityBlack, PasawayUniversityBlack1, PasawayUniversityBlack2] },
+      { color: "White", img: PasawayUniversityWhite, additionalImgs: [PasawayUniversityWhite, PasawayUniversityWhite1, PasawayUniversityWhite2] },
     ],
-  },
+  },  
   {
     id: 2,
     category: "tops",
     img: Img2,
     description: "Classic Kulit Hoodie",
     price: 39.99,
-    shippingCost: 8.49, // Base shipping cost
-    additionalShippingCost: 2.09, // Reduced cost for each additional item
+    shippingCost: 8.49,
+    additionalShippingCost: 2.09,
     otherImgs: [FirstKulit1, FirstKulit2],
-    specs:
-      "A classic styled hoodie respresenting the Kulit brand. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+    specs: "A classic styled hoodie representing the Kulit brand. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "White", img: Img2, additionalImgs: [FirstKulit1, FirstKulit2] },
+    ],
   },
   {
     id: 3,
@@ -87,9 +107,9 @@ export const items = [
     texture: "100% Cotton", 
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
-      { color: "Ivory", img: Img3 },
-      { color: "Chambray", img: KamaoChambray },
-      { color: "Black", img: KamaoBlack },
+      { color: "Ivory", img: Img3, additionalImgs: [Kamao2, Kamao1] },
+      { color: "Chambray", img: KamaoChambray, additionalImgs: [KamaoChambray, KamaoChambray1, KamaoChambray2] },
+      { color: "Black", img: KamaoBlack, additionalImgs: [KamaoBlack, KamaoBlack1, KamaoBlack2] },
     ],
   },
   {
@@ -106,9 +126,9 @@ export const items = [
     texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
-      { color: "White", img: Img4 },
-      { color: "Granite", img: KoreanGranite },
-      { color: "Ivory", img: KoreanIvory },
+      { color: "White", img: Img4, additionalImgs: [KoreanShirt1, KoreanShirt2]},
+      { color: "Granite", img: KoreanGranite, additionalImgs: [KoreanGranite, KoreanGranite1, KoreanGranite2] },
+      { color: "Ivory", img: KoreanIvory, additionalImgs: [KoreanIvory, KoreanIvory1, KoreanIvory2] },
     ],
   },
   {
@@ -125,9 +145,9 @@ export const items = [
     texture: "100% Cotton",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
-      { color: "White", img: Img6 },
-      { color: "Ivory", img: KulitTeeIvory },
-      { color: "Black", img: KulitTeeBlack },
+      { color: "White", img: Img6, additionalImgs: [KulitTee1, KulitTee2]},
+      { color: "Ivory", img: KulitTeeIvory, additionalImgs: [KulitTeeIvory, KulitTeeIvory1, KulitTeeIvory2] },
+      { color: "Black", img: KulitTeeBlack, additionalImgs: [KulitTeeBlack, KulitTeeBlack1, KulitTeeBlack2] },
     ],
   },
   {
@@ -189,5 +209,8 @@ export const items = [
       "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Charcoal", img: Img10, additionalImgs: [KoreanHoodie1, KoreanHoodie2] },
+    ],
   },
 ];

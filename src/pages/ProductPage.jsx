@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { items } from "../components/AllData.js";
 import TrendingSlider from "../components/TrendingSlider.jsx";
 import Newsletter from "../components/Newsletter.jsx";
@@ -13,20 +13,32 @@ function ProductPage() {
   const item = items.find((item) => item.id === parseInt(id));
 
   const [quantity, setQuantity] = useState(1);
-  const [image, setImage] = useState(item ? item.img : "");
+  const [image, setImage] = useState("");
+  const [additionalImages, setAdditionalImages] = useState([]);
   const [selectedSize, setSelectedSize] = useState(item?.sizes ? item.sizes[0] : "");
-  const [selectedColor, setSelectedColor] = useState(item?.colors ? item.colors[0].color : "");
+  const [selectedColor, setSelectedColor] = useState(item?.colors?.[0]?.color || ""); // Handle missing colors
 
   const { addToCart } = useContext(CartContext);
   const [notify, setNotify] = useState(false);
 
-  const changeImage = (e) => {
-    setImage(e.target.src);
-  };
+  // Set the initial image and additional images based on the default color (if exists) or default image
+  useEffect(() => {
+    if (item) {
+      if (item.colors && item.colors.length > 0) {
+        const defaultColor = item.colors[0];
+        setImage(defaultColor.img);
+        setAdditionalImages(defaultColor.additionalImgs || []);
+      } else {
+        setImage(item.img); // Use the main item image if no colors are available
+        setAdditionalImages(item.otherImgs || []);
+      }
+    }
+  }, [item]);
 
-  const handleColorChange = (color, img) => {
+  const handleColorChange = (color, img, additionalImgs) => {
     setSelectedColor(color);
-    setImage(img);
+    setImage(img); // Update the main image to the selected color image
+    setAdditionalImages(additionalImgs || []); // Update additional images for the selected color
   };
 
   const calcPrice = () => {
@@ -36,16 +48,20 @@ function ProductPage() {
 
   const handleAddToCart = () => {
     const price = item?.prices ? item.prices[selectedSize] : item?.price;
-    addToCart({ 
-      ...item, 
-      quantity, 
-      size: selectedSize, 
-      color: selectedColor, 
-      img: image, 
-      price 
+    addToCart({
+      ...item,
+      quantity,
+      size: selectedSize,
+      color: selectedColor || "default",
+      img: image,
+      price,
     });
     setNotify(true);
     setTimeout(() => setNotify(false), 2000); // Hide notification after 2 seconds
+  };
+
+  const changeImage = (e) => {
+    setImage(e.target.src);
   };
 
   return (
@@ -64,15 +80,15 @@ function ProductPage() {
                 <img src={image} alt="product" />
               </div>
               <div className="small-imgs">
-                <img onMouseOver={changeImage} src={item ? item.img : ""} alt="product" />
-                {item && item.otherImgs && item.otherImgs.length > 0 && (
-                  <>
-                    <img onMouseOver={changeImage} src={item.otherImgs[0]} alt="product" />
-                    {item.otherImgs.length > 1 && (
-                      <img onMouseOver={changeImage} src={item.otherImgs[1]} alt="product" />
-                    )}
-                  </>
-                )}
+                <img
+                  src={item ? item.img : ""}
+                  alt="default"
+                  onMouseOver={changeImage}
+                  style={{ display: selectedColor === (item?.colors?.[0]?.color || "default") ? "block" : "none" }}
+                />
+                {additionalImages.map((imgSrc, index) => (
+                  <img key={index} src={imgSrc} alt={`preview-${index}`} onMouseOver={changeImage} />
+                ))}
               </div>
             </div>
             <div className="product-right">
@@ -95,14 +111,14 @@ function ProductPage() {
                 </div>
               )}
 
-              {item?.colors && (
+              {item?.colors && item.colors.length > 0 && (
                 <div className="product-color">
                   <p>Select Color:</p>
                   <div className="color-buttons">
-                    {item.colors.map(({ color, img }) => (
+                    {item.colors.map(({ color, img, additionalImgs }) => (
                       <button
                         key={color}
-                        onClick={() => handleColorChange(color, img)}
+                        onClick={() => handleColorChange(color, img, additionalImgs)}
                         className={selectedColor === color ? 'selected' : ''}
                       >
                         {color}
