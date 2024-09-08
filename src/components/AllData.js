@@ -67,7 +67,7 @@ export const items = [
     shippingCost: 8.49,
     additionalShippingCost: 2.09,
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
-    specs: "Use this This CrewNeck sweatshirt is designed to reference a certain characteristic that Pinoy’s have. Made with cotton and polyester to ensure your comfort, Perfect for cool weather.",
+    specs: "This CrewNeck sweatshirt is designed to reference a certain characteristic that Pinoy’s have. Made with cotton and polyester to ensure your comfort, Perfect for cool weather.",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
