@@ -8,6 +8,11 @@ import Img7 from "../img/products/7.jpeg";
 import Img8 from "../img/products/8.jpeg";
 import Img9 from "../img/products/9.jpeg";
 import Img10 from "../img/products/10.jpeg";
+import Img11 from "../img/products/11.jpeg";
+import Img12 from "../img/products/12.jpeg";
+import Img13 from "../img/products/13.jpeg";
+import Img14 from "../img/products/14.jpeg";
+import Img15 from "../img/products/15.jpeg";
 import PasawayUniversity1 from "../img/products/otherProducts/PasawayUniversityCrewneck1.jpeg";
 import PasawayUniversity2 from "../img/products/otherProducts/PasawayUniversityCrewneck2.jpeg";
 import FirstKulit1 from "../img/products/otherProducts/FirstKulitHoodie1.jpeg";
@@ -55,6 +60,22 @@ import KulitTeeIvory1 from "../img/products/otherProducts/KulitIvory1.jpeg";
 import KulitTeeIvory2 from "../img/products/otherProducts/KulitIvory2.jpeg";
 import KulitTeeBlack1 from "../img/products/otherProducts/KulitBlack1.jpeg";
 import KulitTeeBlack2 from "../img/products/otherProducts/KulitBlack2.jpeg";
+import PinoyAkoHoodie1 from "../img/products/otherProducts/PinoyAkoHoodie1.jpeg";
+import PinoyAkoHoodie2 from "../img/products/otherProducts/PinoyAkoHoodie2.jpeg";
+import PinayAkoHoodie1 from "../img/products/otherProducts/PinayAkoHoodie1.jpeg";
+import PinayAkoHoodie2 from "../img/products/otherProducts/PinayAkoHoodie2.jpeg";
+import PinoyAkoJacketNavy from "../img/products/otherProducts/PinoyAkoJacketNavy.jpeg";
+import PinoyAkoJacketBlack1 from "../img/products/otherProducts/PinoyAkoJacketBlack1.jpeg";
+import PinoyAkoJacketBlack2 from "../img/products/otherProducts/PinoyAkoJacketBlack2.jpeg";
+import PinoyAkoJacketGray1 from "../img/products/otherProducts/PinoyAkoJacketGray1.jpeg";
+import PinoyAkoJacketGray2 from "../img/products/otherProducts/PinoyAkoJacketGray2.jpeg";
+import PinayAkoJacketBlack from "../img/products/otherProducts/PinayAkoJacketBlack.jpeg";
+import PinayAkoJacketNavy1 from "../img/products/otherProducts/PinayAkoJacketNavy1.jpeg";
+import PinayAkoJacketNavy2 from "../img/products/otherProducts/PinayAkoJacketNavy2.jpeg";
+import PinayAkoJacketGray1 from "../img/products/otherProducts/PinayAkoJacketGray1.jpeg";
+import PinayAkoJacketGray2 from "../img/products/otherProducts/PinayAkoJacketGray2.jpeg";
+import PhilippinesSocks from "../img/products/otherProducts/PhilippinesSocks.jpeg";
+
 
 
 export const items = [
@@ -82,7 +103,7 @@ export const items = [
     category: "tops",
     img: Img2,
     description: "Classic Kulit Hoodie",
-    price: 39.99,
+    price: 29.99,
     shippingCost: 8.49,
     additionalShippingCost: 2.09,
     otherImgs: [FirstKulit1, FirstKulit2],
@@ -152,7 +173,7 @@ export const items = [
   },
   {
     id: 6,
-    category: "accessories",
+    category: "other",
     img: Img7,
     description: "Pasaway Sticker",
     price: 1.99,
@@ -166,7 +187,7 @@ export const items = [
   },
   {
     id: 7,
-    category: "accessories",
+    category: "other",
     img: Img8,
     description: "Kulit Drift Sticker",
     price: 1.99,
@@ -180,7 +201,7 @@ export const items = [
   },
   {
     id: 8,
-    category: "accessories",
+    category: "other",
     img: Img9,
     description: "Bayani Poster",
     price: 7.99,
@@ -201,7 +222,7 @@ export const items = [
     category: "tops",
     img: Img10,
     description: "Korean Kulit Hoodie",
-    price: 39.99,
+    price: 29.99,
     shippingCost: 8.49, // Base shipping cost
     additionalShippingCost: 2.09, // Reduced cost for each additional item
     otherImgs: [KoreanHoodie1, KoreanHoodie2],
@@ -211,6 +232,92 @@ export const items = [
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
       { color: "Charcoal", img: Img10, additionalImgs: [KoreanHoodie1, KoreanHoodie2] },
+    ],
+  },
+  {
+    id: 10,
+    category: "tops",
+    img: Img11,
+    description: "Pinoy Ako Hoodie",
+    price: 29.99,
+    shippingCost: 8.49, // Base shipping cost
+    additionalShippingCost: 2.09, // Reduced cost for each additional item
+    otherImgs: [PinoyAkoHoodie1, PinoyAkoHoodie2],
+    specs:
+      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+    texture: "50% Cotton / 50% Polyester",
+    sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Black", img: Img11, additionalImgs: [PinoyAkoHoodie1, PinoyAkoHoodie2] },
+    ],
+  },
+  {
+    id: 11,
+    category: "tops",
+    img: Img12,
+    description: "Pinay Ako Hoodie",
+    price: 29.99,
+    shippingCost: 8.49, // Base shipping cost
+    additionalShippingCost: 2.09, // Reduced cost for each additional item
+    otherImgs: [PinayAkoHoodie1, PinayAkoHoodie2],
+    specs:
+      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+    texture: "50% Cotton / 50% Polyester",
+    sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Black", img: Img12, additionalImgs: [PinayAkoHoodie1, PinayAkoHoodie2] },
+    ],
+  },
+  {
+    id: 12,
+    category: "accessories",
+    img: Img13,
+    description: "Philippines Socks",
+    price: 9.99,
+    shippingCost: 8.49, // Base shipping cost
+    additionalShippingCost: 2.09, // Reduced cost for each additional item
+    otherImgs: [PhilippinesSocks],
+    specs:
+      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+    texture: "50% Cotton / 50% Polyester",
+    sizes: ["Small", "Medium", "Large", "Extra Large"],
+  },
+  {
+    id: 13,
+    category: "tops",
+    img: Img14,
+    description: "Pinoy Ako Jacket",
+    price: 39.99,
+    shippingCost: 8.49, // Base shipping cost
+    additionalShippingCost: 2.09, // Reduced cost for each additional item
+    otherImgs: [PinoyAkoJacketNavy],
+    specs:
+      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+    texture: "50% Cotton / 50% Polyester",
+    sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Navy", img: Img14, additionalImgs: [PinoyAkoJacketNavy] },
+      { color: "Gray", img: PinoyAkoJacketGray1, additionalImgs: [PinoyAkoJacketGray1, PinoyAkoJacketGray2] },
+      { color: "Black", img: PinoyAkoJacketBlack1, additionalImgs: [PinoyAkoJacketBlack1, PinoyAkoJacketBlack2] },
+    ],
+  },
+  {
+    id: 14,
+    category: "tops",
+    img: Img15,
+    description: "Pinay Ako Jacket",
+    price: 39.99,
+    shippingCost: 8.49, // Base shipping cost
+    additionalShippingCost: 2.09, // Reduced cost for each additional item
+    otherImgs: [PinayAkoHoodie1, PinayAkoHoodie2],
+    specs:
+      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+    texture: "50% Cotton / 50% Polyester",
+    sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "Black", img: Img15, additionalImgs: [PinayAkoJacketBlack] },
+      { color: "Gray", img: PinayAkoJacketGray1, additionalImgs: [PinayAkoJacketGray1, PinayAkoJacketGray2] },
+      { color: "Navy", img: PinayAkoJacketNavy1, additionalImgs: [PinayAkoJacketNavy1, PinayAkoJacketNavy2] },
     ],
   },
 ];

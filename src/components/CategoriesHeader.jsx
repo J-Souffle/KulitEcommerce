@@ -1,15 +1,28 @@
 import { IconChevronLeft } from "@tabler/icons-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function CategoriesHeader() {
+  const location = useLocation(); // Get current path
   const [btnName, setBtnName] = useState("All");
 
-  const handleBtnName = (e) => {
-    setBtnName(e);
-  };
+  useEffect(() => {
+    // Map the current URL path to the appropriate header text
+    switch (location.pathname) {
+      case "/categories/tops":
+        setBtnName("Tops");
+        break;
+      case "/categories/accessories":
+        setBtnName("Accessories");
+        break;
+      case "/categories/other":
+        setBtnName("Other");
+        break;
+      default:
+        setBtnName("All");
+    }
+  }, [location.pathname]); // Re-run this effect whenever the pathname changes
 
-  // NEED TO UPDATE THIS
   return (
     <>
       <div className="container">
@@ -21,19 +34,17 @@ function CategoriesHeader() {
             <h3>{btnName}</h3>
           </div>
           <div className="filter-btns">
-            <Link to="all" onClick={() => handleBtnName("all")}>
+            <Link to="all">
               <button>All</button>
             </Link>
             <Link to="tops">
-              <button onClick={() => handleBtnName("tops")}>Tops</button>
+              <button>Tops</button>
             </Link>
             <Link to="accessories">
-              <button onClick={() => handleBtnName("accessories")}>
-                Accessories
-              </button>
+              <button>Accessories</button>
             </Link>
             <Link to="other">
-              <button onClick={() => handleBtnName("other")}>Other</button>
+              <button>Other</button>
             </Link>
           </div>
         </div>

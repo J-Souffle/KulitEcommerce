@@ -3,6 +3,9 @@ import Main1 from "../img/header/AllClothing.jpg";
 import Main2 from "../img/header/Hoodies.jpg";
 import Main3 from "../img/header/Shirts.jpg";
 import Main4 from "../img/header/Other.jpg";
+// import Main5 from "../img/header/OtherSticker.jpeg"
+// import Main6 from "../img/header/Socks.jpeg"
+// import Main7 from "../img/header/PhilippinesSweatshirt.jpeg"
 import { Link } from "react-router-dom";
 
 function Hero() {
