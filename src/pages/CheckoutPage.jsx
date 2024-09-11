@@ -85,13 +85,16 @@ function CheckoutPage() {
     if (promoCode === "10OFF!") {
       setDiscount(0.1);
       setPromoCodeError("");
+    } else if (promoCode === "30OFF!") {
+        setDiscount(0.3);
+        setPromoCodeError("");
     } else {
       setDiscount(0);
       setPromoCodeError("Invalid promo code");
     }
   };
 
-  const salesTax = (totalPrice - discount * totalPrice) * 0.06;
+  const salesTax = totalPrice * 0.06;
   const discountAmount = totalPrice * discount;
   const totalAmount = totalPrice + shippingCost + salesTax - discountAmount;
   const priceForStripe = Math.round(totalAmount * 100);
@@ -321,10 +324,10 @@ function CheckoutPage() {
               <span>Shipping: </span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`} <br />
             </>
           )}
-          <span>Sales Tax: </span>${salesTax.toFixed(2)} <br />
           {discount > 0 && (
             <span>Discount: -${discountAmount.toFixed(2)} <br /></span>
           )}
+          <span>Sales Tax: </span>${salesTax.toFixed(2)} <br />
           <span>Total: </span>${totalAmount.toFixed(2)}
         </div>
         <div className="stripe-checkout-button-wrapper">
