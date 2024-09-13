@@ -244,7 +244,7 @@ export const items = [
     additionalShippingCost: 2.09, // Reduced cost for each additional item
     otherImgs: [PinoyAkoHoodie1, PinoyAkoHoodie2],
     specs:
-      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+      "A Hoodie representing the Philippines, designed with the colors and other elements on the Philippine flag. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
@@ -261,7 +261,7 @@ export const items = [
     additionalShippingCost: 2.09, // Reduced cost for each additional item
     otherImgs: [PinayAkoHoodie1, PinayAkoHoodie2],
     specs:
-      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+      "A Hoodie representing the Philippines, designed with the colors and other elements on the Philippine flag. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day. ",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
@@ -292,7 +292,7 @@ export const items = [
     additionalShippingCost: 2.09, // Reduced cost for each additional item
     otherImgs: [PinoyAkoJacketNavy],
     specs:
-      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+      "A full comfy zip-up hoodie, featuring air-jet spun yarn for a softer fleece with reduced pilling. Designed with colors and other elements on the Philippine flag to represent the Philippines. Made with 50% cotton and 50% polyester, once put on, it will be impossible to take off.",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
@@ -311,7 +311,7 @@ export const items = [
     additionalShippingCost: 2.09, // Reduced cost for each additional item
     otherImgs: [PinayAkoHoodie1, PinayAkoHoodie2],
     specs:
-      "A simple styled hoodie representing the Kulit brand in Korean. Made with a thick blend of cotton and polyester, feels plush, soft and warm, a perfect choice for any cold day.",
+      "A full comfy zip-up hoodie, featuring air-jet spun yarn for a softer fleece with reduced pilling. Designed with colors and other elements on the Philippine flag to represent the Philippines. Made with 50% cotton and 50% polyester, once put on, it will be impossible to take off.",
     texture: "50% Cotton / 50% Polyester",
     sizes: ["Small", "Medium", "Large", "Extra Large"],
     colors: [
