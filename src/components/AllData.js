@@ -84,7 +84,7 @@ export const items = [
     category: "tops",
     img: Img1, // Default image
     description: "Pasaway University Crewneck",
-    price: 24.99,
+    price: 19.99,
     shippingCost: 8.49,
     additionalShippingCost: 2.09,
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
@@ -119,7 +119,7 @@ export const items = [
     category: "tops",
     img: Img3,
     description: "Kamao T-Shirt",
-    price: 24.99,
+    price: 19.99,
     shippingCost: 4.75, // Base shipping cost
     additionalShippingCost: 2.40, // Reduced cost for each additional item
     otherImgs: [Kamao1, Kamao2],
@@ -134,11 +134,11 @@ export const items = [
     ],
   },
   {
-    id: 4,
+    id: 10,
     category: "tops",
     img: Img4,
     description: "Korean Kulit T-Shirt",
-    price: 24.99,
+    price: 19.99,
     shippingCost: 4.75, // Base shipping cost
     additionalShippingCost: 2.40, // Reduced cost for each additional item
     otherImgs: [KoreanShirt1, KoreanShirt2],
@@ -157,7 +157,7 @@ export const items = [
     category: "tops",
     img: Img6,
     description: "Kulit T-Shirt",
-    price: 24.99,
+    price: 19.99,
     shippingCost: 4.75, // Base shipping cost
     additionalShippingCost: 2.40, // Reduced cost for each additional item
     otherImgs: [KulitTee1, KulitTee2],
@@ -172,7 +172,7 @@ export const items = [
     ],
   },
   {
-    id: 6,
+    id: 11,
     category: "other",
     img: Img7,
     description: "Pasaway Sticker",
@@ -186,7 +186,7 @@ export const items = [
     size: "10cm x 5cm",
   },
   {
-    id: 7,
+    id: 13,
     category: "other",
     img: Img8,
     description: "Kulit Drift Sticker",
@@ -200,7 +200,7 @@ export const items = [
     size: "10cm x 5cm",
   },
   {
-    id: 8,
+    id: 14,
     category: "other",
     img: Img9,
     description: "Bayani Poster",
@@ -235,7 +235,7 @@ export const items = [
     ],
   },
   {
-    id: 10,
+    id: 4,
     category: "tops",
     img: Img11,
     description: "Pinoy Ako Hoodie",
@@ -252,7 +252,7 @@ export const items = [
     ],
   },
   {
-    id: 11,
+    id: 6,
     category: "tops",
     img: Img12,
     description: "Pinay Ako Hoodie",
@@ -283,7 +283,7 @@ export const items = [
     sizes: ["Small", "Medium", "Large", "Extra Large"],
   },
   {
-    id: 13,
+    id: 7,
     category: "tops",
     img: Img14,
     description: "Pinoy Ako Jacket",
@@ -302,7 +302,7 @@ export const items = [
     ],
   },
   {
-    id: 14,
+    id: 8,
     category: "tops",
     img: Img15,
     description: "Pinay Ako Jacket",
