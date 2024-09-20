@@ -87,7 +87,7 @@ export const items = [
     category: "tops",
     img: Img1, // Default image
     description: "Pasaway University Crewneck",
-    price: 19.99,
+    price: 24.99,
     shippingCost: 8.49,
     additionalShippingCost: 2.09,
     otherImgs: [PasawayUniversity1, PasawayUniversity2],
