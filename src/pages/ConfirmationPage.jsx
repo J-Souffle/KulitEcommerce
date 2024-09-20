@@ -22,7 +22,8 @@ const ConfirmationPage = () => {
     salesTax = 0,
     discountAmount = 0,
     orderNumber = '',
-    confirmedDate = ''
+    confirmedDate = '',
+    promoCode = '' // Add promoCode to destructured orderDetails
   } = orderDetails || {};
 
   const subtotal = products.reduce((total, item) => total + (item.price * item.quantity), 0);
@@ -38,6 +39,9 @@ const ConfirmationPage = () => {
             <p>Thank you for your purchase! The order has been processed successfully and you will receive a confirmation email soon. Please give 2-5 business days to process and deliver your order.</p>
             <p><strong>Order Number:</strong> {orderNumber}</p>
             <p><strong>Order Confirmed Date:</strong> {confirmedDate}</p>
+            {promoCode && ( // Show promo code if it exists
+              <p><strong>Promo Code Used:</strong> {promoCode}</p>
+            )}
             <br />
             <div className="order-summary">
               <h3>Order Summary</h3>
@@ -49,7 +53,7 @@ const ConfirmationPage = () => {
                     </div>
                     <div className="product-info">
                       <p>{item.description}</p>
-                      {item.color && <p>Color: {item.color}</p>} 
+                      {item.color && <p>Color: {item.color}</p>}
                       <p>Size: {item.size}</p>
                       <p>Quantity: {item.quantity}</p>
                       <p>Total: ${ (item.price * item.quantity).toFixed(2) }</p>

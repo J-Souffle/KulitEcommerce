@@ -117,6 +117,7 @@ function CheckoutPage() {
           shippingCost,
           salesTax,
           discountAmount,
+          promoCode: promoCode,
           totalAmount,
         }
       }
@@ -162,7 +163,8 @@ function CheckoutPage() {
         data: {
           amount: priceForStripe,
           token,
-          cartItems: cartItem,
+          cartItems: cartItem, 
+          promoCode,
         },
       });
       if (response.status === 200) {

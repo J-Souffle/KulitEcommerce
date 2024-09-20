@@ -13,6 +13,7 @@ import Img12 from "../img/products/12.jpeg";
 import Img13 from "../img/products/13.jpeg";
 import Img14 from "../img/products/14.jpeg";
 import Img15 from "../img/products/15.jpeg";
+import Img16 from "../img/products/16.jpeg";
 import PasawayUniversity1 from "../img/products/otherProducts/PasawayUniversityCrewneck1.jpeg";
 import PasawayUniversity2 from "../img/products/otherProducts/PasawayUniversityCrewneck2.jpeg";
 import FirstKulit1 from "../img/products/otherProducts/FirstKulitHoodie1.jpeg";
@@ -75,6 +76,8 @@ import PinayAkoJacketNavy2 from "../img/products/otherProducts/PinayAkoJacketNav
 import PinayAkoJacketGray1 from "../img/products/otherProducts/PinayAkoJacketGray1.jpeg";
 import PinayAkoJacketGray2 from "../img/products/otherProducts/PinayAkoJacketGray2.jpeg";
 import PhilippinesSocks from "../img/products/otherProducts/PhilippinesSocks.jpeg";
+import Marupok1 from "../img/products/otherProducts/Marupok1.jpeg";
+import Marupok2 from "../img/products/otherProducts/Marupok2.jpeg";
 
 
 
@@ -119,7 +122,7 @@ export const items = [
     category: "tops",
     img: Img3,
     description: "Kamao T-Shirt",
-    price: 19.99,
+    price: 24.99,
     shippingCost: 4.75, // Base shipping cost
     additionalShippingCost: 2.40, // Reduced cost for each additional item
     otherImgs: [Kamao1, Kamao2],
@@ -318,6 +321,23 @@ export const items = [
       { color: "Black", img: Img15, additionalImgs: [PinayAkoJacketBlack] },
       { color: "Gray", img: PinayAkoJacketGray1, additionalImgs: [PinayAkoJacketGray1, PinayAkoJacketGray2] },
       { color: "Navy", img: PinayAkoJacketNavy1, additionalImgs: [PinayAkoJacketNavy1, PinayAkoJacketNavy2] },
+    ],
+  },
+  {
+    id: 15,
+    category: "tops",
+    img: Img16,
+    description: "Marupok T-Shirt",
+    price: 24.99,
+    shippingCost: 4.75, // Base shipping cost
+    additionalShippingCost: 2.40, // Reduced cost for each additional item
+    otherImgs: [Marupok1, Marupok2],
+    specs:
+      "A comfortable tee designed to reference a personality Filipinos have, Marupok. Made with 100% wingspun cotton to make it an excellent daily choice.",
+    texture: "100% Cotton",
+    sizes: ["Small", "Medium", "Large", "Extra Large"],
+    colors: [
+      { color: "White", img: Img16, additionalImgs: [Marupok1, Marupok2] },
     ],
   },
 ];
