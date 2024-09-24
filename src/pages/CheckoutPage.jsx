@@ -155,7 +155,7 @@ function CheckoutPage() {
     if (!isFormValid) {
       return; // Exit the function if the form is not valid
     }
-
+  
     try {
       const response = await axios({
         url: 'https://kulit-backend.vercel.app/payment',
@@ -165,6 +165,10 @@ function CheckoutPage() {
           token,
           cartItems: cartItem, 
           promoCode,
+          subtotal: totalPrice,  // Send subtotal
+          shippingCost,          // Send shipping cost
+          discountAmount,        // Send discount
+          salesTax               // Send sales tax
         },
       });
       if (response.status === 200) {
@@ -175,6 +179,7 @@ function CheckoutPage() {
       handleFailure(error);
     }
   };
+  
 
   const increaseQuantity = (itemId, size) => {
     const updatedCart = cartItem.map(item =>
