@@ -37,9 +37,8 @@ function Navbar() {
 
   return (
     <>
-      <div
-        className={`mobile-nav-full ${mobileNav ? "open-flex" : "closed-flex"}`}
-      >
+      {/* Mobile navigation */}
+      <div className={`mobile-nav-full ${mobileNav ? "open-flex" : "closed-flex"}`}>
         <IconX onClick={() => setMobileNav(!mobileNav)} className="x-mobile" />
         <div className="mobile-links">
           <Link onClick={() => setMobileNav(!mobileNav)} to="/categories/all">
@@ -51,13 +50,10 @@ function Navbar() {
         </div>
       </div>
 
-      {/* overlay */}
-      <div
-        onClick={openCart}
-        className={`page-overlay ${cart ? "open-flex" : "closed-flex"}`}
-      ></div>
+      {/* Overlay */}
+      <div onClick={openCart} className={`page-overlay ${cart ? "open-flex" : "closed-flex"}`}></div>
 
-      {/* cart */}
+      {/* Cart */}
       <div className={`cart-div ${cart ? "open-cart" : "closed-cart"}`}>
         <div className="cart-title-btn">
           <h2 className="cart-full-h2">
@@ -75,16 +71,12 @@ function Navbar() {
         </div>
       </div>
 
+      {/* Navbar */}
       <nav className="navbar">
         <div className="container">
           <div className={`nav-container ${sticky ? "cont-sticky" : ""}`}>
             <Link to="/">
-              <img
-                onClick={scrollToTop}
-                src={LogoImg2}
-                alt="logo"
-                className="logo-img"
-              />
+              <img onClick={scrollToTop} src={LogoImg2} alt="logo" className="logo-img" />
             </Link>
             <div className="nav-links">
               <Link onClick={() => window.scrollTo(0, 0)} to="/categories/all">
@@ -93,30 +85,33 @@ function Navbar() {
               <Link onClick={() => window.scrollTo(0, 0)} to="/support">
                 Support
               </Link>
+
+              {/* Cart icon for desktop */}
               <i
                 data-array-length={getTotalQuantity()}
                 onClick={openCart}
                 className={`cart-icon ${cartItem.length > 0 ? "with-items" : ""}`}
               >
                 <IconShoppingCart />
-                {/* Cart quantity indicator */}
-                <span className="cart-quantity">{getTotalQuantity()}</span>
+                {/* Cart quantity is hidden here due to ::after being used */}
               </i>
             </div>
+
+            {/* Hamburger menu (Mobile) */}
             <div className="hamburger-menu">
+              {/* Mobile Cart Icon */}
               <i
                 data-array-length={getTotalQuantity()}
                 onClick={openCart}
                 className={`hamburger-cart ${cartItem.length > 0 ? "with-items" : ""}`}
               >
                 <IconShoppingCart />
-                {/* Cart quantity indicator */}
-                <span className="cart-quantity">{getTotalQuantity()}</span>
+                {/* Cart quantity indicator for mobile */}
+                <span className="cart-quantity-mobile">{getTotalQuantity()}</span>
               </i>
-              <i
-                onClick={() => setMobileNav(!mobileNav)}
-                className="hamburger-hamb"
-              >
+
+              {/* Hamburger icon */}
+              <i onClick={() => setMobileNav(!mobileNav)} className="hamburger-hamb">
                 <IconMenu2 />
               </i>
             </div>

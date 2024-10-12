@@ -47,8 +47,7 @@
     cursor: pointer;
 }
 
-/* hamburger menu */
-
+/* Hamburger menu */
 .hamburger-menu {
     display: none;
     gap: 3rem;
@@ -110,8 +109,7 @@
     text-decoration: underline;
 }
 
-/* cart */
-
+/* Cart */
 .cart-div {
     display: flex;
     flex-direction: column;
@@ -158,15 +156,15 @@
     padding: 0.5rem;
 }
 
-/* cart icon styles */
-
+/* Cart icon styles */
+/* Cart icon styles for desktop */
 .cart-icon {
     position: relative;
     cursor: pointer;
-}
-
-/* Use this for the desktop view where the pseudo-element is preferred */
-.cart-icon::after {
+  }
+  
+  /* Pseudo-element for desktop quantity indicator */
+  .cart-icon::after {
     content: '';
     top: -18px;
     position: absolute;
@@ -176,58 +174,46 @@
     color: white;
     padding: 5px;
     border-radius: 50%;
-    width: 25px; /* Increased size */
-    height: 25px; /* Increased size */
+    width: 25px;
+    height: 25px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 999;
-}
-
-.cart-icon.with-items::after {
+  }
+  
+  .cart-icon.with-items::after {
     content: attr(data-array-length);
-}
+  }
+  
+  /* Hide cart-quantity in desktop */
 
-/* Ensure the `.cart-quantity` is not used with `::after` pseudo-element */
-.cart-quantity {
-    display: none; /* Hide this element if using `::after` */
-}
-
-/* mobile styles */
-
-.x-mobile {
-    position: absolute;
-    right: 3rem;
-    top: 3rem;
-    cursor: pointer;
-}
-
-@media (max-width: 600px) {
+  /* Styles for mobile */
+  @media (max-width: 600px) {
     .hamburger-menu {
-        display: flex; /* Show hamburger menu on mobile */
+      display: flex; /* Show hamburger menu on mobile */
     }
-
+  
     .hamburger-cart {
-        display: flex; /* Ensure it is visible */
-        position: relative; /* Important for positioning the quantity */
+      display: flex; /* Ensure it is visible */
+      position: relative; /* Important for positioning the quantity */
     }
-    
-    .cart-quantity {
-        display: flex; /* Ensure it's displayed on mobile */
-        position: absolute; /* Position relative to the cart icon */
-        top: -10px; /* Adjust based on your layout */
-        right: -10px; /* Adjust based on your layout */
-        background: red; /* Ensure it's visible */
-        color: white;
-        border-radius: 50%;
-        padding: 2px 6px;
-        font-size: 12px;
-        z-index: 1000; /* Ensure it's on top */
-        display: flex;
-        align-items: center;
-        justify-content: center;
+  
+    .cart-quantity-mobile {
+      display: flex; /* Ensure it's displayed on mobile */
+      position: absolute; /* Position relative to the cart icon */
+      top: -10px; /* Adjust as needed */
+      right: -10px; /* Adjust as needed */
+      background: #B6002C; /* Ensure visibility */
+      color: white;
+      border-radius: 50%;
+      padding: 1.5px 6px;
+      font-size: 12px;
+      z-index: 1000; /* Ensure it's on top */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-}
-
-
+  }
+  
