@@ -3,14 +3,17 @@ import Main1 from "../img/header/AllClothing.jpg";
 import Main2 from "../img/header/Hoodies.jpg";
 import Main3 from "../img/header/Shirts.jpg";
 import Main4 from "../img/header/Other.jpg";
-import Main5 from "../img/header/OtherSticker.jpeg"
-import Main6 from "../img/header/Accessories.jpeg"
-import Main7 from "../img/header/Tops.jpeg"
+import Main5 from "../img/header/OtherSticker.jpeg";
+import Main6 from "../img/header/Accessories.jpeg";
+import Main7 from "../img/header/Tops.jpeg";
 import { Link } from "react-router-dom";
 
 function Hero() {
   return (
     <>
+      <div className="free-shipping-header">
+        <p>Free Shipping on All Orders Over $50!</p>
+      </div>
       <div className="home-container">
         <div className="container">
           <div className="grid-container">

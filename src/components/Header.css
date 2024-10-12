@@ -12,6 +12,23 @@
     padding-top: 12rem;
 }
 
+.free-shipping-header {
+    background-color: #f8e71c; /* Bright yellow background */
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333; /* Dark text for good contrast */
+    border-bottom: 2px solid #333; /* Optional border for better separation */
+    margin-bottom: 1rem; /* Space between header and content */
+    padding-top: 13rem;
+  }
+
+  .free-shipping-header p {
+    color: black;
+  }
+  
+
 .featured {
     overflow: hidden;
     position: relative;
@@ -60,25 +77,14 @@
     transition: all 0.3s ease-in;
 }
 
-
-
-#img1:hover {
-    background-color: rgba(0, 0, 0, 0.5) !important;
-}
-
-#img2:hover {
-    background-color: rgba(0, 0, 0, 0.5) !important;
-}
-
-#img3:hover {
-    background-color: rgba(0, 0, 0, 0.5) !important;
-}
-
+#img1:hover,
+#img2:hover,
+#img3:hover,
 #img4:hover {
     background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
-@media (max-width:750px) {
+@media (max-width: 750px) {
     .grid-container {
         height: 500px;
         display: grid;
@@ -92,7 +98,7 @@
     }
 }
 
-@media (max-width:450px) {
+@media (max-width: 450px) {
     .main-description {
         bottom: 1rem;
         left: 1rem;
@@ -100,7 +106,7 @@
     }
 }
 
-@media (max-width:400px) {
+@media (max-width: 400px) {
     .main-description {
         bottom: 1rem;
         left: 0.5rem;
