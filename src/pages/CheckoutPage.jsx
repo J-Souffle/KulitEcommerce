@@ -21,6 +21,8 @@ function CheckoutPage() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
+  const [phone, setPhone] = useState(""); // New phone number state
+  const [phoneError, setPhoneError] = useState("");
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [promoCodeError, setPromoCodeError] = useState("");
@@ -64,22 +66,37 @@ function CheckoutPage() {
 
   useEffect(() => {
     const validateForm = () => {
+      const sanitizedPhone = phone.replace(/[^\d]/g, ""); // Sanitize phone number input
       const isValid = address.trim() !== "" && 
                       city.trim() !== "" && 
                       state.trim() !== "" && 
                       zip.trim() !== "" && 
-                      /^\d{5}$/.test(zip);
+                      /^\d{5}$/.test(zip) &&
+                      phone.trim() !== "" &&
+                      /^\d{10}$/.test(sanitizedPhone); // Validate sanitized phone number
       setIsFormValid(isValid);
-
+  
       if (!isValid) {
-        setFormErrorMessage("Please fill out all fields to calculate shipping.");
+        setFormErrorMessage("Please fill out all fields, including a valid 10-digit phone number.");
       } else {
         setFormErrorMessage("");
       }
     };
-
+  
     validateForm();
-  }, [address, city, state, zip]);
+  }, [address, city, state, zip, phone]); // Add phone to the dependency array
+  
+
+  const validatePhoneNumber = (phone) => {
+    const sanitizedPhone = phone.replace(/[^\d]/g, ""); // Remove non-numeric characters
+    if (sanitizedPhone.length === 10) {
+      setPhoneError(""); // Valid phone number
+      return true;
+    } else {
+      setPhoneError("Please enter a valid 10-digit phone number.");
+      return false;
+    }
+  };
 
   const applyPromoCode = () => {
     if (promoCode === "10OFF!") {
@@ -309,6 +326,15 @@ function CheckoutPage() {
             placeholder="Zip Code"
             className={zip.trim() === "" || !/^\d{5}$/.test(zip) ? 'error' : ''}
           />
+          <input
+          type="text"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          onBlur={() => validatePhoneNumber(phone)} // Validate on blur (or whenever needed)
+          placeholder="Phone Number"
+          className={phoneError ? 'error' : ''}
+          />
+{phoneError && <p className="error-message">{phoneError}</p>}
           {formErrorMessage && <p className="error-message">{formErrorMessage}</p>}
         </form>
         <form className="promo-code-form">
