@@ -182,10 +182,18 @@ function CheckoutPage() {
           token,
           cartItems: cartItem, 
           promoCode,
-          subtotal: totalPrice,  // Send subtotal
-          shippingCost,          // Send shipping cost
-          discountAmount,        // Send discount
-          salesTax               // Send sales tax
+          subtotal: totalPrice, // Send subtotal
+          shippingCost,         // Send shipping cost
+          discountAmount,       // Send discount
+          salesTax,            // Send sales tax
+          // Include shipping information and phone number
+          shippingInfo: {
+            address,
+            city,
+            state,
+            zip,
+            phone,
+          },
         },
       });
       if (response.status === 200) {
@@ -195,7 +203,7 @@ function CheckoutPage() {
     } catch (error) {
       handleFailure(error);
     }
-  };
+  };  
   
 
   const increaseQuantity = (itemId, size) => {
