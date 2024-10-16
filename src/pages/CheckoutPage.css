@@ -156,8 +156,8 @@
 .promo-code-error {
   color: #e74c3c;
   font-size: 14px;
-  margin-top: 5px;
-  padding-left: 10rem;
+  margin-top: 10px;
+  padding-top: 0.5rem;
 }
 
 .cart-total-price {
